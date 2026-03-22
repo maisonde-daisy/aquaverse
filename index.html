@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AquaVerse</title>
+
+<style>
+
+/* BACKGROUND */
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(to bottom,#001f3f,#0074D9,#87CEEB);
+color:white;
+}
+
+/* NAVBAR */
+header{
+background:linear-gradient(90deg,#001f3f,#0074D9);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:15px 30px;
+box-shadow:0 0 20px #00c6ff;
+position:relative;
+}
+
+nav ul{display:flex;gap:20px;list-style:none;}
+nav li{
+cursor:pointer;
+padding:6px 12px;
+border-radius:20px;
+transition:0.3s;
+}
+nav li:hover{
+background:#00c6ff;
+color:black;
+box-shadow:0 0 15px #00c6ff;
+}
+
+/* QUICK OVERVIEW */
+.overview{
+margin:20px;
+padding:20px;
+background:rgba(0,0,0,0.4);
+border-radius:20px;
+text-align:center;
+box-shadow:0 0 20px #00c6ff;
+}
+
+.overview-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:15px;
+margin-top:15px;
+}
+
+.box{
+background:rgba(255,255,255,0.1);
+padding:15px;
+border-radius:15px;
+text-align:center;
+transition:0.3s;
+}
+
+.box:hover{
+transform:scale(1.05);
+box-shadow:0 0 15px #00c6ff;
+}
+
+.nav-search{
+position:absolute;              
+left:50%;                       
+transform:translateX(-50%);     
+
+width:500px;                    
+padding:12px 25px;
+border-radius:40px;
+border:none;
+outline:none;
+font-size:16px;
+background:white;
+color:black;
+
+/* Glow */
+box-shadow:0 0 15px #00c6ff,
+0 0 30px #00c6ff,
+0 0 50px #00c6ff;
+
+transition:0.3s;
+}
+
+/* Focus */
+.nav-search:focus{
+transform:translateX(-50%) scale(1.05);
+box-shadow:0 0 25px #00c6ff,
+0 0 50px #00c6ff,
+0 0 80px #00c6ff;
+}
+
+/* PAGE */
+.page{display:none;padding:30px;}
+.active{display:block;}
+
+.section-title{
+color:#00c6ff;
+text-shadow:0 0 10px #00c6ff;
+}
+
+/* CARDS */
+.card-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+}
+
+.card{
+background:rgba(255,255,255,0.15);
+padding:10px;
+border-radius:15px;
+cursor:pointer;
+transition:0.3s;
+box-shadow:0 0 10px rgba(0,200,255,0.3);
+}
+.card:hover{
+transform:scale(1.05);
+box-shadow:0 0 20px #00c6ff,0 0 30px #00c6ff;
+}
+
+.card img{
+width:100%;
+height:150px;
+object-fit:cover;
+border-radius:10px;
+}
+
+/* POPUP (CENTER LIKE IMAGE) */
+.popup{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.7);
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.popup-box{
+background:linear-gradient(#0074D9,#87CEEB);
+padding:20px;
+border-radius:20px;
+width:300px;
+text-align:center;
+box-shadow:0 0 30px #00c6ff;
+animation:popup 0.3s ease;
+}
+
+@keyframes popup{
+from{transform:scale(0.7);opacity:0;}
+to{transform:scale(1);opacity:1;}
+}
+
+.popup-box img{
+width:100%;
+height:150px;
+border-radius:10px;
+}
+
+/* LOGIN PANEL */
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.7);
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.modal-box{
+background:linear-gradient(#0074D9,#87CEEB);
+padding:30px;
+border-radius:20px;
+width:420px;              /* 👈 bigger */
+text-align:center;
+box-shadow:0 0 30px #00c6ff;
+animation:popup 0.3s ease;
+}
+
+/* inputs */
+.modal-box input{
+width:90%;
+padding:12px;
+margin:10px auto;
+display:block;
+border-radius:10px;
+border:none;
+}
+
+/* dropdown */
+.modal-box select{
+width:90%;
+padding:10px;
+margin:10px auto;
+display:block;
+border-radius:10px;
+border:none;
+}
+
+/* buttons */
+.modal-box button{
+margin:5px;
+padding:10px 18px;
+background:#00c6ff;
+border:none;
+border-radius:10px;
+cursor:pointer;
+box-shadow:0 0 10px #00c6ff;
+transition:0.3s;
+}
+
+.modal-box button:hover{
+background:white;
+color:black;
+box-shadow:0 0 20px #00c6ff;
+}
+
+/* FOOTER */
+footer{
+background:#001f3f;
+text-align:center;
+padding:10px;
+}
+
+.hero{
+position:relative;
+height:300px;
+overflow:hidden;
+}
+
+.hero video{
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.hero h1{
+position:relative;
+color:white;
+text-align:center;
+top:50%;
+transform:translateY(-50%);
+}
+
+.section-title + p {
+   font-size:15px;
+   opacity:0.9;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>AquaVerse</h2>
+
+<!-- 🔍 NEW SEARCH -->
+<input type="text" placeholder="Search anything..."
+onkeyup="globalSearch(this.value)" class="nav-search">
+
+<nav>
+<ul>
+<li onclick="showPage('species')">Species</li>
+<li onclick="showPage('plants')">Plants</li>
+<li onclick="showPage('pollution')">Pollution</li>
+<li onclick="showPage('sonar')">Sonar</li>
+
+<li onclick="openLogin()">Login</li>
+</ul>
+</nav>
+</header>
+
+<div class="hero" id="hero">
+<video autoplay muted loop>
+<source src="images/ocean.mp4" type="video/mp4">
+</video>
+<h1>(MARINE INTELLIGENCE AND RESEARCH MANAGEMENT SYSTEM)</h1>
+</div>
+
+
+<!-- QUICK OVERVIEW -->
+<div class="overview" id="overview">
+<h2>Quick Overview</h2>
+<p>Centralized marine information platform.</p>
+
+<div class="overview-grid">
+<div class="box" onclick="showOverview('research')"><p>Research Article</p></div>
+<div class="box" onclick="showOverview('nasa ocean research')"><p>NASA Ocean Research</p></div>
+<div class="box" onclick="showOverview('marine biology')"><p>Marine Biology</p></div>
+<div class="box" onclick="showOverview('whoi')"><p>WHOI</p></div>
+
+</div>
+</div>
+
+<!-- SPECIES -->
+<div id="species" class="page">
+<h2 class="section-title">Marine Species</h2>
+
+<div id="speciesContainer" class="card-grid"></div>
+</div>
+
+<!-- Plants -->
+<div id="plants" class="page">
+<h2 class="section-title">Plants types</h2>
+<div id="plantsContainer" class="card-grid"></div>
+</div>
+
+<!-- POLLUTION -->
+
+<div id="pollution" class="page">
+
+<h2 class="section-title">Water Pollution</h2>
+
+<!-- 🔥 YAHAN ADD KARO -->
+<p style="max-width:900px; margin:auto; text-align:center; line-height:1.6;">
+Water pollution refers to the contamination of oceans, seas, rivers, and other water bodies by harmful substances that negatively impact marine ecosystems and human health. It occurs due to various sources such as plastic waste, oil spills, industrial chemicals, agricultural runoff, and untreated sewage. These pollutants reduce water quality, decrease oxygen levels, and disrupt the natural balance of aquatic life. Marine organisms like fish, turtles, and coral reefs suffer greatly as toxic substances accumulate in their bodies, leading to diseases and even extinction in severe cases. In addition, polluted water can enter the human food chain, causing serious health issues. Addressing water pollution requires global awareness, sustainable practices, proper waste management, and strict environmental regulations to protect marine biodiversity and ensure a healthy future for our planet.
+</p>
+
+<!-- 🔥 LINK -->
+<div style="text-align:center; margin-bottom:15px;">
+<a href="https://en.wikipedia.org/wiki/Water_pollution" target="_blank" style="color:#00e6ff;">
+Read more on Wikipedia
+</a>
+</div>
+
+<!-- existing cards -->
+<div id="pollutionContainer" class="card-grid"></div>
+
+</div>
+
+<!-- SONAR -->
+<div id="sonar" class="page">
+
+<h2 class="section-title">Sonar Types</h2>
+
+<!-- 🔥 PARAGRAPH -->
+<p style="max-width:900px; margin:auto; text-align:center; line-height:1.6;">
+Sonar (Sound Navigation and Ranging) is a technology that uses sound waves to detect and locate objects underwater. It is widely used in marine research, navigation, and defense systems. There are different types of sonar systems, such as active sonar, which emits sound pulses and listens for echoes, and passive sonar, which only listens to sounds produced by objects like ships or marine animals. Sonar helps scientists study ocean depths, map the seafloor, track marine species, and monitor underwater activities. It plays a crucial role in ocean exploration and contributes significantly to marine conservation and safety.
+</p>
+
+<!-- 🔥 WIKIPEDIA LINK -->
+<div style="text-align:center; margin-bottom:15px;">
+<a href="https://en.wikipedia.org/wiki/Sonar" target="_blank" style="color:#00e6ff;">
+Read more on Wikipedia
+</a>
+</div>
+
+<!-- existing cards -->
+<div id="sonarContainer" class="card-grid"></div>
+
+</div>
+
+
+<!-- POPUP -->
+<div id="popup" class="popup">
+<div class="popup-box">
+<img id="popupImg">
+<h3 id="popupName"></h3>
+<p id="popupDesc"></p>
+<button onclick="closePopup()">Close</button>
+</div>
+</div>
+<div id="loginModal" class="modal">
+<div class="modal-box">
+
+<h3 id="formTitle">Login</h3>
+
+<div style="margin-bottom:15px;">
+<button onclick="showLogin()">Login</button>
+<button onclick="showSignup()">Signup</button>
+</div>
+
+<input type="text" id="name" placeholder="Full Name" style="display:none;">
+<input type="email" id="email" placeholder="Email">
+<input type="password" id="password" placeholder="Password">
+
+<select id="role">
+<option value="user">User</option>
+<option value="admin">Admin</option>
+</select>
+
+<button id="mainBtn" onclick="handleAuth()">Login</button>
+<button onclick="closeLogin()">Close</button>
+<button id="logoutBtn" onclick="logout()" style="display:none; margin:20px;">
+Logout
+</button>
+</div>
+</div>
+
+
+<footer>
+Contact: daisykumari1822@gmail.com
+</footer>
+
+<script>
+
+// DATA
+const speciesData=[
+{name:"Blue Whale",desc:"Largest marine animal",img:"images/bluewhale.jpg"},
+{name:"Dolphin",desc:"Intelligent mammal",img:"images/dolphin.webp"},
+{name:"Shark",desc:"Ocean predator",img:"images/shark.webp"},
+{name:"Octopus",desc:"8 arms creature",img:"images/octopus.jpg"},
+{name:"Sea Turtle",desc:"Ancient reptile",img:"images/seaturtle.jpg"},
+{name:"Starfish",desc:"Star shape",img:"images/starfish.webp"},
+{name:"Jellyfish",desc:"Transparent body",img:"images/jellyfish.jpg"},
+{name:"Swordfish",desc:"Marine ecosystem",img:"images/sword.webp"},
+{name:"Manta ray",desc:"Sea plant",img:"images/manta.jpg"},
+{name:"Seahorse",desc:"Horse shaped fish",img:"images/seahorse.webp"},
+{name:"Clownfish",desc:"Colorful fish",img:"images/clownfish.webp"},
+{name:"Whale Shark",desc:"Largest fish",img:"images/whaleshark.webp"},
+{name:"Squid",desc:"Fast swimmer",img:"images/squid.webp"},
+{name:"Lobster",desc:"Hard shell animal",img:"images/lobster.webp"},
+{name:"Crab",desc:"Side walking",img:"images/crab.webp"},
+{name:"Eel",desc:"Snake-like fish",img:"images/eel.webp"},
+{name:"Seal",desc:"Aquatic mammal",img:"images/seal.webp"},
+{name:"Manatee",desc:"Swimming bird",img:"images/manatee.webp"},
+{name:"Orca",desc:"Killer whale",img:"images/orca.webp"},
+{name:"Barracuda",desc:"Fast predator",img:"images/barracuda.webp"}
+];
+
+const plantsData = [
+
+{name:"Neptune Grass", desc:"Ancient seagrass found in Mediterranean Sea", img:"images/neptune.jpg"},
+
+{name:"Giant Kelp", desc:"Fastest growing marine plant forming underwater forests", img:"images/kelp.webp"},
+
+{name:"Sea Lettuce", desc:"Edible green algae and pollution indicator", img:"images/lettuce.jpg"},
+
+{name:"Red Algae", desc:"Deep sea algae used for agar production", img:"images/red algae.jpg"},
+
+{name:"Sargassum", desc:"Floating seaweed forming Sargasso Sea", img:"images/sargassum.webp"},
+
+{name:"Eelgrass", desc:"Provides habitat for fish and marine life", img:"images/eelgrass.webp"},
+
+{name:"Halimeda", desc:"Calcium-rich algae supporting coral reefs", img:"images/halimeda.jpg"},
+
+{name:"Sea Grapes", desc:"Edible algae that looks like green grapes", img:"images/sea grapes.jpg"},
+
+{name:"Bladderwrack", desc:"Brown algae with air bladders used in medicine", img:"images/bladderwrack.jpg"},
+
+{name:"Codium", desc:"Known as Dead Man’s Fingers due to its shape", img:"images/codium.webp"},
+
+{name:"Kombu", desc:"Nutrient-rich seaweed used in Japanese cuisine", img:"images/kombu.webp"},
+
+{name:"Turtle Grass", desc:"Main food source for sea turtles", img:"images/turtle grass.webp"},
+
+{name:"Dictyota", desc:"Tropical algae with antibacterial properties", img:"images/dictyota.webp"},
+
+{name:"Gracilaria", desc:"Used for agar production in industries", img:"images/gracilaria.webp"},
+
+{name:"Padina", desc:"Fan-shaped decorative marine algae", img:"images/padina.jpg"},
+
+{name:"Ascophyllum", desc:"Used in fertilizers and found in cold waters", img:"images/ascophyllum.webp"},
+
+{name:"Nori", desc:"Seaweed used in sushi, rich in protein", img:"images/nori.jpg"},
+
+{name:"Enteromorpha", desc:"Tube-shaped algae tolerant to pollution", img:"images/enteromorpha.jpg"},
+
+{name:"Halophila", desc:"Smallest seagrass species, endangered", img:"images/halophila.webp"},
+
+{name:"Bull Kelp", desc:"Strong kelp surviving powerful ocean currents", img:"images/bull kelp.webp"}
+
+];
+
+const pollutionData=[
+{name:"Plastic Pollution",desc:"Plastic harms marine life",img:"images/plastic.jpeg"},
+{name:"Oil Pollution",desc:"Oil spills damage oceans",img:"images/oil.webp"},
+{name:"Chemical Pollution",desc:"Chemicals pollute water",img:"images/chemical.jpg"},
+{name:"Sewage Pollution",desc:"Waste reduces oxygen",img:"images/swege.webp"}
+];
+
+const sonarData=[
+{name:"Active Sonar",desc:"Uses sound waves",img:"images/sonar.png"},
+{name:"Passive Sonar",desc:"Listens underwater",img:"images/passive.webp"},
+{name:"Side Scan Sonar",desc:"Maps ocean floor",img:"images/side.webp"}
+];
+
+
+function showOverview(type){
+
+let title="";
+let desc="";
+let link="";
+
+if(type==="research"){
+title="Research Articles";
+desc="This section includes detailed research articles related to marine life, biodiversity, ocean ecosystems, climate change, and conservation.";
+link="https://en.wikipedia.org/wiki/Marine_conservation";
+}
+else if(type==="nasa ocean research"){
+title="NASA Ocean Research";
+desc="This section includes research based on data from NASA, focusing on marine ecosystems, ocean temperature, climate change, and biodiversity. NASA uses advanced satellites to monitor ocean conditions, track sea level rise, and study microscopic marine life like phytoplankton. These studies help scientists understand environmental changes and protect marine life.";
+link="https://www.earthdata.nasa.gov/topics/ocean";
+}
+else if(type==="marine biology"){
+title="Marine Biology";
+desc="Marine biology is the scientific study of organisms that live in oceans and other saltwater environments. It includes the study of marine plants, animals, and microorganisms, as well as their interactions with the environment. Marine biology helps us understand ocean ecosystems, biodiversity, and the impact of human activities such as pollution and climate change on marine life.";
+link="https://en.wikipedia.org/wiki/Marine_biology";
+}
+else if(type==="whoi"){
+title="WHOI";
+desc="Woods Hole Oceanographic Institution (WHOI) is one of the world’s leading marine research laboratories, located in the United States. It focuses on studying ocean science, marine ecosystems, and climate change. The institution is known for its advanced technologies and deep-sea exploration, including the use of submersibles like Alvin. WHOI plays a crucial role in understanding ocean processes and protecting marine environments.";
+link="https://www.whoi.edu/";
+}
+
+// popup show
+document.getElementById("popup").style.display="flex";
+document.getElementById("popupName").innerText=title;
+
+// 🔥 paragraph + link
+document.getElementById("popupDesc").innerHTML =
+desc + "<br><br><a href='"+link+"' target='_blank' style='color:#00c6ff'>Read more →</a>";
+
+document.getElementById("popupImg").style.display="none";
+
+}
+
+// LOAD
+function loadData(data,id){
+let c=document.getElementById(id);
+c.innerHTML="";
+data.forEach(i=>{
+c.innerHTML+=`
+<div class="card" onclick="openPopup('${i.name}','${i.desc}','${i.img}')">
+<img src="${i.img}">
+<h3>${i.name}</h3>
+<p>${i.desc}</p>
+</div>`;
+});
+}
+
+// POPUP
+function openPopup(name,desc,img){
+document.getElementById("popup").style.display="flex";
+document.getElementById("popupName").innerText=name;
+document.getElementById("popupDesc").innerText=desc;
+document.getElementById("popupImg").src=img;
+}
+function closePopup(){
+document.getElementById("popup").style.display="none";
+document.getElementById("popupImg").style.display="block";
+}
+
+// NAV
+function showPage(id){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+}
+
+// LOGIN
+function openLogin(){document.getElementById("loginModal").style.display="flex";}
+function closeLogin(){document.getElementById("loginModal").style.display="none";}
+
+function globalSearch(val){
+
+val = val.toLowerCase();
+
+if(val===""){
+// reset all
+loadData(speciesData,"speciesContainer");
+loadData(plantsData,"plantsContainer");
+loadData(pollutionData,"pollutionContainer");
+loadData(sonarData,"sonarContainer");
+
+return;
+}
+
+// अलग-अलग filter
+let species = speciesData.filter(i=>i.name.toLowerCase().includes(val));
+let plants = plantsData.filter(i=>i.name.toLowerCase().includes(val));
+
+let pollution = pollutionData.filter(i=>i.name.toLowerCase().includes(val));
+let sonar = sonarData.filter(i=>i.name.toLowerCase().includes(val));
+
+// page switch priority
+if(species.length){
+showPage("species");
+loadData(species,"speciesContainer");
+}
+else if(plants.length){
+showPage("plants");
+loadData(plants,"plantsContainer");
+}
+else if(pollution.length){
+showPage("pollution");
+loadData(pollution,"pollutionContainer");
+}
+else if(sonar.length){
+showPage("sonar");
+loadData(sonar,"sonarContainer");
+}
+
+}
+
+
+
+function showPage(page){
+
+// sab pages hide
+document.getElementById("species").style.display="none";
+document.getElementById("plants").style.display="none";
+document.getElementById("pollution").style.display="none";
+document.getElementById("sonar").style.display="none";
+
+// hero + overview hide
+document.getElementById("hero").style.display="none";
+document.getElementById("overview").style.display="none";
+
+// selected page show
+document.getElementById(page).style.display="block";
+}
+
+let isSignup = false;
+
+function showSignup(){
+document.getElementById("formTitle").innerText="Signup";
+document.getElementById("name").style.display="block";
+document.getElementById("mainBtn").innerText="Signup";
+isSignup = true;
+}
+
+function showLogin(){
+document.getElementById("formTitle").innerText="Login";
+document.getElementById("name").style.display="none";
+document.getElementById("mainBtn").innerText="Login";
+isSignup = false;
+}
+
+function handleAuth(){
+
+let name = document.getElementById("name").value;
+let email = document.getElementById("email").value;
+let password = document.getElementById("password").value;
+let role = document.getElementById("role").value;
+
+if(email === "" || password === ""){
+alert("Please fill all fields");
+return;
+}
+
+if(isSignup){
+localStorage.setItem("user", JSON.stringify({name,email,password,role}));
+alert("Signup Successful ✅");
+}
+else{
+let user = JSON.parse(localStorage.getItem("user"));
+
+if(user && user.email === email && user.password === password){
+alert("Login Successful ✅");
+document.getElementById("logoutBtn").style.display="block";
+closeLogin();
+}
+else{
+alert("Invalid Login ❌");
+}
+}
+}
+
+function logout(){
+localStorage.removeItem("user");
+alert("Logged out 👋");
+document.getElementById("logoutBtn").style.display="none";
+}
+
+window.onload=()=>{
+loadData(speciesData,"speciesContainer");
+loadData(plantsData,"plantsContainer");
+loadData(pollutionData,"pollutionContainer");
+loadData(sonarData,"sonarContainer");
+};
+</script>
+
+</body>
+</html>
