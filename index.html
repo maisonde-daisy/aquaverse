@@ -296,6 +296,50 @@ transform:translateY(-50%);
       font-size: 18px;
    }
 }
+   .social-container{
+   position: fixed;
+   top: 50%;
+   right: 0;
+   transform: translateY(-50%);
+   display: flex;
+   align-items: center;
+   z-index: 1000;
+}
+
+/* Arrow button */
+.toggle-btn{
+   background: #0074D9;
+   color: white;
+   padding: 10px;
+   cursor: pointer;
+   border-radius: 10px 0 0 10px;
+   font-size: 18px;
+}
+
+/* Social bar */
+.social-bar{
+   display: flex;
+   flex-direction: column;
+   transition: 0.3s;
+}
+
+/* Hidden state */
+.social-bar.hide{
+   transform: translateX(100%);
+}
+
+/* Icons */
+.social-bar a{
+   color: white;
+   padding: 12px;
+   margin: 5px 0;
+   border-radius: 10px 0 0 10px;
+   text-align: center;
+}
+
+.insta{ background: linear-gradient(45deg,#f09433,#dc2743,#cc2366); }
+.whatsapp{ background: #25D366; }
+.pinterest{ background: #E60023; }
 
 </style>
 </head>
@@ -437,6 +481,27 @@ Logout
 </button>
 </div>
 </div>
+   <div class="social-container">
+
+   <!-- Arrow button -->
+   <div class="toggle-btn" onclick="toggleSocial()">❯</div>
+
+   <!-- Social icons -->
+   <div class="social-bar" id="socialBar">
+      <a href="https://instagram.com" target="_blank" class="insta">
+         <i class="fab fa-instagram"></i>
+      </a>
+
+      <a href="https://wa.me/91XXXXXXXXXX" target="_blank" class="whatsapp">
+         <i class="fab fa-whatsapp"></i>
+      </a>
+
+      <a href="https://pinterest.com" target="_blank" class="pinterest">
+         <i class="fab fa-pinterest"></i>
+      </a>
+   </div>
+
+</div>
 
 
 <footer>
@@ -444,12 +509,17 @@ Contact: daisykumari1822@gmail.com
 </footer>
 
 <script>
+   
+function toggleSocial(){
+   const bar = document.getElementById("socialBar");
+   bar.classList.toggle("hide");
+}
 
-// DATA
+// dolphin.webp"},
+{name:"Shark",desc:"Ocean predator",img:"shaDATA
 const speciesData=[
 {name:"Blue Whale",desc:"Largest marine animal",img:"bluewhale.jpg"},
-{name:"Dolphin",desc:"Intelligent mammal",img:"dolphin.webp"},
-{name:"Shark",desc:"Ocean predator",img:"shark.webp"},
+{name:"Dolphin",desc:"Intelligent mammal",img:"rk.webp"},
 {name:"Octopus",desc:"8 arms creature",img:"octopus.jpg"},
 {name:"Sea Turtle",desc:"Ancient reptile",img:"seaturtle.jpg"},
 {name:"Starfish",desc:"Star shape",img:"starfish.webp"},
