@@ -512,10 +512,6 @@ Contact: daisykumari1822@gmail.com
 </footer>
 
 <script>
-   
-function toggleSocial(){
-   document.getElementById("socialBar").classList.toggle("hide");
-}
 
 // dolphin.webp"},
 {name:"Shark",desc:"Ocean predator",img:"shaDATA
@@ -783,6 +779,9 @@ function logout(){
 localStorage.removeItem("user");
 alert("Logged out 👋");
 document.getElementById("logoutBtn").style.display="none";
+}
+ function toggleSocial(){
+   document.getElementById("socialBar").classList.toggle("hide");
 }
 
 window.onload=()=>{
