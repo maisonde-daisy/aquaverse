@@ -307,7 +307,7 @@ transform:translateY(-50%);
    z-index: 1000;
 }
 
-/* Arrow button */
+/* Arrow */
 .toggle-btn{
    background: #00c6ff;
    color: white;
@@ -315,19 +315,20 @@ transform:translateY(-50%);
    cursor: pointer;
    border-radius: 12px 0 0 12px;
    font-size: 20px;
-   box-shadow: 0 0 10px rgba(0,0,0,0.3);
-}
-
-/* Social bar */
-.social-bar{
-   display: flex;
-   flex-direction: column;
-   transition: transform 0.4s ease;
 }
 
 /* 🔥 MAIN FIX */
-.social-container.hide{
-   transform: translate(80px, -50%);
+.social-bar{
+   display: flex;
+   flex-direction: column;
+   position: relative;
+   right: 0;
+   transition: right 0.4s ease;
+}
+
+/* Hide state */
+.social-bar.hide{
+   right: -70px;   /* 👈 yahi magic hai */
 }
 
 /* Icons */
@@ -338,13 +339,6 @@ transform:translateY(-50%);
    border-radius: 12px 0 0 12px;
    text-align: center;
    font-size: 20px;
-   box-shadow: 0 0 10px rgba(0,0,0,0.3);
-   transition: 0.3s;
-}
-
-/* Hover effect */
-.social-bar a:hover{
-   transform: scale(1.1);
 }
 
 /* Colors */
