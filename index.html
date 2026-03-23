@@ -3,7 +3,7 @@
 <head>
 <title>AquaVerse</title>
 
-  <style>
+<style>
 
 /* BACKGROUND */
 body{
@@ -256,8 +256,7 @@ transform:translateY(-50%);
    font-size:15px;
    opacity:0.9;
 }
-  
-     
+
 </style>
 </head>
 
@@ -284,7 +283,7 @@ onkeyup="globalSearch(this.value)" class="nav-search">
 
 <div class="hero" id="hero">
 <video autoplay muted loop>
-<source src="ocean.mp4" type="video/mp4">
+<source src="images/ocean.mp4" type="video/mp4">
 </video>
 <h1>(MARINE INTELLIGENCE AND RESEARCH MANAGEMENT SYSTEM)</h1>
 </div>
@@ -398,18 +397,19 @@ Logout
 </button>
 </div>
 </div>
-   
+
+
 <footer>
-   Contact: daisykumari1822@gmail.com
-   </footer>
+Contact: daisykumari1822@gmail.com
+</footer>
 
 <script>
 
-// dolphin.webp"},
-{name:"Shark",desc:"Ocean predator",img:"shaDATA
+// DATA
 const speciesData=[
 {name:"Blue Whale",desc:"Largest marine animal",img:"bluewhale.jpg"},
-{name:"Dolphin",desc:"Intelligent mammal",img:"rk.webp"},
+{name:"Dolphin",desc:"Intelligent mammal",img:"dolphin.webp"},
+{name:"Shark",desc:"Ocean predator",img:"shark.webp"},
 {name:"Octopus",desc:"8 arms creature",img:"octopus.jpg"},
 {name:"Sea Turtle",desc:"Ancient reptile",img:"seaturtle.jpg"},
 {name:"Starfish",desc:"Star shape",img:"starfish.webp"},
@@ -672,7 +672,7 @@ localStorage.removeItem("user");
 alert("Logged out 👋");
 document.getElementById("logoutBtn").style.display="none";
 }
- 
+
 window.onload=()=>{
 loadData(speciesData,"speciesContainer");
 loadData(plantsData,"plantsContainer");
