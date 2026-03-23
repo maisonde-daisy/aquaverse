@@ -321,14 +321,12 @@ transform:translateY(-50%);
 .social-bar{
    display: flex;
    flex-direction: column;
-   position: relative;
-   right: 0;
-   transition: right 0.4s ease;
+   transition: transform 0.4s ease;
 }
 
 /* Hide state */
 .social-bar.hide{
-   right: -70px;   /* 👈 yahi magic hai */
+   transform: translateX(80px);   /* 👈 slide inside */
 }
 
 /* Icons */
@@ -516,16 +514,7 @@ Contact: daisykumari1822@gmail.com
 <script>
    
 function toggleSocial(){
-   const container = document.querySelector(".social-container");
-   const btn = document.querySelector(".toggle-btn");
-
-   container.classList.toggle("hide");
-
-   if(container.classList.contains("hide")){
-      btn.innerHTML = "❮";
-   } else {
-      btn.innerHTML = "❯";
-   }
+   document.getElementById("socialBar").classList.toggle("hide");
 }
 
 // dolphin.webp"},
