@@ -297,7 +297,7 @@ transform:translateY(-50%);
       font-size: 18px;
    }
 }
-   .social-container{
+  .social-container{
    position: fixed;
    top: 50%;
    right: 0;
@@ -324,24 +324,11 @@ transform:translateY(-50%);
    transition: 0.3s;
 }
 
-/* Hidden state */
-.social-bar.hide{
+/* 🔥 IMPORTANT FIX */
+.social-container.hide .social-bar{
    transform: translateX(100%);
 }
-
-/* Icons */
-.social-bar a{
-   color: white;
-   padding: 12px;
-   margin: 5px 0;
-   border-radius: 10px 0 0 10px;
-   text-align: center;
-}
-
-.insta{ background: linear-gradient(45deg,#f09433,#dc2743,#cc2366); }
-.whatsapp{ background: #25D366; }
-.pinterest{ background: #E60023; }
-
+   
 </style>
 </head>
 
@@ -512,8 +499,16 @@ Contact: daisykumari1822@gmail.com
 <script>
    
 function toggleSocial(){
-   const bar = document.getElementById("socialBar");
-   bar.classList.toggle("hide");
+   const container = document.querySelector(".social-container");
+   const btn = document.querySelector(".toggle-btn");
+
+   container.classList.toggle("hide");
+
+   if(container.classList.contains("hide")){
+      btn.innerHTML = "❮";
+   } else {
+      btn.innerHTML = "❯";
+   }
 }
 
 // dolphin.webp"},
