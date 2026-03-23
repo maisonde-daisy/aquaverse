@@ -270,6 +270,54 @@ transform:translateY(-50%);
    display: grid;
    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
+   /* NAVBAR FIX */
+header{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   flex-wrap: wrap;
+}
+
+/* Nav list */
+nav ul{
+   display: flex;
+   list-style: none;
+   gap: 20px;
+   margin: 0;
+   padding: 0;
+}
+
+/* Nav items */
+nav ul li{
+   cursor: pointer;
+   font-size: 16px;
+}
+
+/* 🔥 MOBILE FIX */
+@media (max-width: 768px){
+
+   header{
+      flex-direction: column;
+      align-items: center;
+   }
+
+   /* search bar */
+   input[type="text"]{
+      width: 90%;
+      margin: 10px 0;
+   }
+
+   /* nav */
+   nav ul{
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+   }
+
+   nav ul li{
+      font-size: 14px;
+   }
+}
 
 </style>
 </head>
