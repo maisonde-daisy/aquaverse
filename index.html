@@ -320,18 +320,20 @@ nav ul li{
 }
   .video-section {
     text-align: center;
-    padding: 30px;
+    padding: 40px;
 }
 
 .video-section h2 {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    font-size: 24px;
 }
 
-.video-section video {
+.video-section iframe {
     width: 80%;
     max-width: 800px;
+    height: 450px;
     border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    box-shadow: 0 0 25px rgba(0,0,0,0.6);
 }
 </style>
 </head>
@@ -380,13 +382,12 @@ onkeyup="globalSearch(this.value)" class="nav-search">
 </div>
    <div class="video-section">
     <h2>Project Overview Video</h2>
-    
-    <video controls autoplay muted loop>
-        <source src="overview.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</div>
 
+    <iframe width="80%" height="400"
+    src="https://www.youtube.com/embed/4MLCDstLSE4"
+    frameborder="0" allowfullscreen>
+    </iframe>
+</div>
 <!-- SPECIES -->
 <div id="species" class="page">
 <h2 class="section-title">Marine Species</h2>
