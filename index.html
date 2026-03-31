@@ -321,33 +321,32 @@ nav ul li{
   .video-hero {
     position: relative;
     width: 100%;
-    height: 400px;
+    height: 450px;
     overflow: hidden;
 }
 
-/* Video full background */
+/* 🔥 Trick: video ko zoom karke full cover */
 .video-hero iframe {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 120%;
-    height: 120%;
+    
+    width: 177.77%;   /* 16:9 fix */
+    height: 100%;
+
     transform: translate(-50%, -50%);
-    pointer-events: none; /* click disable (background feel) */
+    pointer-events: none;
 }
 
-/* Dark overlay for text readability */
+/* Overlay dark layer */
 .video-hero::after {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
+    inset: 0;
+    background: rgba(0,0,0,0.4);
 }
 
-/* Text on top */
+/* Text */
 .video-overlay {
     position: relative;
     z-index: 2;
@@ -355,14 +354,6 @@ nav ul li{
     text-align: center;
     top: 50%;
     transform: translateY(-50%);
-}
-
-.video-overlay h1 {
-    font-size: 32px;
-}
-
-.video-overlay p {
-    font-size: 18px;
 }
 </style>
 </head>
@@ -409,21 +400,15 @@ onkeyup="globalSearch(this.value)" class="nav-search">
 
 </div>
 </div>
-  <div class="video-hero">
-
-    <!-- Video Background -->
+ <div class="video-hero">
     <iframe 
     src="https://www.youtube.com/embed/4MLCDstLSE4?autoplay=1&mute=1&loop=1&playlist=4MLCDstLSE4"
     frameborder="0"
     allow="autoplay; fullscreen">
     </iframe>
 
-    <!-- Overlay content -->
     <div class="video-overlay">
-        <h1>Project Overview</h1>
-        <p>Marine Intelligence and Research Management System</p>
     </div>
-
 </div>
 <!-- SPECIES -->
 <div id="species" class="page">
