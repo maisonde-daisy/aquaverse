@@ -318,22 +318,51 @@ nav ul li{
       font-size: 14px;
    }
 }
-  .video-section {
+  .video-hero {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+
+/* Video full background */
+.video-hero iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 120%;
+    transform: translate(-50%, -50%);
+    pointer-events: none; /* click disable (background feel) */
+}
+
+/* Dark overlay for text readability */
+.video-hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+}
+
+/* Text on top */
+.video-overlay {
+    position: relative;
+    z-index: 2;
+    color: white;
     text-align: center;
-    padding: 40px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-.video-section h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
+.video-overlay h1 {
+    font-size: 32px;
 }
 
-.video-section iframe {
-    width: 80%;
-    max-width: 800px;
-    height: 450px;
-    border-radius: 15px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.6);
+.video-overlay p {
+    font-size: 18px;
 }
 </style>
 </head>
@@ -380,13 +409,21 @@ onkeyup="globalSearch(this.value)" class="nav-search">
 
 </div>
 </div>
-   <div class="video-section">
-    <h2>Project Overview Video</h2>
+  <div class="video-hero">
 
-    <iframe width="80%" height="400"
-    src="https://www.youtube.com/embed/4MLCDstLSE4"
-    frameborder="0" allowfullscreen>
+    <!-- Video Background -->
+    <iframe 
+    src="https://www.youtube.com/embed/4MLCDstLSE4?autoplay=1&mute=1&loop=1&playlist=4MLCDstLSE4"
+    frameborder="0"
+    allow="autoplay; fullscreen">
     </iframe>
+
+    <!-- Overlay content -->
+    <div class="video-overlay">
+        <h1>Project Overview</h1>
+        <p>Marine Intelligence and Research Management System</p>
+    </div>
+
 </div>
 <!-- SPECIES -->
 <div id="species" class="page">
