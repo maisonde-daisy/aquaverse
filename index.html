@@ -318,7 +318,21 @@ nav ul li{
       font-size: 14px;
    }
 }
-  
+  .video-section {
+    text-align: center;
+    padding: 30px;
+}
+
+.video-section h2 {
+    margin-bottom: 15px;
+}
+
+.video-section video {
+    width: 80%;
+    max-width: 800px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
 </style>
 </head>
 
@@ -363,6 +377,14 @@ onkeyup="globalSearch(this.value)" class="nav-search">
 <div class="box" onclick="showOverview('whoi')"><p>WHOI</p></div>
 
 </div>
+</div>
+   <div class="video-section">
+    <h2>Project Overview Video</h2>
+    
+    <video controls autoplay muted loop>
+        <source src="overview.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 </div>
 
 <!-- SPECIES -->
