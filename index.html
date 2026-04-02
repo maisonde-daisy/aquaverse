@@ -2,323 +2,506 @@
 <html>
 <head>
 <title>AquaVerse</title>
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="[fonts.googleapis.com](https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap)" rel="stylesheet">
 
 <style>
 
-/* BACKGROUND */
-body{
-margin:0;
-font-family:Arial;
-background:linear-gradient(to bottom,#001f3f,#0074D9,#87CEEB);
-color:white;
+/* MODERN BACKGROUND */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #0a1628 0%, #1a3a5c 50%, #2d5a7b 100%);
+  color: white;
+  min-height: 100vh;
 }
 
-/* NAVBAR */
-header{
-background:linear-gradient(90deg,#001f3f,#0074D9);
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:15px 30px;
-box-shadow:0 0 20px #00c6ff;
-position:relative;
+/* GLASSMORPHISM NAVBAR */
+header {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-nav ul{display:flex;gap:20px;list-style:none;}
-nav li{
-cursor:pointer;
-padding:6px 12px;
-border-radius:20px;
-transition:0.3s;
-}
-nav li:hover{
-background:#00c6ff;
-color:black;
-box-shadow:0 0 15px #00c6ff;
+header h2 {
+  font-weight: 700;
+  font-size: 24px;
+  background: linear-gradient(135deg, #00d4ff, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
 }
 
-/* QUICK OVERVIEW */
-.overview{
-margin:20px;
-padding:20px;
-background:rgba(0,0,0,0.4);
-border-radius:20px;
-text-align:center;
-box-shadow:0 0 20px #00c6ff;
+nav ul {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.overview-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-gap:15px;
-margin-top:15px;
+nav li {
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
 }
 
-.box{
-background:rgba(255,255,255,0.1);
-padding:15px;
-border-radius:15px;
-text-align:center;
-transition:0.3s;
+nav li:hover {
+  background: linear-gradient(135deg, #00d4ff, #7c3aed);
+  color: white;
+  transform: translateY(-2px);
 }
 
-.box:hover{
-transform:scale(1.05);
-box-shadow:0 0 15px #00c6ff;
+/* MODERN SEARCH BAR */
+.nav-search {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  padding: 14px 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  outline: none;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.nav-search{
-position:absolute;              
-left:50%;                       
-transform:translateX(-50%);     
-
-width:500px;                    
-padding:12px 25px;
-border-radius:40px;
-border:none;
-outline:none;
-font-size:16px;
-background:white;
-color:black;
-
-/* Glow */
-box-shadow:0 0 15px #00c6ff,
-0 0 30px #00c6ff,
-0 0 50px #00c6ff;
-
-transition:0.3s;
+.nav-search::placeholder {
+  color: rgba(255, 255, 255, 0.5);
 }
 
-/* Focus */
-.nav-search:focus{
-transform:translateX(-50%) scale(1.05);
-box-shadow:0 0 25px #00c6ff,
-0 0 50px #00c6ff,
-0 0 80px #00c6ff;
+.nav-search:focus {
+  transform: translateX(-50%) scale(1.02);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #00d4ff;
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
 }
 
-/* PAGE */
-.page{display:none;padding:30px;}
-.active{display:block;}
-
-.section-title{
-color:#00c6ff;
-text-shadow:0 0 10px #00c6ff;
+/* MODERN OVERVIEW SECTION */
+.overview {
+  margin: 30px 40px;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* CARDS */
-.card-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:15px;
+.overview h2 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #ffffff, #a0aec0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.card{
-background:rgba(255,255,255,0.15);
-padding:10px;
-border-radius:15px;
-cursor:pointer;
-transition:0.3s;
-box-shadow:0 0 10px rgba(0,200,255,0.3);
-}
-.card:hover{
-transform:scale(1.05);
-box-shadow:0 0 20px #00c6ff,0 0 30px #00c6ff;
+.overview p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 15px;
 }
 
-.card img{
-width:100%;
-height:150px;
-object-fit:cover;
-border-radius:10px;
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
 }
 
-/* POPUP (CENTER LIKE IMAGE) */
-.popup{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.7);
-justify-content:center;
-align-items:center;
-z-index:999;
+.box {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  padding: 28px 20px;
+  border-radius: 20px;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  cursor: pointer;
 }
 
-.popup-box{
-background:linear-gradient(#0074D9,#87CEEB);
-padding:20px;
-border-radius:20px;
-width:300px;
-text-align:center;
-box-shadow:0 0 30px #00c6ff;
-animation:popup 0.3s ease;
+.box:hover {
+  transform: translateY(-8px);
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(124, 58, 237, 0.1));
+  border-color: rgba(0, 212, 255, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-@keyframes popup{
-from{transform:scale(0.7);opacity:0;}
-to{transform:scale(1);opacity:1;}
+.box p {
+  margin: 0;
+  font-weight: 500;
+  font-size: 15px;
 }
 
-.popup-box img{
-width:100%;
-height:150px;
-border-radius:10px;
+/* PAGE STYLES */
+.page {
+  display: none;
+  padding: 40px;
 }
 
-/* LOGIN PANEL */
-.modal{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.7);
-justify-content:center;
-align-items:center;
-z-index:999;
+.active {
+  display: block;
 }
 
-.modal-box{
-background:linear-gradient(#0074D9,#87CEEB);
-padding:30px;
-border-radius:20px;
-width:420px;              /* 👈 bigger */
-text-align:center;
-box-shadow:0 0 30px #00c6ff;
-animation:popup 0.3s ease;
-}
-
-/* inputs */
-.modal-box input{
-width:90%;
-padding:12px;
-margin:10px auto;
-display:block;
-border-radius:10px;
-border:none;
-}
-
-/* dropdown */
-.modal-box select{
-width:90%;
-padding:10px;
-margin:10px auto;
-display:block;
-border-radius:10px;
-border:none;
-}
-
-/* buttons */
-.modal-box button{
-margin:5px;
-padding:10px 18px;
-background:#00c6ff;
-border:none;
-border-radius:10px;
-cursor:pointer;
-box-shadow:0 0 10px #00c6ff;
-transition:0.3s;
-}
-
-.modal-box button:hover{
-background:white;
-color:black;
-box-shadow:0 0 20px #00c6ff;
-}
-
-/* FOOTER */
-footer{
-background:#001f3f;
-text-align:center;
-padding:10px;
-}
-
-.hero{
-position:relative;
-height:300px;
-overflow:hidden;
-}
-
-.hero video{
-position:absolute;
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-.hero h1{
-position:relative;
-color:white;
-text-align:center;
-top:50%;
-transform:translateY(-50%);
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #00d4ff, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
 }
 
 .section-title + p {
-   font-size:15px;
-   opacity:0.9;
-}
-   @media (max-width: 768px){
-   .card-container{
-      grid-template-columns: 1fr;
-   }
-
-   header{
-      flex-direction: column;
-   }
-}
-   .card-container{
-   display: grid;
-   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
-   /* NAVBAR FIX */
-header{
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   flex-wrap: wrap;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.8;
 }
 
-/* Nav list */
-nav ul{
-   display: flex;
-   list-style: none;
-   gap: 20px;
-   margin: 0;
-   padding: 0;
+/* MODERN CARDS */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 30px;
 }
 
-/* Nav items */
-nav ul li{
-   cursor: pointer;
-   font-size: 16px;
+.card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  padding: 0;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
 }
 
-/* 🔥 MOBILE FIX */
-@media (max-width: 768px){
-
-   header{
-      flex-direction: column;
-      align-items: center;
-   }
-
-   /* search bar */
-   input[type="text"]{
-      width: 90%;
-      margin: 10px 0;
-   }
-
-   /* nav */
-   nav ul{
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-   }
-
-   nav ul li{
-      font-size: 14px;
-   }
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  border-color: rgba(0, 212, 255, 0.3);
 }
-  </style>
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.card:hover img {
+  transform: scale(1.1);
+}
+
+.card h3 {
+  margin: 16px 20px 8px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.card p {
+  margin: 0 20px 20px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* MODERN POPUP */
+.popup {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.popup-box {
+  background: linear-gradient(145deg, #1a3a5c, #0a1628);
+  padding: 30px;
+  border-radius: 28px;
+  width: 380px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+  animation: popupAnim 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes popupAnim {
+  from {
+    transform: scale(0.8) translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.popup-box img {
+  width: 100%;
+  height: 200px;
+  border-radius: 16px;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.popup-box h3 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.popup-box p {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.popup-box button {
+  margin-top: 20px;
+  padding: 12px 32px;
+  background: linear-gradient(135deg, #00d4ff, #7c3aed);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.popup-box button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+}
+
+/* MODERN LOGIN MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-box {
+  background: linear-gradient(145deg, #1a3a5c, #0a1628);
+  padding: 40px;
+  border-radius: 28px;
+  width: 420px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+  animation: popupAnim 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-box h3 {
+  font-size: 26px;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #00d4ff, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.modal-box input,
+.modal-box select {
+  width: 100%;
+  padding: 14px 18px;
+  margin: 8px 0;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.modal-box input:focus,
+.modal-box select:focus {
+  border-color: #00d4ff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.modal-box input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.modal-box select option {
+  background: #1a3a5c;
+  color: white;
+}
+
+.modal-box button {
+  margin: 8px 4px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #00d4ff, #7c3aed);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.modal-box button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+}
+
+/* MODERN HERO */
+.hero {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+}
+
+.hero video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, #0a1628 100%);
+}
+
+.hero h1 {
+  position: relative;
+  color: white;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  padding: 0 20px;
+}
+
+/* MODERN FOOTER */
+footer {
+  background: rgba(0, 0, 0, 0.3);
+  text-align: center;
+  padding: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+}
+
+/* LINKS */
+a {
+  color: #00d4ff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: #7c3aed;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    padding: 15px 20px;
+    gap: 15px;
+  }
+
+  .nav-search {
+    position: relative;
+    left: auto;
+    transform: none;
+    width: 100%;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  nav li {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .overview {
+    margin: 20px;
+    padding: 30px 20px;
+  }
+
+  .page {
+    padding: 20px;
+  }
+
+  .section-title {
+    font-size: 24px;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-box {
+    width: 90%;
+    margin: 20px;
+  }
+
+  .hero h1 {
+    font-size: 18px;
+  }
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a1628;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #00d4ff, #7c3aed);
+  border-radius: 4px;
+}
+
+</style>
 </head>
 
 <body>
@@ -326,7 +509,6 @@ nav ul li{
 <header>
 <h2>AquaVerse</h2>
 
-<!-- 🔍 NEW SEARCH -->
 <input type="text" placeholder="Search anything..."
 onkeyup="globalSearch(this.value)" class="nav-search">
 
@@ -336,7 +518,6 @@ onkeyup="globalSearch(this.value)" class="nav-search">
 <li onclick="showPage('plants')">Plants</li>
 <li onclick="showPage('pollution')">Pollution</li>
 <li onclick="showPage('sonar')">Sonar</li>
-
 <li onclick="openLogin()">Login</li>
 </ul>
 </nav>
@@ -349,8 +530,6 @@ onkeyup="globalSearch(this.value)" class="nav-search">
 <h1>(MARINE INTELLIGENCE AND RESEARCH MANAGEMENT SYSTEM)</h1>
 </div>
 
-
-<!-- QUICK OVERVIEW -->
 <div class="overview" id="overview">
 <h2>Quick Overview</h2>
 <p>Centralized marine information platform.</p>
@@ -360,69 +539,45 @@ onkeyup="globalSearch(this.value)" class="nav-search">
 <div class="box" onclick="showOverview('nasa ocean research')"><p>NASA Ocean Research</p></div>
 <div class="box" onclick="showOverview('marine biology')"><p>Marine Biology</p></div>
 <div class="box" onclick="showOverview('whoi')"><p>WHOI</p></div>
+</div>
+</div>
 
-</div>
-</div>
-<!-- SPECIES -->
 <div id="species" class="page">
 <h2 class="section-title">Marine Species</h2>
-
 <div id="speciesContainer" class="card-grid"></div>
 </div>
 
-<!-- Plants -->
 <div id="plants" class="page">
 <h2 class="section-title">Plants types</h2>
 <div id="plantsContainer" class="card-grid"></div>
 </div>
 
-<!-- POLLUTION -->
-
 <div id="pollution" class="page">
-
 <h2 class="section-title">Water Pollution</h2>
-
-<!-- 🔥 YAHAN ADD KARO -->
-<p style="max-width:900px; margin:auto; text-align:center; line-height:1.6;">
+<p style="max-width:900px; margin:auto; text-align:center; line-height:1.8;">
 Water pollution refers to the contamination of oceans, seas, rivers, and other water bodies by harmful substances that negatively impact marine ecosystems and human health. It occurs due to various sources such as plastic waste, oil spills, industrial chemicals, agricultural runoff, and untreated sewage. These pollutants reduce water quality, decrease oxygen levels, and disrupt the natural balance of aquatic life. Marine organisms like fish, turtles, and coral reefs suffer greatly as toxic substances accumulate in their bodies, leading to diseases and even extinction in severe cases. In addition, polluted water can enter the human food chain, causing serious health issues. Addressing water pollution requires global awareness, sustainable practices, proper waste management, and strict environmental regulations to protect marine biodiversity and ensure a healthy future for our planet.
 </p>
-
-<!-- 🔥 LINK -->
-<div style="text-align:center; margin-bottom:15px;">
-<a href="https://en.wikipedia.org/wiki/Water_pollution" target="_blank" style="color:#00e6ff;">
-Read more on Wikipedia
+<div style="text-align:center; margin:20px 0 30px;">
+<a href="[en.wikipedia.org](https://en.wikipedia.org/wiki/Water_pollution)" target="_blank">
+Read more on Wikipedia →
 </a>
 </div>
-
-<!-- existing cards -->
 <div id="pollutionContainer" class="card-grid"></div>
-
 </div>
 
-<!-- SONAR -->
 <div id="sonar" class="page">
-
 <h2 class="section-title">Sonar Types</h2>
-
-<!-- 🔥 PARAGRAPH -->
-<p style="max-width:900px; margin:auto; text-align:center; line-height:1.6;">
+<p style="max-width:900px; margin:auto; text-align:center; line-height:1.8;">
 Sonar (Sound Navigation and Ranging) is a technology that uses sound waves to detect and locate objects underwater. It is widely used in marine research, navigation, and defense systems. There are different types of sonar systems, such as active sonar, which emits sound pulses and listens for echoes, and passive sonar, which only listens to sounds produced by objects like ships or marine animals. Sonar helps scientists study ocean depths, map the seafloor, track marine species, and monitor underwater activities. It plays a crucial role in ocean exploration and contributes significantly to marine conservation and safety.
 </p>
-
-<!-- 🔥 WIKIPEDIA LINK -->
-<div style="text-align:center; margin-bottom:15px;">
-<a href="https://en.wikipedia.org/wiki/Sonar" target="_blank" style="color:#00e6ff;">
-Read more on Wikipedia
+<div style="text-align:center; margin:20px 0 30px;">
+<a href="[en.wikipedia.org](https://en.wikipedia.org/wiki/Sonar)" target="_blank">
+Read more on Wikipedia →
 </a>
 </div>
-
-<!-- existing cards -->
 <div id="sonarContainer" class="card-grid"></div>
-
 </div>
 
-
-<!-- POPUP -->
 <div id="popup" class="popup">
 <div class="popup-box">
 <img id="popupImg">
@@ -431,33 +586,30 @@ Read more on Wikipedia
 <button onclick="closePopup()">Close</button>
 </div>
 </div>
+
 <div id="loginModal" class="modal">
 <div class="modal-box">
-
 <h3 id="formTitle">Login</h3>
-
-<div style="margin-bottom:15px;">
+<div style="margin-bottom:20px;">
 <button onclick="showLogin()">Login</button>
 <button onclick="showSignup()">Signup</button>
 </div>
-
 <input type="text" id="name" placeholder="Full Name" style="display:none;">
 <input type="email" id="email" placeholder="Email">
 <input type="password" id="password" placeholder="Password">
-
 <select id="role">
 <option value="user">User</option>
 <option value="admin">Admin</option>
 </select>
-
+<div style="margin-top:20px;">
 <button id="mainBtn" onclick="handleAuth()">Login</button>
 <button onclick="closeLogin()">Close</button>
-<button id="logoutBtn" onclick="logout()" style="display:none; margin:20px;">
+</div>
+<button id="logoutBtn" onclick="logout()" style="display:none; margin-top:20px;">
 Logout
 </button>
 </div>
 </div>
-
 
 <footer>
 Contact: daisykumari1822@gmail.com
@@ -465,7 +617,6 @@ Contact: daisykumari1822@gmail.com
 
 <script>
 
-// DATA
 const speciesData=[
 {name:"Blue Whale",desc:"Largest marine animal",img:"bluewhale.jpg"},
 {name:"Dolphin",desc:"Intelligent mammal",img:"dolphin.webp"},
@@ -490,47 +641,26 @@ const speciesData=[
 ];
 
 const plantsData = [
-
 {name:"Neptune Grass", desc:"Ancient seagrass found in Mediterranean Sea", img:"neptune.jpg"},
-
 {name:"Giant Kelp", desc:"Fastest growing marine plant forming underwater forests", img:"kelp.webp"},
-
 {name:"Sea Lettuce", desc:"Edible green algae and pollution indicator", img:"lettuce.jpg"},
-
 {name:"Red Algae", desc:"Deep sea algae used for agar production", img:"red algae.jpg"},
-
 {name:"Sargassum", desc:"Floating seaweed forming Sargasso Sea", img:"sargassum.webp"},
-
 {name:"Eelgrass", desc:"Provides habitat for fish and marine life", img:"eelgrass.webp"},
-
 {name:"Halimeda", desc:"Calcium-rich algae supporting coral reefs", img:"halimeda.jpg"},
-
 {name:"Sea Grapes", desc:"Edible algae that looks like green grapes", img:"sea grapes.jpg"},
-
 {name:"Bladderwrack", desc:"Brown algae with air bladders used in medicine", img:"bladderwrack.jpg"},
-
-{name:"Codium", desc:"Known as Dead Man’s Fingers due to its shape", img:"codium.webp"},
-
+{name:"Codium", desc:"Known as Dead Man's Fingers due to its shape", img:"codium.webp"},
 {name:"Kombu", desc:"Nutrient-rich seaweed used in Japanese cuisine", img:"kombu.webp"},
-
 {name:"Turtle Grass", desc:"Main food source for sea turtles", img:"turtle grass.webp"},
-
 {name:"Dictyota", desc:"Tropical algae with antibacterial properties", img:"dictyota.webp"},
-
 {name:"Gracilaria", desc:"Used for agar production in industries", img:"gracilaria.webp"},
-
 {name:"Padina", desc:"Fan-shaped decorative marine algae", img:"padina.jpg"},
-
 {name:"Ascophyllum", desc:"Used in fertilizers and found in cold waters", img:"ascophyllum.webp"},
-
 {name:"Nori", desc:"Seaweed used in sushi, rich in protein", img:"nori.jpg"},
-
 {name:"Enteromorpha", desc:"Tube-shaped algae tolerant to pollution", img:"enteromorpha.jpg"},
-
 {name:"Halophila", desc:"Smallest seagrass species, endangered", img:"halophila.webp"},
-
 {name:"Bull Kelp", desc:"Strong kelp surviving powerful ocean currents", img:"bull kelp.webp"}
-
 ];
 
 const pollutionData=[
@@ -546,9 +676,7 @@ const sonarData=[
 {name:"Side Scan Sonar",desc:"Maps ocean floor",img:"side.webp"}
 ];
 
-
 function showOverview(type){
-
 let title="";
 let desc="";
 let link="";
@@ -556,37 +684,31 @@ let link="";
 if(type==="research"){
 title="Research Articles";
 desc="This section includes detailed research articles related to marine life, biodiversity, ocean ecosystems, climate change, and conservation.";
-link="https://en.wikipedia.org/wiki/Marine_conservation";
+link="[en.wikipedia.org](https://en.wikipedia.org/wiki/Marine_conservation)";
 }
 else if(type==="nasa ocean research"){
 title="NASA Ocean Research";
 desc="This section includes research based on data from NASA, focusing on marine ecosystems, ocean temperature, climate change, and biodiversity. NASA uses advanced satellites to monitor ocean conditions, track sea level rise, and study microscopic marine life like phytoplankton. These studies help scientists understand environmental changes and protect marine life.";
-link="https://www.earthdata.nasa.gov/topics/ocean";
+link="[earthdata.nasa.gov](https://www.earthdata.nasa.gov/topics/ocean)";
 }
 else if(type==="marine biology"){
 title="Marine Biology";
 desc="Marine biology is the scientific study of organisms that live in oceans and other saltwater environments. It includes the study of marine plants, animals, and microorganisms, as well as their interactions with the environment. Marine biology helps us understand ocean ecosystems, biodiversity, and the impact of human activities such as pollution and climate change on marine life.";
-link="https://en.wikipedia.org/wiki/Marine_biology";
+link="[en.wikipedia.org](https://en.wikipedia.org/wiki/Marine_biology)";
 }
 else if(type==="whoi"){
 title="WHOI";
-desc="Woods Hole Oceanographic Institution (WHOI) is one of the world’s leading marine research laboratories, located in the United States. It focuses on studying ocean science, marine ecosystems, and climate change. The institution is known for its advanced technologies and deep-sea exploration, including the use of submersibles like Alvin. WHOI plays a crucial role in understanding ocean processes and protecting marine environments.";
-link="https://www.whoi.edu/";
+desc="Woods Hole Oceanographic Institution (WHOI) is one of the world's leading marine research laboratories, located in the United States. It focuses on studying ocean science, marine ecosystems, and climate change. The institution is known for its advanced technologies and deep-sea exploration, including the use of submersibles like Alvin. WHOI plays a crucial role in understanding ocean processes and protecting marine environments.";
+link="[whoi.edu](https://www.whoi.edu/)";
 }
 
-// popup show
 document.getElementById("popup").style.display="flex";
 document.getElementById("popupName").innerText=title;
-
-// 🔥 paragraph + link
 document.getElementById("popupDesc").innerHTML =
-desc + "<br><br><a href='"+link+"' target='_blank' style='color:#00c6ff'>Read more →</a>";
-
+desc + "<br><br><a href='"+link+"' target='_blank'>Read more →</a>";
 document.getElementById("popupImg").style.display="none";
-
 }
 
-// LOAD
 function loadData(data,id){
 let c=document.getElementById(id);
 c.innerHTML="";
@@ -600,50 +722,43 @@ c.innerHTML+=`
 });
 }
 
-// POPUP
 function openPopup(name,desc,img){
 document.getElementById("popup").style.display="flex";
 document.getElementById("popupName").innerText=name;
 document.getElementById("popupDesc").innerText=desc;
 document.getElementById("popupImg").src=img;
+document.getElementById("popupImg").style.display="block";
 }
+
 function closePopup(){
 document.getElementById("popup").style.display="none";
 document.getElementById("popupImg").style.display="block";
 }
 
-// NAV
 function showPage(id){
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 document.getElementById(id).classList.add("active");
 }
 
-// LOGIN
 function openLogin(){document.getElementById("loginModal").style.display="flex";}
 function closeLogin(){document.getElementById("loginModal").style.display="none";}
 
 function globalSearch(val){
-
 val = val.toLowerCase();
 
 if(val===""){
-// reset all
 loadData(speciesData,"speciesContainer");
 loadData(plantsData,"plantsContainer");
 loadData(pollutionData,"pollutionContainer");
 loadData(sonarData,"sonarContainer");
-
 return;
 }
 
-// अलग-अलग filter
 let species = speciesData.filter(i=>i.name.toLowerCase().includes(val));
 let plants = plantsData.filter(i=>i.name.toLowerCase().includes(val));
-
 let pollution = pollutionData.filter(i=>i.name.toLowerCase().includes(val));
 let sonar = sonarData.filter(i=>i.name.toLowerCase().includes(val));
 
-// page switch priority
 if(species.length){
 showPage("species");
 loadData(species,"speciesContainer");
@@ -660,24 +775,15 @@ else if(sonar.length){
 showPage("sonar");
 loadData(sonar,"sonarContainer");
 }
-
 }
 
-
-
 function showPage(page){
-
-// sab pages hide
 document.getElementById("species").style.display="none";
 document.getElementById("plants").style.display="none";
 document.getElementById("pollution").style.display="none";
 document.getElementById("sonar").style.display="none";
-
-// hero + overview hide
 document.getElementById("hero").style.display="none";
 document.getElementById("overview").style.display="none";
-
-// selected page show
 document.getElementById(page).style.display="block";
 }
 
@@ -698,7 +804,6 @@ isSignup = false;
 }
 
 function handleAuth(){
-
 let name = document.getElementById("name").value;
 let email = document.getElementById("email").value;
 let password = document.getElementById("password").value;
@@ -715,7 +820,6 @@ alert("Signup Successful ✅");
 }
 else{
 let user = JSON.parse(localStorage.getItem("user"));
-
 if(user && user.email === email && user.password === password){
 alert("Login Successful ✅");
 document.getElementById("logoutBtn").style.display="block";
