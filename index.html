@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -201,6 +202,24 @@ box-shadow:
 0 0 20px rgba(168,139,250,0.2);
 }
 
+/* 🌊 PLANTS PAGE - AQUA GREEN CARDS */
+#plants .card{
+  background: linear-gradient(
+    135deg,
+    rgba(34,211,238,0.7),   /* aqua blue */
+    rgba(16,185,129,0.6)    /* aqua green */
+  );
+
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+
+  border: 1px solid rgba(255,255,255,0.4);
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,0.15),
+    inset 0 2px 6px rgba(255,255,255,0.6);
+}
+
 .card img{
 width:100%;
 height:150px;
@@ -224,38 +243,198 @@ width:320px;
 text-align:center;
 }
 
-/* LOGIN */
-.modal{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.4);
-justify-content:center;
-align-items:center;
+
+/* ✨ UPDATED LOGIN MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
 }
 
-.modal-box{
-padding:25px;
-width:350px;
-text-align:center;
+.modal-box {
+  background: linear-gradient(
+    160deg,
+    rgba(220, 180, 255, 0.55),
+    rgba(180, 160, 255, 0.45),
+    rgba(140, 200, 255, 0.45)
+  );
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  padding: 40px 36px;
+  border-radius: 28px;
+  width: 380px;
+  text-align: center;
+  border: 1.5px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    0 8px 40px rgba(180, 140, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  position: relative;
 }
 
-.modal-box input{
-width:90%;
-padding:10px;
-margin:10px;
-border-radius:10px;
-border:none;
+/* Circle in top-right */
+.modal-toggle-indicator {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  cursor: pointer;
 }
 
-/* BUTTON */
-button{
-padding:10px 20px;
-border:none;
-border-radius:25px;
-cursor:pointer;
-background: linear-gradient(135deg,#8b5cf6,#22d3ee);
-color:white;
+.modal-toggle-indicator:hover {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.modal-box h3 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  background: linear-gradient(135deg, #a855f7, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.modal-subtitle {
+  font-size: 13px;
+  color: rgba(100, 60, 160, 0.6);
+  margin: 0 0 20px;
+}
+
+/* ✅ TAB BAR - white box moves to active tab */
+.modal-tab-bar {
+  display: flex;
+  gap: 0;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 14px;
+  padding: 4px;
+  margin-bottom: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  color: rgba(100, 60, 160, 0.55);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* ✅ THIS makes white box appear on whichever tab is active */
+.tab-btn.active {
+  background: rgba(255, 255, 255, 0.8);
+  color: #7c3aed;
+  font-weight: 700;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-box input,
+.modal-box select {
+  width: 100%;
+  padding: 13px 16px;
+  margin: 5px 0;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.35);
+  color: #3b0764;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s;
+  box-sizing: border-box;
+}
+
+.modal-box input:focus,
+.modal-box select:focus {
+  border-color: #c084fc;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.modal-box input::placeholder {
+  color: rgba(100, 60, 160, 0.4);
+}
+
+.modal-box select option {
+  background: #f3e8ff;
+  color: #3b0764;
+}
+
+/* ✅ MAIN BUTTON (Login / Signup) */
+.modal-main-btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 16px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg, #a855f7, #38bdf8);
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  box-shadow: 0 6px 22px rgba(168, 85, 247, 0.4);
+  transition: 0.3s;
+}
+
+.modal-main-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(168, 85, 247, 0.5);
+}
+
+/* ✅ CLOSE BUTTON - styled */
+.modal-close-btn {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 11px;
+  border-radius: 12px;
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  background: rgba(255, 255, 255, 0.2);
+  color: rgba(100, 60, 160, 0.75);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.45);
+  color: #7c3aed;
+  border-color: rgba(168, 85, 247, 0.6);
+}
+
+/* ✅ LOGOUT BUTTON - styled */
+.modal-logout-btn {
+  display: none;
+  width: 100%;
+  margin-top: 10px;
+  padding: 11px;
+  border-radius: 12px;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  background: rgba(255, 200, 200, 0.25);
+  color: rgba(180, 30, 30, 0.85);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.modal-logout-btn:hover {
+  background: rgba(255, 180, 180, 0.45);
+  border-color: rgba(239, 68, 68, 0.6);
+  color: #b91c1c;
 }
 
 /* PAGE */
@@ -325,25 +504,7 @@ padding:30px 50px;
   color: #333;
 }
 
-  /* 🌊 PLANTS PAGE - AQUA GREEN CARDS */
-#plants .card{
-  background: linear-gradient(
-    135deg,
-    rgba(34,211,238,0.7),   /* aqua blue */
-    rgba(16,185,129,0.6)    /* aqua green */
-  );
-
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-
-  border: 1px solid rgba(255,255,255,0.4);
-
-  box-shadow:
-    0 15px 40px rgba(0,0,0,0.15),
-    inset 0 2px 6px rgba(255,255,255,0.6);
-}
-
-</style>
+ </style>
 </head>
 
 <body>
@@ -457,33 +618,35 @@ Read more on Wikipedia
 <button onclick="closePopup()">Close</button>
 </div>
 </div>
+
 <div id="loginModal" class="modal">
-<div class="modal-box glass">
+  <div class="modal-box">
 
-<h3 id="formTitle">Login</h3>
+    <div class="modal-toggle-indicator" onclick="closeLogin()"></div>
 
-<div style="margin-bottom:15px;">
-<button onclick="showLogin()">Login</button>
-<button onclick="showSignup()">Signup</button>
+    <h3 id="formTitle">Login</h3>
+    <p class="modal-subtitle">Welcome back to AquaVerse</p>
+
+    <div class="modal-tab-bar">
+      <button class="tab-btn active" id="loginTab" onclick="showLogin()">Login</button>
+      <button class="tab-btn" id="signupTab" onclick="showSignup()">Signup</button>
+    </div>
+
+    <input type="text" id="name" placeholder="Full Name" style="display:none;">
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+
+    <select id="role">
+      <option value="user">User</option>
+      <option value="admin">Admin</option>
+    </select>
+
+    <button id="mainBtn" class="modal-main-btn" onclick="handleAuth()">Login</button>
+    <button class="modal-close-btn" onclick="closeLogin()">Close</button>
+    <button id="logoutBtn" class="modal-logout-btn" onclick="logout()">Logout</button>
+
+  </div>
 </div>
-
-<input type="text" id="name" placeholder="Full Name" style="display:none;">
-<input type="email" id="email" placeholder="Email">
-<input type="password" id="password" placeholder="Password">
-
-<select id="role">
-<option value="user">User</option>
-<option value="admin">Admin</option>
-</select>
-
-<button id="mainBtn" onclick="handleAuth()">Login</button>
-<button onclick="closeLogin()">Close</button>
-<button id="logoutBtn" onclick="logout()" style="display:none; margin:20px;">
-Logout
-</button>
-</div>
-</div>
-
 
 <footer>
 Contact: daisykumari1822@gmail.com
@@ -714,6 +877,10 @@ document.getElementById("formTitle").innerText="Signup";
 document.getElementById("name").style.display="block";
 document.getElementById("mainBtn").innerText="Signup";
 isSignup = true;
+
+document.getElementById("signupTab").classList.add("active");
+  document.getElementById("loginTab").classList.remove("active");
+
 }
 
 function showLogin(){
@@ -721,10 +888,13 @@ document.getElementById("formTitle").innerText="Login";
 document.getElementById("name").style.display="none";
 document.getElementById("mainBtn").innerText="Login";
 isSignup = false;
+
+document.getElementById("loginTab").classList.add("active");
+  document.getElementById("signupTab").classList.remove("active");
+
 }
 
 function handleAuth(){
-
 let name = document.getElementById("name").value;
 let email = document.getElementById("email").value;
 let password = document.getElementById("password").value;
@@ -741,7 +911,6 @@ alert("Signup Successful ✅");
 }
 else{
 let user = JSON.parse(localStorage.getItem("user"));
-
 if(user && user.email === email && user.password === password){
 alert("Login Successful ✅");
 document.getElementById("logoutBtn").style.display="block";
