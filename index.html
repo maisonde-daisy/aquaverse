@@ -411,28 +411,32 @@ nav li:hover{
   padding:20px;
 }
 
-.card{
-  padding:15px;
-  border-radius:25px;
-  cursor:pointer;
-  position:relative;
-  overflow:hidden;
-  background: linear-gradient(135deg, rgba(128,0,255,0.6), rgba(180,120,255,0.4));
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  border:1px solid rgba(255,255,255,0.4);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.15), inset 0 2px 6px rgba(255,255,255,0.6);
-  transition:0.4s;
-}
-.card:hover{
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.1), 0 0 20px rgba(168,139,250,0.2);
+.card{ 
+  padding:15px; border-radius:25px; cursor:pointer; position:relative; overflow:hidden; 
+  background:linear-gradient(135deg,rgba(128,0,255,0.25),rgba(180,120,255,0.15)); 
+  backdrop-filter:blur(16px); 
+  -webkit-backdrop-filter:blur(16px); 
+  border:1.5px solid rgba(168,85,247,0.45); 
+  box-shadow:0 8px 32px rgba(128,0,255,0.12),inset 0 1px 0 rgba(255,255,255,0.5); 
+  transition:0.4s; 
 }
 
-#plants .card{
-  background: linear-gradient(135deg, rgba(34,211,238,0.7), rgba(16,185,129,0.6));
+.card:hover{ 
+  transform:translateY(-5px); 
+  background:linear-gradient(135deg,rgba(128,0,255,0.35),rgba(180,120,255,0.25));
+  box-shadow:0 15px 40px rgba(128,0,255,0.2),inset 0 1px 0 rgba(255,255,255,0.6); 
 }
 
+#plants .card{ 
+  background:linear-gradient(135deg,rgba(16,185,129,0.25),rgba(34,211,238,0.15)); 
+  border:1.5px solid rgba(16,185,129,0.45); 
+  box-shadow:0 8px 32px rgba(16,185,129,0.12),inset 0 1px 0 rgba(255,255,255,0.5); 
+}
+
+#plants .card:hover{ 
+  background:linear-gradient(135deg,rgba(16,185,129,0.35),rgba(34,211,238,0.25));
+  box-shadow:0 15px 40px rgba(16,185,129,0.2),inset 0 1px 0 rgba(255,255,255,0.6); 
+}
 .card img{
   width:100%;
   height:150px;
@@ -623,6 +627,76 @@ footer{
   .dom-section{ margin: 0 10px 20px; padding: 15px; }
 }
 
+/* ===== ISLAND FAN STACK ===== */
+.island-section{margin:0 20px 20px;padding:25px;}
+.island-section h2{font-size:22px;font-weight:700;color:#3b0764;margin-bottom:6px;}
+.island-stack-wrap{display:flex;flex-direction:column;align-items:center;gap:20px;padding:20px 0;}
+.island-stage{position:relative;width:100%;height:340px;}
+
+.island-stage{
+  position:relative;
+  width:100%;
+  height:300px;   /* 340 se kam karein */
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+}
+
+.island-stack-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;        /* 20px tha, kam kiya */
+  padding:10px 0;  /* 20px tha, kam kiya */
+}
+
+.island-section{
+  margin:0 20px 20px;
+  padding:20px 25px 18px;  /* bottom padding thoda kam */
+}
+
+.island-card{
+  position:absolute;
+  width:200px;height:280px;
+  border-radius:20px;
+  border:2px solid rgba(255,255,255,0.7);
+  cursor:pointer;
+  transition:transform 0.4s cubic-bezier(.25,.8,.25,1),box-shadow 0.4s,opacity 0.4s;
+  transform-origin:bottom center;
+  display:flex;flex-direction:column;
+  overflow:hidden;user-select:none;
+  bottom:0;left:0;
+}
+.island-card:hover{filter:brightness(1.08);}
+
+.ic-dot{position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,0.65);border:1.5px solid rgba(255,255,255,0.9);}
+.ic-emoji-wrap{flex:1;display:flex;align-items:center;justify-content:center;font-size:54px;}
+.ic-body{padding:10px 14px 14px;background:rgba(0,0,0,0.12);}
+.ic-badge{font-size:9px;font-weight:700;padding:2px 8px;border-radius:20px;background:rgba(255,255,255,0.3);color:rgba(255,255,255,0.9);letter-spacing:0.5px;text-transform:uppercase;display:inline-block;margin-bottom:5px;}
+.ic-title{font-size:13px;font-weight:700;color:#fff;margin:0 0 2px;}
+.ic-sub{font-size:10px;color:rgba(255,255,255,0.7);margin:0;}
+
+.info-overlay{
+  display:none;position:absolute;inset:0;
+  background:rgba(0,0,0,0.45);backdrop-filter:blur(10px);
+  border-radius:20px;padding:16px;
+  flex-direction:column;justify-content:flex-end;z-index:10;
+}
+.info-overlay.show{display:flex;}
+.info-close-x{
+  position:absolute;top:10px;right:10px;
+  width:24px;height:24px;border-radius:50%;
+  background:rgba(255,255,255,0.3);border:none;
+  color:#fff;font-size:12px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+}
+.info-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px;}
+.info-tags span{font-size:9px;padding:2px 8px;border-radius:20px;background:rgba(255,255,255,0.2);color:#fff;border:1px solid rgba(255,255,255,0.3);}
+.info-desc{font-size:11px;color:rgba(255,255,255,0.9);line-height:1.5;margin:0;}
+
+.island-hint{font-size:12px;color:rgba(60,20,120,0.5);font-weight:600;letter-spacing:0.5px;text-align:center;}
+.island-counter{font-size:12px;color:rgba(60,20,120,0.4);text-align:center;}
+
 </style>
 </head>
 <body>
@@ -678,6 +752,19 @@ footer{
       <div id="domModalLinkWrap"></div>
       <button class="dom-modal-close-btn" onclick="closeDomModal()">Close</button>
     </div>
+  </div>
+</div>
+
+<!-- ISLAND FAN STACK SECTION -->
+<div class="island-section glass" id="islandSection">
+  <h2>🏝️ World Island Explorer</h2>
+ <p style="color:rgba(60,20,120,0.6);margin:0 0 6px;font-size:13px;">
+  👆 Single click = view info &nbsp;|&nbsp; Double click = next card
+</p>
+  <div class="island-stack-wrap">
+    <div class="island-stage" id="islandStage"></div>
+    <div class="island-hint" id="islandHint"></div>
+    <div class="island-counter" id="islandCounter"></div>
   </div>
 </div>
 
@@ -890,6 +977,112 @@ document.getElementById('domModal').addEventListener('click', function(e) {
   if (e.target === this) closeDomModal();
 });
 
+/* ===================== ISLAND FAN STACK ===================== */
+const islandsData=[
+  {emoji:"🌺",flag:"🇲🇻",name:"Maldives",loc:"Indian Ocean",tags:["Coral Reef","Luxury","Overwater"],desc:"A paradise of 1,192 coral islands with crystal lagoons. The lowest-lying country on Earth faces rising sea levels.",colors:["#8b5cf6","#a78bfa"]},
+  {emoji:"🌴",flag:"🇮🇩",name:"Bali",loc:"Indonesia",tags:["Temples","Rice Terraces","Surfing"],desc:"The Island of the Gods — rice paddies, ancient Hindu temples, artistic traditions, and world-class surf breaks.",colors:["#ec4899","#f472b6"]},
+  {emoji:"🐢",flag:"🇪🇨",name:"Galápagos",loc:"Ecuador • Pacific",tags:["Darwin","Wildlife","Volcanic"],desc:"The living laboratory that inspired Darwin's theory of evolution. Home to giant tortoises and marine iguanas.",colors:["#0ea5e9","#38bdf8"]},
+  {emoji:"🌊",flag:"🇫🇯",name:"Fiji",loc:"South Pacific",tags:["Coral Kingdom","Diving","Friendly"],desc:"333 islands — the soft coral capital of the world with the friendliest people on Earth.",colors:["#14b8a6","#2dd4bf"]},
+  {emoji:"🏔",flag:"🇮🇸",name:"Iceland",loc:"North Atlantic",tags:["Volcanoes","Aurora","Geysers"],desc:"Land of fire and ice — active volcanoes, glaciers, geysers, and spectacular Northern Lights.",colors:["#6366f1","#818cf8"]},
+  {emoji:"🦁",flag:"🇲🇬",name:"Madagascar",loc:"Indian Ocean",tags:["Lemurs","Biodiversity","Baobabs"],desc:"90% of wildlife found nowhere else on Earth — ring-tailed lemurs, chameleons, and the iconic Avenue of the Baobabs.",colors:["#f59e0b","#fbbf24"]},
+  {emoji:"🏛",flag:"🇬🇷",name:"Santorini",loc:"Greece • Aegean",tags:["Caldera","Blue Domes","Sunsets"],desc:"Whitewashed villages perched over caldera cliffs and the most legendary sunsets on Earth.",colors:["#ef4444","#f87171"]},
+  {emoji:"🌺",flag:"🇺🇸",name:"Hawaii",loc:"USA • Pacific",tags:["Lava","Black Beaches","Stargazing"],desc:"Kīlauea — one of the world's most active volcanoes — black sand beaches and Mauna Kea observatory.",colors:["#d946ef","#e879f9"]},
+  {emoji:"🐠",flag:"🇵🇭",name:"Palawan",loc:"Philippines",tags:["Underground River","El Nido","Reef"],desc:"Repeatedly voted the world's best island — Puerto Princesa Underground River (UNESCO) and El Nido.",colors:["#10b981","#34d399"]},
+  {emoji:"🌿",flag:"🇲🇾",name:"Borneo",loc:"Southeast Asia",tags:["Orangutans","Rainforest","Caves"],desc:"Ancient rainforests shelter wild orangutans, pygmy elephants, and proboscis monkeys.",colors:["#22c55e","#4ade80"]},
+  {emoji:"🌊",flag:"🇵🇫",name:"Bora Bora",loc:"French Polynesia",tags:["Lagoon","Overwater","Romantic"],desc:"Often called the most beautiful island in the world — turquoise lagoon and the extinct volcano Mount Otemanu.",colors:["#3b82f6","#60a5fa"]},
+  {emoji:"🦎",flag:"🇮🇩",name:"Komodo",loc:"Indonesia",tags:["Dragons","UNESCO","Diving"],desc:"Home to the Komodo dragon — world's largest living lizard. Surrounding waters offer world-class diving.",colors:["#84cc16","#a3e635"]},
+  {emoji:"🏖",flag:"🇹🇿",name:"Zanzibar",loc:"Tanzania",tags:["Spice Island","Stone Town","Beaches"],desc:"The Spice Island of East Africa where Arab, Persian, Indian and European cultures converged.",colors:["#f97316","#fb923c"]},
+  {emoji:"🦋",flag:"🇻🇺",name:"Vanuatu",loc:"Melanesia • Pacific",tags:["Volcano Dive","Kastom","Bungee"],desc:"Dive the SS President Coolidge wreck, trek to Mount Yasur volcano rim.",colors:["#a855f7","#c084fc"]},
+  {emoji:"🐋",flag:"🇮🇸",name:"Faroe Islands",loc:"North Atlantic",tags:["Puffins","Cliffs","Norse"],desc:"18 volcanic islands with towering sea cliffs hosting millions of puffins and Norse heritage.",colors:["#06b6d4","#22d3ee"]},
+];
+
+const VISIBLE=7, HALF=Math.floor(VISIBLE/2);
+let currentIdx=0, clickTimer=null;
+
+function getAngle(pos){ return (pos-HALF)*14; }
+function getTranslateX(pos,sw){ return (sw/2)-100+(pos-HALF)*38; }
+function getZIndex(pos){ return VISIBLE-Math.abs(pos-HALF); }
+function getOpacity(pos){ return Math.max(0.35,1-Math.abs(pos-HALF)*0.15); }
+
+function buildIslandStack(){
+  const stage=document.getElementById('islandStage');
+  stage.innerHTML='';
+  const sw=stage.offsetWidth||window.innerWidth-80;
+
+  for(let pos=0;pos<VISIBLE;pos++){
+    const di=(currentIdx+(pos-HALF)+islandsData.length*100)%islandsData.length;
+    const isl=islandsData[di];
+    const isFront=pos===HALF;
+
+    const card=document.createElement('div');
+    card.className='island-card';
+    card.style.cssText=`
+      background:linear-gradient(145deg,${isl.colors[0]}99,${isl.colors[1]}66);
+      transform:translateX(${getTranslateX(pos,sw)}px) rotate(${getAngle(pos)}deg);
+      z-index:${getZIndex(pos)};
+      opacity:${getOpacity(pos)};
+      box-shadow:${isFront?'0 16px 40px rgba(0,0,0,0.35)':'0 4px 12px rgba(0,0,0,0.2)'};
+    `;
+
+    if(isFront){
+      card.innerHTML=`
+        <div class="ic-dot"></div>
+        <div class="ic-emoji-wrap">${isl.emoji}</div>
+        <div class="info-overlay" id="islandInfoOverlay">
+          <button class="info-close-x" id="islandCloseX">✕</button>
+          <div class="info-tags">${isl.tags.map(t=>`<span>${t}</span>`).join('')}</div>
+          <p class="info-desc">${isl.flag} ${isl.name} · ${isl.loc}<br><br>${isl.desc}</p>
+        </div>
+        <div class="ic-body">
+          <span class="ic-badge">${isl.tags[0]}</span>
+          <p class="ic-title">${isl.flag} ${isl.name}</p>
+          <p class="ic-sub">${isl.loc}</p>
+        </div>`;
+
+      card.addEventListener('click',function(e){
+        const overlay=document.getElementById('islandInfoOverlay');
+        const closeBtn=document.getElementById('islandCloseX');
+        if(closeBtn&&closeBtn.contains(e.target)) return;
+        if(overlay&&overlay.classList.contains('show')) return;
+        if(clickTimer){
+          clearTimeout(clickTimer);
+          clickTimer=null;
+          nextIslandCard();
+        } else {
+          clickTimer=setTimeout(()=>{
+            clickTimer=null;
+            if(overlay) overlay.classList.add('show');
+          },260);
+        }
+      });
+
+      setTimeout(()=>{
+        const closeBtn=document.getElementById('islandCloseX');
+        if(closeBtn){
+          closeBtn.addEventListener('click',function(e){
+            e.stopPropagation();
+            const o=document.getElementById('islandInfoOverlay');
+            if(o) o.classList.remove('show');
+          });
+        }
+      },0);
+
+    } else {
+      card.innerHTML=`<div class="ic-emoji-wrap" style="font-size:32px;opacity:0.7">${isl.emoji}</div>`;
+    }
+
+    stage.appendChild(card);
+  }
+
+  document.getElementById('islandHint').textContent='single click = info  |  double click = next';
+  document.getElementById('islandCounter').textContent=`🏝 ${islandsData.length} islands total · ${currentIdx+1} / ${islandsData.length}`;
+}
+
+function nextIslandCard(){
+  currentIdx=(currentIdx+1)%islandsData.length;
+  buildIslandStack();
+}
+
 /* ===================== SPECIES / PLANTS / etc DATA ===================== */
 const speciesData=[
   {name:"Blue Whale",desc:"Largest marine animal",img:"bluewhale.jpg"},
@@ -1008,6 +1201,7 @@ function showPage(page){
   document.getElementById("hero").style.display="none";
   document.getElementById("overview").style.display="none";
   document.getElementById("domSection").style.display="none";
+  document.getElementById("islandSection").style.display="none";
 
   // hide all pages
   document.querySelectorAll(".page").forEach(p => p.style.display="none");
@@ -1021,6 +1215,7 @@ function goHome(){
   document.getElementById("hero").style.display="block";
   document.getElementById("overview").style.display="block";
   document.getElementById("domSection").style.display="block";
+  document.getElementById("islandSection").style.display="block";
 }
 
 /* ===================== SEARCH ===================== */
@@ -1101,6 +1296,7 @@ window.onload = () => {
   loadData(pollutionData,"pollutionContainer");
   loadData(sonarData,"sonarContainer");
   buildDomCards();
+  buildIslandStack();
 };
 
 </script>
