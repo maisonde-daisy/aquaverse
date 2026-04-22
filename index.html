@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 
-*{ box-sizing: border-box; }
-
 body{
   margin:0;
   font-family:'Segoe UI',sans-serif;
@@ -42,24 +40,20 @@ body::after{
   box-shadow: 0 10px 40px rgba(0,0,0,0.15), inset 0 0 10px rgba(255,255,255,0.5);
 }
 
-/* ===== HEADER ===== */
 header{
   display:flex;
-  flex-direction: column;
+  justify-content:space-between;
   align-items:center;
-  padding:15px 20px;
-  margin:12px;
-  gap: 12px;
-}
-
-header h2{
-  margin: 0;
-  font-size: 22px;
+  padding:15px 30px;
+  margin:20px;
+  position:relative;
 }
 
 .nav-search{
-  width: 100%;
-  max-width: 500px;
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  width:400px;
   padding:12px 20px;
   border-radius:30px;
   border:none;
@@ -67,33 +61,25 @@ header h2{
   background: rgba(255,255,255,0.6);
   backdrop-filter: blur(20px);
   box-shadow: inset 0 0 10px rgba(255,255,255,0.8), 0 5px 15px rgba(0,0,0,0.1);
-  font-size: 15px;
 }
 
 nav ul{
   display:flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap:8px;
+  gap:20px;
   list-style:none;
-  margin: 0;
-  padding: 0;
 }
 nav li{
   cursor:pointer;
-  padding:8px 14px;
+  padding:8px 15px;
   border-radius:20px;
-  font-size: 14px;
-  white-space: nowrap;
 }
 nav li:hover{
   background:rgba(255,255,255,0.4);
 }
 
-/* ===== HERO ===== */
 .hero{
-  height:180px;
-  margin:12px;
+  height:250px;
+  margin:20px;
   border-radius:25px;
   overflow:hidden;
   position:relative;
@@ -111,16 +97,11 @@ nav li:hover{
   transform:translate(-50%,-50%);
   color:white;
   text-align:center;
-  font-size: 14px;
-  width: 90%;
-  margin: 0;
-  line-height: 1.4;
 }
 
-/* ===== OVERVIEW ===== */
 .overview{
-  margin:12px;
-  padding:20px;
+  margin:20px;
+  padding:25px;
   text-align:center;
 }
 
@@ -138,253 +119,720 @@ nav li:hover{
 
 .overview-grid{
   display:grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap:12px;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:15px;
   margin-top:20px;
 }
 
 /* ===== DOM SCROLL SECTION ===== */
 .dom-section{
-  margin: 0 12px 16px 12px;
-  padding: 20px;
+  margin: 0 20px 20px 20px;
+  padding: 25px;
 }
 
 .dom-section h2{
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
-  margin: 0 0 14px 2px;
+  margin: 0 0 18px 4px;
   color: #3b0764;
+  letter-spacing: 0.3px;
 }
 
 .dom-scroll-track{
   display: flex;
-  gap: 14px;
+  gap: 18px;
   overflow-x: auto;
-  padding-bottom: 12px;
+  padding-bottom: 14px;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
 }
 
-.dom-scroll-track::-webkit-scrollbar{ height: 6px; }
-.dom-scroll-track::-webkit-scrollbar-track{ background: rgba(255,255,255,0.2); border-radius: 10px; }
-.dom-scroll-track::-webkit-scrollbar-thumb{ background: linear-gradient(90deg, #8b5cf6, #22d3ee); border-radius: 10px; }
+.dom-scroll-track::-webkit-scrollbar{
+  height: 6px;
+}
+.dom-scroll-track::-webkit-scrollbar-track{
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+}
+.dom-scroll-track::-webkit-scrollbar-thumb{
+  background: linear-gradient(90deg, #8b5cf6, #22d3ee);
+  border-radius: 10px;
+}
 
 .dom-card{
-  flex: 0 0 200px;
+  flex: 0 0 230px;
   scroll-snap-align: start;
   border-radius: 24px;
   overflow: hidden;
   cursor: pointer;
   position: relative;
-  background: linear-gradient(145deg,rgba(200,170,255,0.55),rgba(160,210,255,0.45));
+  background: linear-gradient(
+    145deg,
+    rgba(200,170,255,0.55),
+    rgba(160,210,255,0.45)
+  );
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   border: 1.5px solid rgba(255,255,255,0.75);
-  box-shadow: 0 8px 32px rgba(120,80,200,0.18), inset 0 2px 8px rgba(255,255,255,0.7);
+  box-shadow:
+    0 8px 32px rgba(120,80,200,0.18),
+    inset 0 2px 8px rgba(255,255,255,0.7);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
-.dom-card:hover{ transform: translateY(-7px); }
+
+.dom-card:hover{
+  transform: translateY(-7px);
+  box-shadow:
+    0 20px 45px rgba(120,80,200,0.25),
+    inset 0 2px 8px rgba(255,255,255,0.7);
+}
 
 .dom-card-dot{
-  position: absolute; top: 12px; right: 12px;
-  width: 26px; height: 26px; border-radius: 50%;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
   background: rgba(255,255,255,0.65);
-  border: 1.5px solid rgba(255,255,255,0.9); z-index: 2;
+  border: 1.5px solid rgba(255,255,255,0.9);
+  z-index: 2;
 }
 
-.dom-card-img{ width:100%; height:130px; object-fit:cover; border-radius:15px; }
-.dom-card-img-fallback{ width:100%; height:130px; display:flex; align-items:center; justify-content:center; font-size:48px; background:rgba(255,255,255,0.15); }
-.dom-card-body{ padding: 12px 14px 14px; }
-.dom-card-badge{ display:inline-block; font-size:10px; font-weight:600; padding:3px 10px; border-radius:20px; margin-bottom:7px; background:rgba(255,255,255,0.35); color:rgba(60,20,120,0.9); letter-spacing:0.5px; text-transform:uppercase; }
-.dom-card-title{ font-size:14px; font-weight:700; color:#2d0a6b; margin:0 0 4px; line-height:1.3; }
-.dom-card-sub{ font-size:11px; color:rgba(60,20,120,0.65); margin:0; line-height:1.4; }
-.dom-card-btn{ display:flex; align-items:center; gap:5px; margin-top:9px; padding:7px 12px; border-radius:30px; background:rgba(255,255,255,0.55); border:1px solid rgba(255,255,255,0.8); color:#4c1d95; font-size:11px; font-weight:600; width:fit-content; }
-.dom-card-btn span{ font-size:15px; }
+.dom-card-img{
+   width:100%;
+  height:150px;
+  object-fit:cover;
+  border-radius:15px;
+}
 
-/* ===== DOM MODAL ===== */
+.dom-card-img-fallback{
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 52px;
+  background: rgba(255,255,255,0.15);
+}
+
+.dom-card-body{
+  padding: 14px 16px 16px;
+}
+
+.dom-card-badge{
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 7px;
+  background: rgba(255,255,255,0.35);
+  color: rgba(60,20,120,0.9);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.dom-card-title{
+  font-size: 15px;
+  font-weight: 700;
+  color: #2d0a6b;
+  margin: 0 0 5px;
+  line-height: 1.3;
+}
+
+.dom-card-sub{
+  font-size: 12px;
+  color: rgba(60,20,120,0.65);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.dom-card-btn{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 8px 14px;
+  border-radius: 30px;
+  background: rgba(255,255,255,0.55);
+  border: 1px solid rgba(255,255,255,0.8);
+  color: #4c1d95;
+  font-size: 12px;
+  font-weight: 600;
+  width: fit-content;
+  box-shadow: 0 2px 8px rgba(120,80,200,0.1);
+}
+
+.dom-card-btn span{
+  font-size: 16px;
+}
+
+/* ===== POPUP MODAL ===== */
 .dom-modal{
-  display: none; position: fixed; inset: 0;
-  background: rgba(0,0,0,0.35); backdrop-filter: blur(12px);
-  justify-content: center; align-items: center; z-index: 1000;
-  padding: 16px;
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
-.dom-modal.active{ display: flex; }
-.dom-modal-box{
-  background: linear-gradient(160deg,rgba(220,190,255,0.65),rgba(180,170,255,0.55),rgba(150,210,255,0.5));
-  backdrop-filter: blur(35px); -webkit-backdrop-filter: blur(35px);
-  border-radius: 28px; border: 1.5px solid rgba(255,255,255,0.8);
-  box-shadow: 0 20px 60px rgba(100,50,200,0.3), inset 0 2px 0 rgba(255,255,255,0.9);
-  width: 100%; max-width: 380px; overflow: hidden; position: relative;
-}
-.dom-modal-close-dot{
-  position:absolute; top:14px; right:14px; width:28px; height:28px;
-  border-radius:50%; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.9);
-  cursor:pointer; z-index:2; display:flex; align-items:center; justify-content:center;
-  font-size:14px; color:#6d28d9; font-weight:bold;
-}
-.dom-modal-close-dot:hover{ background:rgba(255,255,255,0.9); }
-.dom-modal-img{ width:100%; height:170px; object-fit:cover; display:block; }
-.dom-modal-img-fallback{ width:100%; height:170px; display:flex; align-items:center; justify-content:center; font-size:70px; background:rgba(255,255,255,0.2); }
-.dom-modal-body{ padding:18px 20px 22px; }
-.dom-modal-body h3{ font-size:18px; font-weight:700; color:#2d0a6b; margin:0 0 8px; }
-.dom-modal-body p{ font-size:13px; color:rgba(45,10,107,0.85); line-height:1.7; margin:0 0 12px; }
-.dom-modal-link{ display:inline-flex; align-items:center; gap:6px; padding:9px 18px; border-radius:25px; background:linear-gradient(135deg,#8b5cf6,#22d3ee); color:white; font-size:13px; font-weight:600; text-decoration:none; }
-.dom-modal-close-btn{ display:block; width:100%; margin-top:10px; padding:11px; border-radius:14px; border:1px solid rgba(139,92,246,0.35); background:rgba(255,255,255,0.3); color:rgba(60,20,120,0.8); font-size:14px; font-weight:500; cursor:pointer; }
-.dom-modal-close-btn:hover{ background:rgba(255,255,255,0.55); }
 
-/* ===== CARD GRID ===== */
+.dom-modal.active{
+  display: flex;
+}
+
+.dom-modal-box{
+  background: linear-gradient(
+    160deg,
+    rgba(220,190,255,0.65),
+    rgba(180,170,255,0.55),
+    rgba(150,210,255,0.5)
+  );
+  backdrop-filter: blur(35px);
+  -webkit-backdrop-filter: blur(35px);
+  border-radius: 28px;
+  border: 1.5px solid rgba(255,255,255,0.8);
+  box-shadow:
+    0 20px 60px rgba(100,50,200,0.3),
+    inset 0 2px 0 rgba(255,255,255,0.9);
+  width: 380px;
+  max-width: 92vw;
+  overflow: hidden;
+  position: relative;
+}
+
+.dom-modal-close-dot{
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.65);
+  border: 1.5px solid rgba(255,255,255,0.9);
+  cursor: pointer;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #6d28d9;
+  font-weight: bold;
+}
+.dom-modal-close-dot:hover{
+  background: rgba(255,255,255,0.9);
+}
+
+.dom-modal-img{
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  display: block;
+}
+
+.dom-modal-img-fallback{
+  width: 100%;
+  height: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  background: rgba(255,255,255,0.2);
+}
+
+.dom-modal-body{
+  padding: 20px 24px 24px;
+}
+
+.dom-modal-body h3{
+  font-size: 20px;
+  font-weight: 700;
+  color: #2d0a6b;
+  margin: 0 0 10px;
+}
+
+.dom-modal-body p{
+  font-size: 13px;
+  color: rgba(45,10,107,0.85);
+  line-height: 1.7;
+  margin: 0 0 14px;
+}
+
+.dom-modal-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #8b5cf6, #22d3ee);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(139,92,246,0.4);
+  transition: 0.3s;
+}
+.dom-modal-link:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(139,92,246,0.5);
+}
+
+.dom-modal-close-btn{
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 11px;
+  border-radius: 14px;
+  border: 1px solid rgba(139,92,246,0.35);
+  background: rgba(255,255,255,0.3);
+  color: rgba(60,20,120,0.8);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.25s;
+}
+.dom-modal-close-btn:hover{
+  background: rgba(255,255,255,0.55);
+  color: #6d28d9;
+}
+
+/* ===== OTHER PAGES ===== */
 .card-grid{
   display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap:16px;
-  padding:12px 16px 20px;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  padding:20px;
 }
 
-.card{
-  padding:12px; border-radius:20px; cursor:pointer; position:relative; overflow:hidden;
-  background:linear-gradient(135deg,rgba(128,0,255,0.25),rgba(180,120,255,0.15));
-  backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
-  border:1.5px solid rgba(168,85,247,0.45);
-  box-shadow:0 8px 32px rgba(128,0,255,0.12),inset 0 1px 0 rgba(255,255,255,0.5);
-  transition:0.4s;
+.card{ 
+  padding:15px; border-radius:25px; cursor:pointer; position:relative; overflow:hidden; 
+  background:linear-gradient(135deg,rgba(128,0,255,0.25),rgba(180,120,255,0.15)); 
+  backdrop-filter:blur(16px); 
+  -webkit-backdrop-filter:blur(16px); 
+  border:1.5px solid rgba(168,85,247,0.45); 
+  box-shadow:0 8px 32px rgba(128,0,255,0.12),inset 0 1px 0 rgba(255,255,255,0.5); 
+  transition:0.4s; 
 }
-.card:hover{ transform:translateY(-5px); }
 
-#plants .card{
-  background:linear-gradient(135deg,rgba(16,185,129,0.25),rgba(34,211,238,0.15));
-  border:1.5px solid rgba(16,185,129,0.45);
+.card:hover{ 
+  transform:translateY(-5px); 
+  background:linear-gradient(135deg,rgba(128,0,255,0.35),rgba(180,120,255,0.25));
+  box-shadow:0 15px 40px rgba(128,0,255,0.2),inset 0 1px 0 rgba(255,255,255,0.6); 
+}
+
+#plants .card{ 
+  background:linear-gradient(135deg,rgba(16,185,129,0.25),rgba(34,211,238,0.15)); 
+  border:1.5px solid rgba(16,185,129,0.45); 
+  box-shadow:0 8px 32px rgba(16,185,129,0.12),inset 0 1px 0 rgba(255,255,255,0.5); 
+}
+
+#plants .card:hover{ 
+  background:linear-gradient(135deg,rgba(16,185,129,0.35),rgba(34,211,238,0.25));
+  box-shadow:0 15px 40px rgba(16,185,129,0.2),inset 0 1px 0 rgba(255,255,255,0.6); 
 }
 .card img{
-  width:100%; height:130px; object-fit:cover; border-radius:12px;
+  width:100%;
+  height:150px;
+  object-fit:cover;
+  border-radius:15px;
 }
 
-/* ===== GENERAL POPUP ===== */
 .popup{
-  display:none; position:fixed; inset:0;
-  background:rgba(0,0,0,0.4); justify-content:center; align-items:center;
-  padding: 16px; z-index: 999;
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.4);
+  justify-content:center;
+  align-items:center;
 }
 .popup-box{
-  padding:20px; width:100%; max-width:320px; text-align:center;
+  padding:20px;
+  width:320px;
+  text-align:center;
 }
 
-/* ===== LOGIN MODAL ===== */
+/* LOGIN MODAL */
 .modal {
-  display: none; position: fixed; inset: 0;
-  background: rgba(0,0,0,0.25); backdrop-filter: blur(10px);
-  justify-content: center; align-items: center; z-index: 999;
-  padding: 16px;
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(10px);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
 }
 .modal-box {
   background: linear-gradient(160deg, rgba(220,180,255,0.55), rgba(180,160,255,0.45), rgba(140,200,255,0.45));
-  backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
-  padding: 32px 24px; border-radius: 28px;
-  width: 100%; max-width: 380px;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  padding: 40px 36px;
+  border-radius: 28px;
+  width: 380px;
   text-align: center;
   border: 1.5px solid rgba(255,255,255,0.75);
   box-shadow: 0 8px 40px rgba(180,140,255,0.2), inset 0 1px 0 rgba(255,255,255,0.85);
   position: relative;
 }
 .modal-toggle-indicator {
-  position: absolute; top: 16px; right: 16px;
-  width: 30px; height: 30px; border-radius: 50%;
-  background: rgba(255,255,255,0.65); border: 1px solid rgba(255,255,255,0.9); cursor: pointer;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.65);
+  border: 1px solid rgba(255,255,255,0.9);
+  cursor: pointer;
 }
 .modal-toggle-indicator:hover{ background: rgba(255,255,255,0.85); }
 .modal-box h3 {
-  font-size: 24px; font-weight: 600; margin-bottom: 4px;
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 4px;
   background: linear-gradient(135deg,#a855f7,#38bdf8);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
-.modal-subtitle{ font-size: 13px; color: rgba(100,60,160,0.6); margin: 0 0 18px; }
+.modal-subtitle{
+  font-size: 13px;
+  color: rgba(100,60,160,0.6);
+  margin: 0 0 20px;
+}
 .modal-tab-bar {
-  display: flex; gap: 0; background: rgba(255,255,255,0.25);
-  border-radius: 14px; padding: 4px; margin-bottom: 16px;
+  display: flex;
+  gap: 0;
+  background: rgba(255,255,255,0.25);
+  border-radius: 14px;
+  padding: 4px;
+  margin-bottom: 18px;
   border: 1px solid rgba(255,255,255,0.5);
 }
 .tab-btn {
-  flex: 1; padding: 10px; border-radius: 10px; border: none;
-  background: transparent; color: rgba(100,60,160,0.55);
-  font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.25s ease;
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  color: rgba(100,60,160,0.55);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
 }
 .tab-btn.active {
-  background: rgba(255,255,255,0.8); color: #7c3aed; font-weight: 700;
+  background: rgba(255,255,255,0.8);
+  color: #7c3aed;
+  font-weight: 700;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 .modal-box input, .modal-box select {
-  width: 100%; padding: 12px 16px; margin: 5px 0; border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.65); background: rgba(255,255,255,0.35);
-  color: #3b0764; font-size: 14px; outline: none; transition: 0.3s;
+  width: 100%;
+  padding: 13px 16px;
+  margin: 5px 0;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.65);
+  background: rgba(255,255,255,0.35);
+  color: #3b0764;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s;
   box-sizing: border-box;
 }
-.modal-box input:focus, .modal-box select:focus { border-color: #c084fc; background: rgba(255,255,255,0.6); }
+.modal-box input:focus, .modal-box select:focus {
+  border-color: #c084fc;
+  background: rgba(255,255,255,0.6);
+}
 .modal-box input::placeholder{ color: rgba(100,60,160,0.4); }
 .modal-box select option{ background: #f3e8ff; color: #3b0764; }
 .modal-main-btn {
-  width: 100%; padding: 14px; margin-top: 14px; border-radius: 14px; border: none;
-  background: linear-gradient(135deg,#a855f7,#38bdf8); color: white; font-weight: 700;
-  font-size: 16px; cursor: pointer; letter-spacing: 0.5px;
-  box-shadow: 0 6px 22px rgba(168,85,247,0.4); transition: 0.3s;
+  width: 100%;
+  padding: 14px;
+  margin-top: 16px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg,#a855f7,#38bdf8);
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  box-shadow: 0 6px 22px rgba(168,85,247,0.4);
+  transition: 0.3s;
 }
+.modal-main-btn:hover{ transform: translateY(-2px); box-shadow: 0 10px 30px rgba(168,85,247,0.5); }
 .modal-close-btn {
-  display: block; width: 100%; margin-top: 10px; padding: 11px; border-radius: 12px;
-  border: 1px solid rgba(168,85,247,0.3); background: rgba(255,255,255,0.2);
-  color: rgba(100,60,160,0.75); font-size: 14px; font-weight: 500; cursor: pointer;
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 11px;
+  border-radius: 12px;
+  border: 1px solid rgba(168,85,247,0.3);
+  background: rgba(255,255,255,0.2);
+  color: rgba(100,60,160,0.75);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.25s;
 }
+.modal-close-btn:hover{ background: rgba(255,255,255,0.45); color: #7c3aed; border-color: rgba(168,85,247,0.6); }
 .modal-logout-btn {
-  display: none; width: 100%; margin-top: 10px; padding: 11px; border-radius: 12px;
-  border: 1px solid rgba(239,68,68,0.35); background: rgba(255,200,200,0.25);
-  color: rgba(180,30,30,0.85); font-size: 14px; font-weight: 600; cursor: pointer;
+  display: none;
+  width: 100%;
+  margin-top: 10px;
+  padding: 11px;
+  border-radius: 12px;
+  border: 1px solid rgba(239,68,68,0.35);
+  background: rgba(255,200,200,0.25);
+  color: rgba(180,30,30,0.85);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+}
+.modal-logout-btn:hover{ background: rgba(255,180,180,0.45); border-color: rgba(239,68,68,0.6); color: #b91c1c; }
+
+.page{ display:none; }
+
+.section-title{
+  font-size: 28px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  color: #333;
 }
 
-/* ===== ISLAND SECTION ===== */
-.island-section{ margin:0 12px 16px; padding:18px 20px 16px; }
-.island-section h2{ font-size:20px; font-weight:700; color:#3b0764; margin-bottom:4px; }
-.island-stack-wrap{ display:flex; flex-direction:column; align-items:center; gap:10px; padding:10px 0; }
+footer{
+  text-align:center;
+  padding:30px 50px;
+}
 
+/* ===== ISLAND FAN STACK ===== */
+.island-section{margin:0 20px 20px;padding:25px;}
+.island-section h2{font-size:22px;font-weight:700;color:#3b0764;margin-bottom:6px;}
+.island-stack-wrap{display:flex;flex-direction:column;align-items:center;gap:20px;padding:20px 0;}
 .island-stage{
-  position:relative; width:100%; height:280px;
-  display:flex; align-items:flex-end; justify-content:center;
+  position:relative;
+  width:100%;
+  height:300px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+}
+.island-stack-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  padding:10px 0;
+}
+.island-section{
+  margin:0 20px 20px;
+  padding:20px 25px 18px;
 }
 
 .island-card{
-  position:absolute; width:180px; height:260px;
-  border-radius:20px; border:2px solid rgba(255,255,255,0.7);
-  cursor:pointer; transition:transform 0.4s cubic-bezier(.25,.8,.25,1),box-shadow 0.4s,opacity 0.4s;
-  transform-origin:bottom center; display:flex; flex-direction:column;
-  overflow:hidden; user-select:none; bottom:0; left:0;
+  position:absolute;
+  width:200px;height:280px;
+  border-radius:20px;
+  border:2px solid rgba(255,255,255,0.7);
+  cursor:pointer;
+  transition:transform 0.4s cubic-bezier(.25,.8,.25,1),box-shadow 0.4s,opacity 0.4s;
+  transform-origin:bottom center;
+  display:flex;flex-direction:column;
+  overflow:hidden;user-select:none;
+  bottom:0;left:0;
 }
-.island-card:hover{ filter:brightness(1.08); }
-.ic-dot{ position:absolute; top:10px; right:10px; width:22px; height:22px; border-radius:50%; background:rgba(255,255,255,0.65); border:1.5px solid rgba(255,255,255,0.9); }
-.ic-emoji-wrap{ flex:1; display:flex; align-items:center; justify-content:center; font-size:48px; }
-.ic-body{ padding:8px 12px 12px; background:rgba(0,0,0,0.12); }
-.ic-badge{ font-size:9px; font-weight:700; padding:2px 8px; border-radius:20px; background:rgba(255,255,255,0.3); color:rgba(255,255,255,0.9); letter-spacing:0.5px; text-transform:uppercase; display:inline-block; margin-bottom:4px; }
-.ic-title{ font-size:12px; font-weight:700; color:#fff; margin:0 0 2px; }
-.ic-sub{ font-size:10px; color:rgba(255,255,255,0.7); margin:0; }
+.island-card:hover{filter:brightness(1.08);}
+
+.ic-dot{position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,0.65);border:1.5px solid rgba(255,255,255,0.9);}
+.ic-emoji-wrap{flex:1;display:flex;align-items:center;justify-content:center;font-size:54px;}
+.ic-body{padding:10px 14px 14px;background:rgba(0,0,0,0.12);}
+.ic-badge{font-size:9px;font-weight:700;padding:2px 8px;border-radius:20px;background:rgba(255,255,255,0.3);color:rgba(255,255,255,0.9);letter-spacing:0.5px;text-transform:uppercase;display:inline-block;margin-bottom:5px;}
+.ic-title{font-size:13px;font-weight:700;color:#fff;margin:0 0 2px;}
+.ic-sub{font-size:10px;color:rgba(255,255,255,0.7);margin:0;}
 
 .info-overlay{
-  display:none; position:absolute; inset:0;
-  background:rgba(0,0,0,0.45); backdrop-filter:blur(10px);
-  border-radius:20px; padding:14px;
-  flex-direction:column; justify-content:flex-end; z-index:10;
+  display:none;position:absolute;inset:0;
+  background:rgba(0,0,0,0.45);backdrop-filter:blur(10px);
+  border-radius:20px;padding:16px;
+  flex-direction:column;justify-content:flex-end;z-index:10;
 }
-.info-overlay.show{ display:flex; }
+.info-overlay.show{display:flex;}
 .info-close-x{
-  position:absolute; top:10px; right:10px; width:24px; height:24px; border-radius:50%;
-  background:rgba(255,255,255,0.3); border:none; color:#fff; font-size:12px; cursor:pointer;
-  display:flex; align-items:center; justify-content:center;
+  position:absolute;top:10px;right:10px;
+  width:24px;height:24px;border-radius:50%;
+  background:rgba(255,255,255,0.3);border:none;
+  color:#fff;font-size:12px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
 }
-.info-tags{ display:flex; gap:4px; flex-wrap:wrap; margin-bottom:7px; }
-.info-tags span{ font-size:9px; padding:2px 7px; border-radius:20px; background:rgba(255,255,255,0.2); color:#fff; border:1px solid rgba(255,255,255,0.3); }
-.info-desc{ font-size:11px; color:rgba(255,255,255,0.9); line-height:1.5; margin:0; }
-.island-hint{ font-size:12px; color:rgba(60,20,120,0.5); font-weight:600; text-align:center; }
-.island-counter{ font-size:12px; color:rgba(60,20,120,0.4); text-align:center; }
+.info-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px;}
+.info-tags span{font-size:9px;padding:2px 8px;border-radius:20px;background:rgba(255,255,255,0.2);color:#fff;border:1px solid rgba(255,255,255,0.3);}
+.info-desc{font-size:11px;color:rgba(255,255,255,0.9);line-height:1.5;margin:0;}
 
-/* ===== PAGE & MISC ===== */
-.page{ display:none; }
-.section-title{ font-size:24px; margin:16px 16px 8px; color:#333; }
+.island-hint{font-size:12px;color:rgba(60,20,120,0.5);font-weight:600;letter-spacing:0.5px;text-align:center;}
+.island-counter{font-size:12px;color:rgba(60,20,120,0.4);text-align:center;}
 
-footer{ text-align:center; padding:24px 30px; margin: 0 12px 12px; font-size:14px; }
+/* ============================================================
+   MOBILE RESPONSIVE — sirf mobile fixes, laptop untouched
+   ============================================================ */
+@media (max-width: 768px){
+
+  /* --- HEADER --- */
+  header{
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px 16px;
+    margin: 10px;
+    gap: 12px;
+  }
+
+  header h2{
+    text-align: center;
+    margin: 0;
+    font-size: 22px;
+  }
+
+  /* Search bar — full width, static (no absolute positioning on mobile) */
+  .nav-search{
+    position: static;
+    transform: none;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 15px;
+  }
+
+  /* Nav — wrap and center */
+  nav ul{
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+  }
+  nav li{
+    font-size: 13px;
+    padding: 7px 12px;
+  }
+
+  /* --- HERO --- */
+  .hero{
+    height: 180px;
+    margin: 10px;
+  }
+  .hero h1{
+    font-size: 13px;
+    padding: 8px 12px;
+    width: 85%;
+    line-height: 1.4;
+  }
+
+  /* --- OVERVIEW --- */
+  .overview{
+    margin: 10px;
+    padding: 18px 14px;
+  }
+  .overview-grid{
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .box{
+    padding: 12px 10px;
+    font-size: 13px;
+  }
+
+  /* --- DOM SECTION --- */
+  .dom-section{
+    margin: 0 10px 14px;
+    padding: 16px 14px;
+  }
+  .dom-section h2{
+    font-size: 18px;
+  }
+  .dom-card{
+    flex: 0 0 190px;
+  }
+
+  /* --- ISLAND SECTION --- */
+  .island-section{
+    margin: 0 10px 14px;
+    padding: 16px 14px 14px;
+  }
+  .island-section h2{
+    font-size: 18px;
+  }
+  .island-stage{
+    height: 260px;
+  }
+  .island-card{
+    width: 160px;
+    height: 240px;
+  }
+  .ic-emoji-wrap{
+    font-size: 40px;
+  }
+
+  /* --- CARD GRIDS (Species, Plants etc.) --- */
+  .card-grid{
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 10px;
+  }
+  .card img{
+    height: 110px;
+  }
+  .card h3{
+    font-size: 13px;
+    margin: 8px 0 4px;
+  }
+  .card p{
+    font-size: 12px;
+    margin: 0;
+  }
+
+  /* --- SECTION TITLE --- */
+  .section-title{
+    font-size: 22px;
+    margin-left: 12px;
+  }
+
+  /* --- POPUPS / MODALS --- */
+  .popup-box{
+    width: 88vw;
+    padding: 16px;
+  }
+  .modal-box{
+    width: 88vw;
+    padding: 28px 20px;
+  }
+  .dom-modal-box{
+    max-width: 94vw;
+  }
+
+  /* --- FOOTER --- */
+  footer{
+    padding: 20px 16px;
+    font-size: 13px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 380px){
+  .overview-grid{
+    grid-template-columns: 1fr;
+  }
+  .card-grid{
+    grid-template-columns: 1fr;
+  }
+  nav li{
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}
 
 </style>
 </head>
@@ -406,10 +854,10 @@ footer{ text-align:center; padding:24px 30px; margin: 0 12px 12px; font-size:14p
 
 <!-- HERO -->
 <div class="hero glass" id="hero">
-  <video autoplay muted loop playsinline>
+  <video autoplay muted loop>
     <source src="ocean.mp4" type="video/mp4">
   </video>
-  <h1>MARINE INTELLIGENCE AND RESEARCH MANAGEMENT SYSTEM</h1>
+  <h1>(MARINE INTELLIGENCE AND RESEARCH MANAGEMENT SYSTEM)</h1>
 </div>
 
 <!-- QUICK OVERVIEW -->
@@ -424,16 +872,16 @@ footer{ text-align:center; padding:24px 30px; margin: 0 12px 12px; font-size:14p
   </div>
 </div>
 
-<!-- DOM SCROLL SECTION -->
+<!-- ===== INDIA DEEP OCEAN MISSION SCROLL SECTION ===== -->
 <div class="dom-section glass" id="domSection">
   <h2>🌊 India's Deep Ocean Mission</h2>
   <div class="dom-scroll-track" id="domTrack"></div>
 </div>
 
-<!-- DOM MODAL -->
+<!-- DOM CARD POPUP MODAL -->
 <div class="dom-modal" id="domModal">
   <div class="dom-modal-box">
-    <div class="dom-modal-close-dot" onclick="closeDomModal()">✕</div>
+    <div class="dom-modal-close-dot" onclick="closeDomModal()"></div>
     <div id="domModalImgWrap"></div>
     <div class="dom-modal-body">
       <h3 id="domModalTitle"></h3>
@@ -444,12 +892,12 @@ footer{ text-align:center; padding:24px 30px; margin: 0 12px 12px; font-size:14p
   </div>
 </div>
 
-<!-- ISLAND SECTION -->
+<!-- ISLAND FAN STACK SECTION -->
 <div class="island-section glass" id="islandSection">
   <h2>🏝️ World Island Explorer</h2>
-  <p style="color:rgba(60,20,120,0.6);margin:0 0 6px;font-size:13px;">
-    👆 Single tap = info &nbsp;|&nbsp; Double tap = next card
-  </p>
+ <p style="color:rgba(60,20,120,0.6);margin:0 0 6px;font-size:13px;">
+  👆 Single click = view info &nbsp;|&nbsp; Double click = next card
+</p>
   <div class="island-stack-wrap">
     <div class="island-stage" id="islandStage"></div>
     <div class="island-hint" id="islandHint"></div>
@@ -465,18 +913,18 @@ footer{ text-align:center; padding:24px 30px; margin: 0 12px 12px; font-size:14p
 
 <!-- PLANTS PAGE -->
 <div id="plants" class="page">
-  <h2 class="section-title">Plant Types</h2>
+  <h2 class="section-title">Plants types</h2>
   <div id="plantsContainer" class="card-grid"></div>
 </div>
 
 <!-- POLLUTION PAGE -->
 <div id="pollution" class="page">
   <h2 class="section-title">Water Pollution</h2>
-  <p style="max-width:900px; margin:16px auto; padding: 0 16px; text-align:center; line-height:1.7; font-size:14px;">
-    Water pollution refers to the contamination of oceans, seas, rivers, and other water bodies by harmful substances that negatively impact marine ecosystems and human health. It occurs due to various sources such as plastic waste, oil spills, industrial chemicals, agricultural runoff, and untreated sewage. These pollutants reduce water quality, decrease oxygen levels, and disrupt the natural balance of aquatic life.
+  <p style="max-width:900px; margin:auto; text-align:center; line-height:1.6; padding: 0 12px;">
+    Water pollution refers to the contamination of oceans, seas, rivers, and other water bodies by harmful substances that negatively impact marine ecosystems and human health. It occurs due to various sources such as plastic waste, oil spills, industrial chemicals, agricultural runoff, and untreated sewage. These pollutants reduce water quality, decrease oxygen levels, and disrupt the natural balance of aquatic life. Marine organisms like fish, turtles, and coral reefs suffer greatly as toxic substances accumulate in their bodies, leading to diseases and even extinction in severe cases. In addition, polluted water can enter the human food chain, causing serious health issues. Addressing water pollution requires global awareness, sustainable practices, proper waste management, and strict environmental regulations to protect marine biodiversity and ensure a healthy future for our planet.
   </p>
-  <div style="text-align:center; margin-bottom:12px;">
-    <a href="https://en.wikipedia.org/wiki/Water_pollution" target="_blank" style="color:#7c3aed; font-weight:600;">Read more on Wikipedia →</a>
+  <div style="text-align:center; margin-bottom:15px;">
+    <a href="https://en.wikipedia.org/wiki/Water_pollution" target="_blank" style="color:#00e6ff;">Read more on Wikipedia</a>
   </div>
   <div id="pollutionContainer" class="card-grid"></div>
 </div>
@@ -484,11 +932,11 @@ footer{ text-align:center; padding:24px 30px; margin: 0 12px 12px; font-size:14p
 <!-- SONAR PAGE -->
 <div id="sonar" class="page">
   <h2 class="section-title">Sonar Types</h2>
-  <p style="max-width:900px; margin:16px auto; padding: 0 16px; text-align:center; line-height:1.7; font-size:14px;">
-    Sonar (Sound Navigation and Ranging) is a technology that uses sound waves to detect and locate objects underwater. It is widely used in marine research, navigation, and defense systems.
+  <p style="max-width:900px; margin:auto; text-align:center; line-height:1.6; padding: 0 12px;">
+    Sonar (Sound Navigation and Ranging) is a technology that uses sound waves to detect and locate objects underwater. It is widely used in marine research, navigation, and defense systems. There are different types of sonar systems, such as active sonar, which emits sound pulses and listens for echoes, and passive sonar, which only listens to sounds produced by objects like ships or marine animals. Sonar helps scientists study ocean depths, map the seafloor, track marine species, and monitor underwater activities. It plays a crucial role in ocean exploration and contributes significantly to marine conservation and safety.
   </p>
-  <div style="text-align:center; margin-bottom:12px;">
-    <a href="https://en.wikipedia.org/wiki/Sonar" target="_blank" style="color:#7c3aed; font-weight:600;">Read more on Wikipedia →</a>
+  <div style="text-align:center; margin-bottom:15px;">
+    <a href="https://en.wikipedia.org/wiki/Sonar" target="_blank" style="color:#00e6ff;">Read more on Wikipedia</a>
   </div>
   <div id="sonarContainer" class="card-grid"></div>
 </div>
@@ -496,10 +944,10 @@ footer{ text-align:center; padding:24px 30px; margin: 0 12px 12px; font-size:14p
 <!-- GENERAL POPUP -->
 <div id="popup" class="popup">
   <div class="popup-box glass">
-    <img id="popupImg" style="width:100%; border-radius:12px; margin-bottom:10px;">
-    <h3 id="popupName" style="color:#2d0a6b; margin:0 0 8px;"></h3>
-    <p id="popupDesc" style="color:rgba(45,10,107,0.8); font-size:13px; line-height:1.6;"></p>
-    <button onclick="closePopup()" style="margin-top:10px; padding:10px 24px; border-radius:20px; border:none; background:linear-gradient(135deg,#8b5cf6,#22d3ee); color:white; font-weight:600; cursor:pointer;">Close</button>
+    <img id="popupImg" width="100%">
+    <h3 id="popupName"></h3>
+    <p id="popupDesc"></p>
+    <button onclick="closePopup()">Close</button>
   </div>
 </div>
 
@@ -526,22 +974,80 @@ footer{ text-align:center; padding:24px 30px; margin: 0 12px 12px; font-size:14p
   </div>
 </div>
 
-<footer class="glass">
+<footer>
   Contact: daisykumari1822@gmail.com
 </footer>
 
 <script>
 
+/* ===================== DOM MISSION DATA ===================== */
 const domCards = [
-  { badge:"Mission Overview", title:"Deep Ocean Mission", sub:"India's flagship ocean initiative", btnLabel:"Read on Wikipedia", imgSrc:"https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg", desc:"India's Deep Ocean Mission (DOM) was approved by the Union Cabinet in June 2021 with a budget of ₹4,077 crore over 5 years. It is a multi-institutional programme under the Ministry of Earth Sciences (MoES). DOM aims to explore the deep-sea for mineral resources, marine biodiversity, and energy.", link:"https://en.wikipedia.org/wiki/Deep_Ocean_Mission" },
-  { badge:"Samudrayaan", title:"Samudrayaan & ISRO", sub:"Manned submersible with ISRO collaboration", btnLabel:"Learn More", imgSrc:"isro.webp", desc:"Samudrayaan is India's first manned deep-sea mission. It aims to send 3 humans to a depth of 6,000 metres in a submersible vehicle called MATSYA 6000. ISRO plays a collaborative role by contributing advanced aerospace engineering adapted from its space mission expertise.", link:"https://en.wikipedia.org/wiki/Samudrayaan" },
-  { badge:"Objectives", title:"Main Objectives", sub:"Resources, biodiversity & technology", btnLabel:"Explore DOM Goals", imgSrc:"main.webp", desc:"DOM's core objectives include mining polymetallic nodules from the Central Indian Ocean Basin, studying deep-sea biodiversity, developing indigenous submersible technology, researching ocean thermal energy conversion, and building India's capacity in deep-sea science.", link:"https://dod.gov.in/deep-ocean-mission" },
-  { badge:"NIOT Partner", title:"NIOT's Role in DOM", sub:"National Institute of Ocean Technology", btnLabel:"Visit NIOT", imgSrc:"niot.webp", desc:"NIOT, headquartered in Chennai, is the principal technical agency executing DOM. NIOT is responsible for the design, development, and testing of MATSYA 6000 — the manned deep-sea submersible.", link:"https://www.niot.res.in" },
-  { badge:"Future Scope", title:"Future Events & Scope", sub:"2025–2030 mission milestones", btnLabel:"Read More", imgSrc:"scope.webp", desc:"By 2026, India plans to complete sea trials of MATSYA 6000 and conduct its first unmanned deep dive. The first crewed dive to 6,000m is targeted between 2026–2028.", link:"https://en.wikipedia.org/wiki/Deep_Ocean_Mission#Phases" },
-  { badge:"MATSYA 6000", title:"MATSYA 6000 Vessel", sub:"India's deep-sea submersible craft", btnLabel:"Learn More", imgSrc:"matasya.webp", desc:"MATSYA 6000 is a 2.1-metre titanium-alloy pressure sphere capable of carrying 3 persons to a depth of 6,000 metres, withstanding pressures of 600 bar. It has an endurance of 12–16 hours.", link:"https://en.wikipedia.org/wiki/Matsya_6000" },
-  { badge:"Blue Economy", title:"Blue Economy Vision", sub:"India's ocean policy & global standing", btnLabel:"Read More", imgSrc:"eco.jpg", desc:"DOM is a cornerstone of India's Blue Economy policy, which aims to sustainably harness ocean resources for economic growth. India's Exclusive Economic Zone spans 2.37 million km².", link:"https://en.wikipedia.org/wiki/Blue_economy" }
+  {
+    badge: "Mission Overview",
+    title: "Deep Ocean Mission",
+    sub: "India's flagship ocean initiative",
+    btnLabel: "Read on Wikipedia",
+    imgSrc: "https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg",
+    desc: "India's Deep Ocean Mission (DOM) was approved by the Union Cabinet in June 2021 with a budget of ₹4,077 crore over 5 years. It is a multi-institutional programme under the Ministry of Earth Sciences (MoES). DOM aims to explore the deep-sea for mineral resources, marine biodiversity, and energy. It covers six major pillars: deep-sea mining technology, ocean climate change advisory services, deep ocean exploration, marine biodiversity conservation, deep-sea survey, and offshore ocean thermal energy conversion.",
+    link: "https://en.wikipedia.org/wiki/Deep_Ocean_Mission"
+  },
+  {
+    badge: "Samudrayaan",
+    title: "Samudrayaan & ISRO",
+    sub: "Manned submersible with ISRO collaboration",
+    btnLabel: "Learn More",
+    imgSrc: "isro.webp",
+    desc: "Samudrayaan is India's first manned deep-sea mission, a core part of DOM. It aims to send 3 humans to a depth of 6,000 metres in a submersible vehicle called MATSYA 6000. ISRO plays a collaborative role by contributing advanced aerospace engineering — including pressure hull design, life support systems, and telemetry technologies — adapted from its space mission expertise. This unique space-to-ocean technology transfer makes Samudrayaan one of the most ambitious scientific missions India has ever undertaken.",
+    link: "https://en.wikipedia.org/wiki/Samudrayaan"
+  },
+  {
+    badge: "Objectives",
+    title: "Main Objectives",
+    sub: "Resources, biodiversity & technology",
+    btnLabel: "Explore DOM Goals",
+    imgSrc: "main.webp",
+    desc: "DOM's core objectives include: (1) Mining polymetallic nodules rich in cobalt, nickel, manganese and copper from the Central Indian Ocean Basin. (2) Studying deep-sea biodiversity and micro-organisms with potential pharmaceutical value. (3) Developing indigenous submersible and ROV technology. (4) Researching ocean thermal energy conversion (OTEC) for clean energy. (5) Desalination of deep-sea water. (6) Building India's capacity in deep-sea science to support the Blue Economy and achieve SDG-14 (Life Below Water).",
+    link: "https://dod.gov.in/deep-ocean-mission"
+  },
+  {
+    badge: "NIOT Partner",
+    title: "NIOT's Role in DOM",
+    sub: "National Institute of Ocean Technology",
+    btnLabel: "Visit NIOT",
+    imgSrc: "niot.webp",
+    desc: "The National Institute of Ocean Technology (NIOT), headquartered in Chennai, is the principal technical agency executing DOM. NIOT is responsible for the design, development, and testing of MATSYA 6000 — the manned deep-sea submersible. It also builds acoustic Doppler sensors, deep-sea landers, remotely operated vehicles (ROVs), and autonomous underwater vehicles (AUVs). NIOT operates under MoES and has over 25 years of experience in ocean engineering, making it the backbone of India's deep-ocean technology capabilities.",
+    link: "https://www.niot.res.in"
+  },
+  {
+    badge: "Future Scope",
+    title: "Future Events & Scope",
+    sub: "2025–2030 mission milestones",
+    btnLabel: "Read More",
+    imgSrc: "scope.webp",
+    desc: "By 2026, India plans to complete sea trials of MATSYA 6000 and conduct its first unmanned deep dive. The first crewed dive to 6,000m is targeted between 2026–2028. Long-term scope includes establishing India's first deep-sea mining pilot plant, creating an Advanced Marine Station for Ocean Biology, and mapping 1,00,000 km² of seabed. India aims to join the exclusive club of nations — USA, Russia, France, Japan, and China — with manned deep-sea submersible capability, positioning itself as a global leader in ocean science.",
+    link: "https://en.wikipedia.org/wiki/Deep_Ocean_Mission#Phases"
+  },
+  {
+    badge: "MATSYA 6000",
+    title: "MATSYA 6000 Vessel",
+    sub: "India's deep-sea submersible craft",
+    btnLabel: "Learn More",
+    imgSrc: "matasya.webp",
+    desc: "MATSYA 6000 (named after the Hindu fish avatar Matsya) is a 2.1-metre titanium-alloy pressure sphere capable of carrying 3 persons to a depth of 6,000 metres, withstanding pressures of 600 bar — over 600 times atmospheric pressure. It is equipped with scientific instruments, deep-sea cameras, sample collection systems, and an emergency ascent mechanism. With an endurance of 12–16 hours, it is designed for seabed surveys, mineral sampling, and biodiversity documentation. NIOT is building it with indigenous technology.",
+    link: "https://en.wikipedia.org/wiki/Matsya_6000"
+  },
+  {
+    badge: "Blue Economy",
+    title: "Blue Economy Vision",
+    sub: "India's ocean policy & global standing",
+    btnLabel: "Read More",
+    imgSrc: "eco.jpg",
+    desc: "DOM is a cornerstone of India's Blue Economy policy, which aims to sustainably harness ocean resources for economic growth, employment, and environmental health. India's Exclusive Economic Zone (EEZ) spans 2.37 million km² and holds immense untapped potential in minerals, fisheries, energy, and biotechnology. DOM positions India as a key player in the International Seabed Authority (ISA), shaping global ocean governance. It also aligns with the Indo-Pacific strategy and strengthens ocean diplomacy with SAARC, ASEAN, and Indian Ocean Rim nations.",
+    link: "https://en.wikipedia.org/wiki/Blue_economy"
+  }
 ];
 
+/* Build DOM cards */
 function buildDomCards() {
   const track = document.getElementById('domTrack');
   track.innerHTML = '';
@@ -549,15 +1055,27 @@ function buildDomCards() {
     const card = document.createElement('div');
     card.className = 'dom-card';
     card.onclick = () => openDomModal(i);
+
+    const imgHtml = `
+      <img
+        src="${c.imgSrc}"
+        class="dom-card-img"
+        onerror="this.style.display='none'; document.getElementById('domFallback${i}').style.display='flex';"
+        alt="${c.title}"
+      >
+      <div class="dom-card-img-fallback" id="domFallback${i}" style="display:none;">${c.emoji}</div>
+    `;
+
     card.innerHTML = `
       <div class="dom-card-dot"></div>
-      <img src="${c.imgSrc}" class="dom-card-img" onerror="this.style.display='none'" alt="${c.title}">
+      ${imgHtml}
       <div class="dom-card-body">
         <span class="dom-card-badge">${c.badge}</span>
         <p class="dom-card-title">${c.title}</p>
         <p class="dom-card-sub">${c.sub}</p>
         <div class="dom-card-btn"><span>+</span>${c.btnLabel}</div>
-      </div>`;
+      </div>
+    `;
     track.appendChild(card);
   });
 }
@@ -566,57 +1084,89 @@ function openDomModal(i) {
   const c = domCards[i];
   document.getElementById('domModalTitle').textContent = c.title;
   document.getElementById('domModalDesc').textContent = c.desc;
-  document.getElementById('domModalImgWrap').innerHTML = `<img src="${c.imgSrc}" class="dom-modal-img" onerror="this.style.display='none'" alt="${c.title}">`;
-  document.getElementById('domModalLinkWrap').innerHTML = c.link ? `<a href="${c.link}" target="_blank" class="dom-modal-link">🔗 ${c.btnLabel}</a>` : '';
+
+  const imgWrap = document.getElementById('domModalImgWrap');
+  imgWrap.innerHTML = `
+    <img
+      src="${c.imgSrc}"
+      class="dom-modal-img"
+      onerror="this.style.display='none'; document.getElementById('domModalFallback').style.display='flex';"
+      alt="${c.title}"
+    >
+    <div class="dom-modal-img-fallback" id="domModalFallback" style="display:none;">${c.emoji}</div>
+  `;
+
+  const linkWrap = document.getElementById('domModalLinkWrap');
+  linkWrap.innerHTML = c.link
+    ? `<a href="${c.link}" target="_blank" class="dom-modal-link">🔗 ${c.btnLabel}</a>`
+    : '';
+
   document.getElementById('domModal').classList.add('active');
 }
-function closeDomModal() { document.getElementById('domModal').classList.remove('active'); }
-document.getElementById('domModal').addEventListener('click', function(e){ if(e.target===this) closeDomModal(); });
 
-/* ===== ISLAND STACK ===== */
+function closeDomModal() {
+  document.getElementById('domModal').classList.remove('active');
+}
+
+document.getElementById('domModal').addEventListener('click', function(e) {
+  if (e.target === this) closeDomModal();
+});
+
+/* ===================== ISLAND FAN STACK ===================== */
 const islandsData=[
   {emoji:"🌺",flag:"🇲🇻",name:"Maldives",loc:"Indian Ocean",tags:["Coral Reef","Luxury","Overwater"],desc:"A paradise of 1,192 coral islands with crystal lagoons. The lowest-lying country on Earth faces rising sea levels.",colors:["#8b5cf6","#a78bfa"]},
   {emoji:"🌴",flag:"🇮🇩",name:"Bali",loc:"Indonesia",tags:["Temples","Rice Terraces","Surfing"],desc:"The Island of the Gods — rice paddies, ancient Hindu temples, artistic traditions, and world-class surf breaks.",colors:["#ec4899","#f472b6"]},
-  {emoji:"🐢",flag:"🇪🇨",name:"Galápagos",loc:"Ecuador • Pacific",tags:["Darwin","Wildlife","Volcanic"],desc:"The living laboratory that inspired Darwin's theory of evolution.",colors:["#0ea5e9","#38bdf8"]},
+  {emoji:"🐢",flag:"🇪🇨",name:"Galápagos",loc:"Ecuador • Pacific",tags:["Darwin","Wildlife","Volcanic"],desc:"The living laboratory that inspired Darwin's theory of evolution. Home to giant tortoises and marine iguanas.",colors:["#0ea5e9","#38bdf8"]},
   {emoji:"🌊",flag:"🇫🇯",name:"Fiji",loc:"South Pacific",tags:["Coral Kingdom","Diving","Friendly"],desc:"333 islands — the soft coral capital of the world with the friendliest people on Earth.",colors:["#14b8a6","#2dd4bf"]},
   {emoji:"🏔",flag:"🇮🇸",name:"Iceland",loc:"North Atlantic",tags:["Volcanoes","Aurora","Geysers"],desc:"Land of fire and ice — active volcanoes, glaciers, geysers, and spectacular Northern Lights.",colors:["#6366f1","#818cf8"]},
-  {emoji:"🦁",flag:"🇲🇬",name:"Madagascar",loc:"Indian Ocean",tags:["Lemurs","Biodiversity","Baobabs"],desc:"90% of wildlife found nowhere else on Earth — lemurs, chameleons, and the iconic Avenue of the Baobabs.",colors:["#f59e0b","#fbbf24"]},
+  {emoji:"🦁",flag:"🇲🇬",name:"Madagascar",loc:"Indian Ocean",tags:["Lemurs","Biodiversity","Baobabs"],desc:"90% of wildlife found nowhere else on Earth — ring-tailed lemurs, chameleons, and the iconic Avenue of the Baobabs.",colors:["#f59e0b","#fbbf24"]},
   {emoji:"🏛",flag:"🇬🇷",name:"Santorini",loc:"Greece • Aegean",tags:["Caldera","Blue Domes","Sunsets"],desc:"Whitewashed villages perched over caldera cliffs and the most legendary sunsets on Earth.",colors:["#ef4444","#f87171"]},
   {emoji:"🌺",flag:"🇺🇸",name:"Hawaii",loc:"USA • Pacific",tags:["Lava","Black Beaches","Stargazing"],desc:"Kīlauea — one of the world's most active volcanoes — black sand beaches and Mauna Kea observatory.",colors:["#d946ef","#e879f9"]},
-  {emoji:"🐠",flag:"🇵🇭",name:"Palawan",loc:"Philippines",tags:["Underground River","El Nido","Reef"],desc:"Repeatedly voted the world's best island — Puerto Princesa Underground River and El Nido.",colors:["#10b981","#34d399"]},
+  {emoji:"🐠",flag:"🇵🇭",name:"Palawan",loc:"Philippines",tags:["Underground River","El Nido","Reef"],desc:"Repeatedly voted the world's best island — Puerto Princesa Underground River (UNESCO) and El Nido.",colors:["#10b981","#34d399"]},
   {emoji:"🌿",flag:"🇲🇾",name:"Borneo",loc:"Southeast Asia",tags:["Orangutans","Rainforest","Caves"],desc:"Ancient rainforests shelter wild orangutans, pygmy elephants, and proboscis monkeys.",colors:["#22c55e","#4ade80"]},
-  {emoji:"🌊",flag:"🇵🇫",name:"Bora Bora",loc:"French Polynesia",tags:["Lagoon","Overwater","Romantic"],desc:"Often called the most beautiful island — turquoise lagoon and the extinct volcano Mount Otemanu.",colors:["#3b82f6","#60a5fa"]},
-  {emoji:"🦎",flag:"🇮🇩",name:"Komodo",loc:"Indonesia",tags:["Dragons","UNESCO","Diving"],desc:"Home to the Komodo dragon — world's largest living lizard.",colors:["#84cc16","#a3e635"]},
+  {emoji:"🌊",flag:"🇵🇫",name:"Bora Bora",loc:"French Polynesia",tags:["Lagoon","Overwater","Romantic"],desc:"Often called the most beautiful island in the world — turquoise lagoon and the extinct volcano Mount Otemanu.",colors:["#3b82f6","#60a5fa"]},
+  {emoji:"🦎",flag:"🇮🇩",name:"Komodo",loc:"Indonesia",tags:["Dragons","UNESCO","Diving"],desc:"Home to the Komodo dragon — world's largest living lizard. Surrounding waters offer world-class diving.",colors:["#84cc16","#a3e635"]},
   {emoji:"🏖",flag:"🇹🇿",name:"Zanzibar",loc:"Tanzania",tags:["Spice Island","Stone Town","Beaches"],desc:"The Spice Island of East Africa where Arab, Persian, Indian and European cultures converged.",colors:["#f97316","#fb923c"]},
   {emoji:"🦋",flag:"🇻🇺",name:"Vanuatu",loc:"Melanesia • Pacific",tags:["Volcano Dive","Kastom","Bungee"],desc:"Dive the SS President Coolidge wreck, trek to Mount Yasur volcano rim.",colors:["#a855f7","#c084fc"]},
   {emoji:"🐋",flag:"🇮🇸",name:"Faroe Islands",loc:"North Atlantic",tags:["Puffins","Cliffs","Norse"],desc:"18 volcanic islands with towering sea cliffs hosting millions of puffins and Norse heritage.",colors:["#06b6d4","#22d3ee"]},
 ];
 
-const VISIBLE=5, HALF=Math.floor(VISIBLE/2);
+const VISIBLE=7, HALF=Math.floor(VISIBLE/2);
 let currentIdx=0, clickTimer=null;
 
-function getAngle(pos){ return (pos-HALF)*12; }
-function getTranslateX(pos,sw){ return (sw/2)-90+(pos-HALF)*32; }
+function getAngle(pos){ return (pos-HALF)*14; }
+function getTranslateX(pos,sw){ return (sw/2)-100+(pos-HALF)*38; }
 function getZIndex(pos){ return VISIBLE-Math.abs(pos-HALF); }
-function getOpacity(pos){ return Math.max(0.35,1-Math.abs(pos-HALF)*0.18); }
+function getOpacity(pos){ return Math.max(0.35,1-Math.abs(pos-HALF)*0.15); }
 
 function buildIslandStack(){
   const stage=document.getElementById('islandStage');
   stage.innerHTML='';
-  const sw=stage.offsetWidth||320;
+  const sw=stage.offsetWidth||window.innerWidth-80;
 
-  for(let pos=0;pos<VISIBLE;pos++){
-    const di=(currentIdx+(pos-HALF)+islandsData.length*100)%islandsData.length;
+  /* On mobile, use fewer visible cards & tighter spread */
+  const isMobile = window.innerWidth <= 768;
+  const vis = isMobile ? 5 : VISIBLE;
+  const half = Math.floor(vis/2);
+  const spread = isMobile ? 28 : 38;
+  const cardW = isMobile ? 80 : 100; /* half card width for centering */
+
+  for(let pos=0;pos<vis;pos++){
+    const di=(currentIdx+(pos-half)+islandsData.length*100)%islandsData.length;
     const isl=islandsData[di];
-    const isFront=pos===HALF;
+    const isFront=pos===half;
+    const angle=(pos-half)*14;
+    const tx=(sw/2)-cardW+(pos-half)*spread;
+    const zIdx=vis-Math.abs(pos-half);
+    const opacity=Math.max(0.35,1-Math.abs(pos-half)*0.18);
 
     const card=document.createElement('div');
     card.className='island-card';
     card.style.cssText=`
       background:linear-gradient(145deg,${isl.colors[0]}99,${isl.colors[1]}66);
-      transform:translateX(${getTranslateX(pos,sw)}px) rotate(${getAngle(pos)}deg);
-      z-index:${getZIndex(pos)};
-      opacity:${getOpacity(pos)};
+      transform:translateX(${tx}px) rotate(${angle}deg);
+      z-index:${zIdx};
+      opacity:${opacity};
       box-shadow:${isFront?'0 16px 40px rgba(0,0,0,0.35)':'0 4px 12px rgba(0,0,0,0.2)'};
     `;
 
@@ -640,25 +1190,49 @@ function buildIslandStack(){
         const closeBtn=document.getElementById('islandCloseX');
         if(closeBtn&&closeBtn.contains(e.target)) return;
         if(overlay&&overlay.classList.contains('show')) return;
-        if(clickTimer){ clearTimeout(clickTimer); clickTimer=null; nextIslandCard(); }
-        else { clickTimer=setTimeout(()=>{ clickTimer=null; if(overlay) overlay.classList.add('show'); },260); }
+        if(clickTimer){
+          clearTimeout(clickTimer);
+          clickTimer=null;
+          nextIslandCard();
+        } else {
+          clickTimer=setTimeout(()=>{
+            clickTimer=null;
+            if(overlay) overlay.classList.add('show');
+          },260);
+        }
       });
+
       setTimeout(()=>{
         const closeBtn=document.getElementById('islandCloseX');
-        if(closeBtn){ closeBtn.addEventListener('click',function(e){ e.stopPropagation(); const o=document.getElementById('islandInfoOverlay'); if(o) o.classList.remove('show'); }); }
+        if(closeBtn){
+          closeBtn.addEventListener('click',function(e){
+            e.stopPropagation();
+            const o=document.getElementById('islandInfoOverlay');
+            if(o) o.classList.remove('show');
+          });
+        }
       },0);
+
     } else {
-      card.innerHTML=`<div class="ic-emoji-wrap" style="font-size:28px;opacity:0.7">${isl.emoji}</div>`;
+      card.innerHTML=`<div class="ic-emoji-wrap" style="font-size:32px;opacity:0.7">${isl.emoji}</div>`;
     }
+
     stage.appendChild(card);
   }
-  document.getElementById('islandHint').textContent='single tap = info  |  double tap = next';
+
+  document.getElementById('islandHint').textContent='single click = info  |  double click = next';
   document.getElementById('islandCounter').textContent=`🏝 ${islandsData.length} islands total · ${currentIdx+1} / ${islandsData.length}`;
 }
 
-function nextIslandCard(){ currentIdx=(currentIdx+1)%islandsData.length; buildIslandStack(); }
+function nextIslandCard(){
+  currentIdx=(currentIdx+1)%islandsData.length;
+  buildIslandStack();
+}
 
-/* ===== SPECIES / PLANTS / ETC DATA ===== */
+/* Rebuild on resize */
+window.addEventListener('resize', ()=>{ buildIslandStack(); });
+
+/* ===================== SPECIES / PLANTS / etc DATA ===================== */
 const speciesData=[
   {name:"Blue Whale",desc:"Largest marine animal",img:"bluewhale.jpg"},
   {name:"Dolphin",desc:"Intelligent mammal",img:"dolphin.webp"},
@@ -718,27 +1292,43 @@ const sonarData=[
   {name:"Side Scan Sonar",desc:"Maps ocean floor",img:"side.webp"}
 ];
 
+/* ===================== OVERVIEW POPUP ===================== */
 function showOverview(type){
   let title="", desc="", link="";
-  if(type==="research"){ title="Research Articles"; desc="This section includes detailed research articles related to marine life, biodiversity, ocean ecosystems, climate change, and conservation."; link="https://en.wikipedia.org/wiki/Marine_conservation"; }
-  else if(type==="nasa ocean research"){ title="NASA Ocean Research"; desc="NASA uses advanced satellites to monitor ocean conditions, track sea level rise, and study microscopic marine life like phytoplankton."; link="https://www.earthdata.nasa.gov/topics/ocean"; }
-  else if(type==="marine biology"){ title="Marine Biology"; desc="Marine biology is the scientific study of organisms that live in oceans and other saltwater environments."; link="https://en.wikipedia.org/wiki/Marine_biology"; }
-  else if(type==="whoi"){ title="WHOI"; desc="Woods Hole Oceanographic Institution is one of the world's leading marine research laboratories."; link="https://www.whoi.edu/"; }
+  if(type==="research"){
+    title="Research Articles";
+    desc="This section includes detailed research articles related to marine life, biodiversity, ocean ecosystems, climate change, and conservation.";
+    link="https://en.wikipedia.org/wiki/Marine_conservation";
+  } else if(type==="nasa ocean research"){
+    title="NASA Ocean Research";
+    desc="NASA uses advanced satellites to monitor ocean conditions, track sea level rise, and study microscopic marine life like phytoplankton. These studies help scientists understand environmental changes and protect marine life.";
+    link="https://www.earthdata.nasa.gov/topics/ocean";
+  } else if(type==="marine biology"){
+    title="Marine Biology";
+    desc="Marine biology is the scientific study of organisms that live in oceans and other saltwater environments. It includes the study of marine plants, animals, and microorganisms, as well as their interactions with the environment.";
+    link="https://en.wikipedia.org/wiki/Marine_biology";
+  } else if(type==="whoi"){
+    title="WHOI";
+    desc="Woods Hole Oceanographic Institution (WHOI) is one of the world's leading marine research laboratories. It focuses on studying ocean science, marine ecosystems, and climate change, and is known for deep-sea exploration using submersibles like Alvin.";
+    link="https://www.whoi.edu/";
+  }
   document.getElementById("popup").style.display="flex";
   document.getElementById("popupName").innerText=title;
-  document.getElementById("popupDesc").innerHTML=desc+"<br><br><a href='"+link+"' target='_blank' style='color:#7c3aed; font-weight:600;'>Read more →</a>";
+  document.getElementById("popupDesc").innerHTML = desc + "<br><br><a href='"+link+"' target='_blank' style='color:#00c6ff'>Read more →</a>";
   document.getElementById("popupImg").style.display="none";
 }
 
+/* ===================== LOAD CARDS ===================== */
 function loadData(data, id){
   let c = document.getElementById(id);
   c.innerHTML = "";
   data.forEach(i => {
-    c.innerHTML += `<div class="card" onclick="openPopup('${i.name}','${i.desc}','${i.img}')">
-      <img src="${i.img}" style="width:100%;height:130px;object-fit:cover;border-radius:12px;">
-      <h3 style="font-size:14px;margin:8px 0 4px;color:#2d0a6b;">${i.name}</h3>
-      <p style="font-size:12px;margin:0;color:rgba(45,10,107,0.7);">${i.desc}</p>
-    </div>`;
+    c.innerHTML += `
+      <div class="card" onclick="openPopup('${i.name}','${i.desc}','${i.img}')">
+        <img src="${i.img}">
+        <h3>${i.name}</h3>
+        <p>${i.desc}</p>
+      </div>`;
   });
 }
 
@@ -749,8 +1339,12 @@ function openPopup(name, desc, img){
   document.getElementById("popupImg").src=img;
   document.getElementById("popupImg").style.display="block";
 }
-function closePopup(){ document.getElementById("popup").style.display="none"; }
 
+function closePopup(){
+  document.getElementById("popup").style.display="none";
+}
+
+/* ===================== NAVIGATION ===================== */
 function showPage(page){
   document.getElementById("hero").style.display="none";
   document.getElementById("overview").style.display="none";
@@ -768,32 +1362,78 @@ function goHome(){
   document.getElementById("islandSection").style.display="block";
 }
 
+/* ===================== SEARCH ===================== */
 function globalSearch(val){
   val = val.toLowerCase();
-  if(val === ""){ goHome(); return; }
-  let species   = speciesData.filter(i=>i.name.toLowerCase().includes(val));
-  let plants    = plantsData.filter(i=>i.name.toLowerCase().includes(val));
-  let pollution = pollutionData.filter(i=>i.name.toLowerCase().includes(val));
-  let sonar     = sonarData.filter(i=>i.name.toLowerCase().includes(val));
+  if(val === ""){
+    goHome();
+    loadData(speciesData,"speciesContainer");
+    loadData(plantsData,"plantsContainer");
+    loadData(pollutionData,"pollutionContainer");
+    loadData(sonarData,"sonarContainer");
+    return;
+  }
+  let species  = speciesData.filter(i=>i.name.toLowerCase().includes(val));
+  let plants   = plantsData.filter(i=>i.name.toLowerCase().includes(val));
+  let pollution= pollutionData.filter(i=>i.name.toLowerCase().includes(val));
+  let sonar    = sonarData.filter(i=>i.name.toLowerCase().includes(val));
+
   if(species.length){ showPage("species"); loadData(species,"speciesContainer"); }
   else if(plants.length){ showPage("plants"); loadData(plants,"plantsContainer"); }
   else if(pollution.length){ showPage("pollution"); loadData(pollution,"pollutionContainer"); }
   else if(sonar.length){ showPage("sonar"); loadData(sonar,"sonarContainer"); }
 }
 
+/* ===================== LOGIN ===================== */
 function openLogin(){ document.getElementById("loginModal").style.display="flex"; }
 function closeLogin(){ document.getElementById("loginModal").style.display="none"; }
-let isSignup=false;
-function showSignup(){ document.getElementById("formTitle").innerText="Signup"; document.getElementById("name").style.display="block"; document.getElementById("mainBtn").innerText="Signup"; isSignup=true; document.getElementById("signupTab").classList.add("active"); document.getElementById("loginTab").classList.remove("active"); }
-function showLogin(){ document.getElementById("formTitle").innerText="Login"; document.getElementById("name").style.display="none"; document.getElementById("mainBtn").innerText="Login"; isSignup=false; document.getElementById("loginTab").classList.add("active"); document.getElementById("signupTab").classList.remove("active"); }
-function handleAuth(){
-  let email=document.getElementById("email").value, password=document.getElementById("password").value;
-  if(email===""||password===""){ alert("Please fill all fields"); return; }
-  if(isSignup){ localStorage.setItem("user",JSON.stringify({name:document.getElementById("name").value,email,password,role:document.getElementById("role").value})); alert("Signup Successful ✅"); }
-  else { let user=JSON.parse(localStorage.getItem("user")); if(user&&user.email===email&&user.password===password){ alert("Login Successful ✅"); document.getElementById("logoutBtn").style.display="block"; closeLogin(); } else { alert("Invalid Login ❌"); } }
-}
-function logout(){ localStorage.removeItem("user"); alert("Logged out 👋"); document.getElementById("logoutBtn").style.display="none"; }
 
+let isSignup = false;
+
+function showSignup(){
+  document.getElementById("formTitle").innerText="Signup";
+  document.getElementById("name").style.display="block";
+  document.getElementById("mainBtn").innerText="Signup";
+  isSignup = true;
+  document.getElementById("signupTab").classList.add("active");
+  document.getElementById("loginTab").classList.remove("active");
+}
+
+function showLogin(){
+  document.getElementById("formTitle").innerText="Login";
+  document.getElementById("name").style.display="none";
+  document.getElementById("mainBtn").innerText="Login";
+  isSignup = false;
+  document.getElementById("loginTab").classList.add("active");
+  document.getElementById("signupTab").classList.remove("active");
+}
+
+function handleAuth(){
+  let name     = document.getElementById("name").value;
+  let email    = document.getElementById("email").value;
+  let password = document.getElementById("password").value;
+  let role     = document.getElementById("role").value;
+  if(email===""||password===""){alert("Please fill all fields");return;}
+  if(isSignup){
+    localStorage.setItem("user", JSON.stringify({name,email,password,role}));
+    alert("Signup Successful ✅");
+  } else {
+    let user = JSON.parse(localStorage.getItem("user"));
+    if(user && user.email===email && user.password===password){
+      alert("Login Successful ✅");
+      document.getElementById("logoutBtn").style.display="block";
+      closeLogin();
+    } else { alert("Invalid Login ❌"); }
+  }
+}
+
+function logout(){
+  localStorage.removeItem("user");
+  alert("Logged out 👋");
+  document.getElementById("logoutBtn").style.display="none";
+}
+
+/* ===================== INIT ===================== */
 window.onload = () => {
   loadData(speciesData,"speciesContainer");
   loadData(plantsData,"plantsContainer");
@@ -802,6 +1442,7 @@ window.onload = () => {
   buildDomCards();
   buildIslandStack();
 };
+
 </script>
 </body>
 </html>
