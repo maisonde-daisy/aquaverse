@@ -620,38 +620,37 @@ document.getElementById('domModal').addEventListener('click', function(e){ if(e.
 
 /* ===================== ISLAND DATA ===================== */
 const islandsData = [
-  {name:"Maldives",   loc:"Indian Ocean",      emoji:"🌺", tags:["Coral","Luxury","Atoll"],      desc:"1,192 coral islands — the world's lowest-lying nation, a paradise of turquoise lagoons.",        c:["#7c3aed","#a78bfa"]},
-  {name:"Bali",       loc:"Indonesia",          emoji:"🌴", tags:["Temples","Rice Terraces","Surf"], desc:"The Island of the Gods — Hindu temples, rice paddy terraces and world-class surf breaks.",   c:["#be185d","#f472b6"]},
-  {name:"Galápagos",  loc:"Ecuador",            emoji:"🐢", tags:["Darwin","Wildlife","Volcanic"],  desc:"Living laboratory that inspired Darwin's theory of evolution — giant tortoises roam free.",   c:["#0369a1","#38bdf8"]},
-  {name:"Fiji",       loc:"South Pacific",      emoji:"🌊", tags:["Coral","Diving","Friendly"],    desc:"333 islands — the soft coral capital of the world with the friendliest people on Earth.",     c:["#0f766e","#2dd4bf"]},
-  {name:"Iceland",    loc:"North Atlantic",     emoji:"🏔", tags:["Aurora","Geysers","Volcano"],   desc:"Land of fire and ice — active volcanoes, glaciers and spectacular Northern Lights.",          c:["#4338ca","#818cf8"]},
-  {name:"Madagascar", loc:"Indian Ocean",       emoji:"🦁", tags:["Lemurs","Baobabs","Endemic"],   desc:"90% of wildlife found nowhere else — ring-tailed lemurs and the Avenue of the Baobabs.",      c:["#b45309","#fbbf24"]},
-  {name:"Santorini",  loc:"Greece",             emoji:"🏛", tags:["Caldera","Blue Domes","Sunset"],desc:"Whitewashed villages over legendary caldera cliffs — the most iconic Greek island.",          c:["#b91c1c","#f87171"]},
-  {name:"Hawaii",     loc:"USA Pacific",        emoji:"🌺", tags:["Lava","Black Sand","Stars"],    desc:"Kīlauea — one of Earth's most active volcanoes, plus Mauna Kea stargazing.",                  c:["#a21caf","#e879f9"]},
-  {name:"Palawan",    loc:"Philippines",        emoji:"🐠", tags:["UNESCO","El Nido","Reef"],      desc:"World's best island — Puerto Princesa Underground River and El Nido limestone cliffs.",       c:["#047857","#34d399"]},
-  {name:"Borneo",     loc:"SE Asia",            emoji:"🌿", tags:["Orangutans","Rainforest","Caves"],desc:"Ancient rainforests shelter wild orangutans, pygmy elephants and proboscis monkeys.",       c:["#15803d","#4ade80"]},
-  {name:"Bora Bora",  loc:"French Polynesia",   emoji:"🌊", tags:["Lagoon","Overwater","Romantic"],desc:"Often called the most beautiful island — turquoise lagoon and extinct Mount Otemanu.",       c:["#1d4ed8","#60a5fa"]},
-  {name:"Komodo",     loc:"Indonesia",          emoji:"🦎", tags:["Dragons","UNESCO","Diving"],    desc:"Home to the Komodo dragon — world's largest living lizard. World-class diving surrounds it.", c:["#4d7c0f","#a3e635"]},
-  {name:"Zanzibar",   loc:"Tanzania",           emoji:"🏖", tags:["Spice","Stone Town","Beach"],   desc:"The Spice Island of East Africa where Arab, Persian, Indian and European cultures converged.", c:["#c2410c","#fb923c"]},
-  {name:"Vanuatu",    loc:"Melanesia",          emoji:"🦋", tags:["Volcano","Wreck Dive","Culture"],desc:"Dive the SS President Coolidge wreck and trek to the active Mount Yasur volcano rim.",       c:["#7e22ce","#c084fc"]},
-  {name:"Faroe Islands",loc:"North Atlantic",   emoji:"🐋", tags:["Puffins","Cliffs","Norse"],     desc:"18 volcanic islands with towering sea cliffs hosting millions of puffins.",                   c:["#0e7490","#22d3ee"]},
-  {name:"Sri Lanka",  loc:"Indian Ocean",       emoji:"🐘", tags:["Temples","Tea","Elephants"],    desc:"Pearl of the Indian Ocean — ancient ruins, wild elephants and Ceylon tea gardens.",           c:["#9f1239","#f87171"]},
-  {name:"Seychelles", loc:"Indian Ocean",       emoji:"🪸", tags:["Granite","Endemic","Rare"],     desc:"115 islands with unique giant granite formations found nowhere else on Earth.",               c:["#6d28d9","#a78bfa"]},
-  {name:"Crete",      loc:"Greece",             emoji:"🏺", tags:["Minoan","Gorges","Olive"],      desc:"Oldest civilisation in Europe — the Minoan palace of Knossos and Samaria Gorge.",            c:["#92400e","#fbbf24"]},
-  {name:"Tahiti",     loc:"French Polynesia",   emoji:"🎨", tags:["Gauguin","Black Sand","Surf"],  desc:"Inspired Gauguin — dramatic volcanic black sand beaches and powerful reef surf breaks.",      c:["#9d174d","#f472b6"]},
-  {name:"Malta",      loc:"Mediterranean",      emoji:"🏰", tags:["Knights","UNESCO","Limestone"], desc:"Three UNESCO World Heritage sites packed on one tiny island — 7,000 years of history.",       c:["#c2410c","#fb923c"]},
-  {name:"Réunion",    loc:"Indian Ocean",       emoji:"🌋", tags:["Volcano","Hiking","Cirques"],   desc:"Active Piton de la Fournaise volcano and dramatic amphitheatre-shaped cirque valleys.",       c:["#065f46","#34d399"]},
-  {name:"Okinawa",    loc:"Japan",              emoji:"🐚", tags:["Coral","Longevity","Ryukyu"],   desc:"Bluest water in Japan — a Blue Zone longevity area with unique Ryukyu culture.",              c:["#0f766e","#2dd4bf"]},
-  {name:"Azores",     loc:"Portugal",           emoji:"🌿", tags:["Volcanic","Hot Springs","Whale"],desc:"Mid-Atlantic volcanic archipelago — hot-spring lakes and whale watching capital of Europe.", c:["#166534","#4ade80"]},
-  {name:"Corsica",    loc:"France",             emoji:"⛰", tags:["Mountains","Maquis","Beaches"], desc:"Mountain island with fragrant maquis shrubland, snow-capped peaks and turquoise coves.",      c:["#3730a3","#818cf8"]},
-  {name:"Socotra",    loc:"Yemen",              emoji:"🌳", tags:["Dragon Trees","Alien","Endemic"],desc:"Galápagos of the Indian Ocean — alien Dragon Blood trees and 700 unique species.",          c:["#86198f","#e879f9"]},
-  {name:"Lofoten",    loc:"Norway",             emoji:"🎣", tags:["Fjords","Aurora","Cod"],        desc:"Dramatic peaks above the Arctic Circle with iconic red fishermen's rorbuer huts.",           c:["#1e40af","#60a5fa"]},
-  {name:"Easter Island",loc:"Chile",            emoji:"🗿", tags:["Moai","Mystery","Rapa Nui"],   desc:"Giant stone Moai statues — one of the greatest archaeological mysteries on Earth.",          c:["#991b1b","#f87171"]},
-  {name:"Sardinia",   loc:"Italy",              emoji:"🏛", tags:["Nuraghe","Crystal Sea","Beach"],desc:"Bronze Age Nuraghe towers and some of Europe's most crystalline waters.",                    c:["#0369a1","#38bdf8"]},
-  {name:"Lombok",     loc:"Indonesia",          emoji:"🏄", tags:["Rinjani","Gili","Surf"],        desc:"Mount Rinjani volcano and pristine Gili islands — quieter and wilder than Bali.",            c:["#3f6212","#a3e635"]},
-  {name:"Mauritius",  loc:"Indian Ocean",       emoji:"🦜", tags:["Dodo","Lagoon","Multicultural"],desc:"Home of the extinct Dodo — now a jewel-lagoon paradise of the Indian Ocean.",               c:["#6b21a8","#c084fc"]}
+  {name:"Maldives",   loc:"Indian Ocean",      emoji:"🌺", img:"https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=400&q=80", tags:["Coral","Luxury","Atoll"],      desc:"1,192 coral islands — the world's lowest-lying nation, a paradise of turquoise lagoons.",        c:["#7c3aed","#a78bfa"]},
+  {name:"Bali",       loc:"Indonesia",          emoji:"🌴", img:"https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&q=80", tags:["Temples","Rice Terraces","Surf"], desc:"The Island of the Gods — Hindu temples, rice paddy terraces and world-class surf breaks.",   c:["#be185d","#f472b6"]},
+  {name:"Galápagos",  loc:"Ecuador",            emoji:"🐢", img:"https://images.unsplash.com/photo-1544979590-37e9b47eb705?w=400&q=80", tags:["Darwin","Wildlife","Volcanic"],  desc:"Living laboratory that inspired Darwin's theory of evolution — giant tortoises roam free.",   c:["#0369a1","#38bdf8"]},
+  {name:"Fiji",       loc:"South Pacific",      emoji:"🌊", img:"https://images.unsplash.com/photo-1559494007-9f5847c49d94?w=400&q=80", tags:["Coral","Diving","Friendly"],    desc:"333 islands — the soft coral capital of the world with the friendliest people on Earth.",     c:["#0f766e","#2dd4bf"]},
+  {name:"Iceland",    loc:"North Atlantic",     emoji:"🏔", img:"https://images.unsplash.com/photo-1476610182048-b716b8518aae?w=400&q=80", tags:["Aurora","Geysers","Volcano"],   desc:"Land of fire and ice — active volcanoes, glaciers and spectacular Northern Lights.",          c:["#4338ca","#818cf8"]},
+  {name:"Madagascar", loc:"Indian Ocean",       emoji:"🦁", img:"https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=400&q=80", tags:["Lemurs","Baobabs","Endemic"],   desc:"90% of wildlife found nowhere else — ring-tailed lemurs and the Avenue of the Baobabs.",      c:["#b45309","#fbbf24"]},
+  {name:"Santorini",  loc:"Greece",             emoji:"🏛", img:"https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=400&q=80", tags:["Caldera","Blue Domes","Sunset"],desc:"Whitewashed villages over legendary caldera cliffs — the most iconic Greek island.",          c:["#b91c1c","#f87171"]},
+  {name:"Hawaii",     loc:"USA Pacific",        emoji:"🌺", img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=80", tags:["Lava","Black Sand","Stars"],    desc:"Kīlauea — one of Earth's most active volcanoes, plus Mauna Kea stargazing.",                  c:["#a21caf","#e879f9"]},
+  {name:"Palawan",    loc:"Philippines",        emoji:"🐠", img:"https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=400&q=80", tags:["UNESCO","El Nido","Reef"],      desc:"World's best island — Puerto Princesa Underground River and El Nido limestone cliffs.",       c:["#047857","#34d399"]},
+  {name:"Borneo",     loc:"SE Asia",            emoji:"🌿", img:"https://images.unsplash.com/photo-1596178065887-1198b6148b2b?w=400&q=80", tags:["Orangutans","Rainforest","Caves"],desc:"Ancient rainforests shelter wild orangutans, pygmy elephants and proboscis monkeys.",       c:["#15803d","#4ade80"]},
+  {name:"Bora Bora",  loc:"French Polynesia",   emoji:"🌊", img:"https://images.unsplash.com/photo-1589197331516-4d84b72ebde3?w=400&q=80", tags:["Lagoon","Overwater","Romantic"],desc:"Often called the most beautiful island — turquoise lagoon and extinct Mount Otemanu.",       c:["#1d4ed8","#60a5fa"]},
+  {name:"Komodo",     loc:"Indonesia",          emoji:"🦎", img:"https://images.unsplash.com/photo-1575986767340-5d17ae767ab0?w=400&q=80", tags:["Dragons","UNESCO","Diving"],    desc:"Home to the Komodo dragon — world's largest living lizard. World-class diving surrounds it.", c:["#4d7c0f","#a3e635"]},
+  {name:"Zanzibar",   loc:"Tanzania",           emoji:"🏖", img:"https://images.unsplash.com/photo-1612686635542-2244ed9f8ddc?w=400&q=80", tags:["Spice","Stone Town","Beach"],   desc:"The Spice Island of East Africa where Arab, Persian, Indian and European cultures converged.", c:["#c2410c","#fb923c"]},
+  {name:"Vanuatu",    loc:"Melanesia",          emoji:"🦋", img:"https://images.unsplash.com/photo-1551582045-6ec9c11d8697?w=400&q=80", tags:["Volcano","Wreck Dive","Culture"],desc:"Dive the SS President Coolidge wreck and trek to the active Mount Yasur volcano rim.",       c:["#7e22ce","#c084fc"]},
+  {name:"Faroe Islands",loc:"North Atlantic",   emoji:"🐋", img:"https://images.unsplash.com/photo-1504233529578-6d46baba6d34?w=400&q=80", tags:["Puffins","Cliffs","Norse"],     desc:"18 volcanic islands with towering sea cliffs hosting millions of puffins.",                   c:["#0e7490","#22d3ee"]},
+  {name:"Sri Lanka",  loc:"Indian Ocean",       emoji:"🐘", img:"https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=400&q=80", tags:["Temples","Tea","Elephants"],    desc:"Pearl of the Indian Ocean — ancient ruins, wild elephants and Ceylon tea gardens.",           c:["#9f1239","#f87171"]},
+  {name:"Seychelles", loc:"Indian Ocean",       emoji:"🪸", img:"https://images.unsplash.com/photo-1533587851505-d119e13fa0d7?w=400&q=80", tags:["Granite","Endemic","Rare"],     desc:"115 islands with unique giant granite formations found nowhere else on Earth.",               c:["#6d28d9","#a78bfa"]},
+  {name:"Crete",      loc:"Greece",             emoji:"🏺", img:"https://images.unsplash.com/photo-1602088113235-229c19758e9f?w=400&q=80", tags:["Minoan","Gorges","Olive"],      desc:"Oldest civilisation in Europe — the Minoan palace of Knossos and Samaria Gorge.",            c:["#92400e","#fbbf24"]},
+  {name:"Tahiti",     loc:"French Polynesia",   emoji:"🎨", img:"https://images.unsplash.com/photo-1500930287596-c1ecaa373bb2?w=400&q=80", tags:["Gauguin","Black Sand","Surf"],  desc:"Inspired Gauguin — dramatic volcanic black sand beaches and powerful reef surf breaks.",      c:["#9d174d","#f472b6"]},
+  {name:"Malta",      loc:"Mediterranean",      emoji:"🏰", img:"https://images.unsplash.com/photo-1558642084-fd07fae5282e?w=400&q=80", tags:["Knights","UNESCO","Limestone"], desc:"Three UNESCO World Heritage sites packed on one tiny island — 7,000 years of history.",       c:["#c2410c","#fb923c"]},
+  {name:"Réunion",    loc:"Indian Ocean",       emoji:"🌋", img:"https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?w=400&q=80", tags:["Volcano","Hiking","Cirques"],   desc:"Active Piton de la Fournaise volcano and dramatic amphitheatre-shaped cirque valleys.",       c:["#065f46","#34d399"]},
+  {name:"Okinawa",    loc:"Japan",              emoji:"🐚", img:"https://images.unsplash.com/photo-1590088408305-c5d18f8ff25e?w=400&q=80", tags:["Coral","Longevity","Ryukyu"],   desc:"Bluest water in Japan — a Blue Zone longevity area with unique Ryukyu culture.",              c:["#0f766e","#2dd4bf"]},
+  {name:"Azores",     loc:"Portugal",           emoji:"🌿", img:"https://images.unsplash.com/photo-1585208798174-6cedd4454e46?w=400&q=80", tags:["Volcanic","Hot Springs","Whale"],desc:"Mid-Atlantic volcanic archipelago — hot-spring lakes and whale watching capital of Europe.", c:["#166534","#4ade80"]},
+  {name:"Corsica",    loc:"France",             emoji:"⛰", img:"https://images.unsplash.com/photo-1499678329028-101435549a4e?w=400&q=80", tags:["Mountains","Maquis","Beaches"], desc:"Mountain island with fragrant maquis shrubland, snow-capped peaks and turquoise coves.",      c:["#3730a3","#818cf8"]},
+  {name:"Socotra",    loc:"Yemen",              emoji:"🌳", img:"https://images.unsplash.com/photo-1606814893907-f0c9e3bf3e2a?w=400&q=80", tags:["Dragon Trees","Alien","Endemic"],desc:"Galápagos of the Indian Ocean — alien Dragon Blood trees and 700 unique species.",          c:["#86198f","#e879f9"]},
+  {name:"Lofoten",    loc:"Norway",             emoji:"🎣", img:"https://images.unsplash.com/photo-1548019979-dc78c6b0cdc8?w=400&q=80", tags:["Fjords","Aurora","Cod"],        desc:"Dramatic peaks above the Arctic Circle with iconic red fishermen's rorbuer huts.",           c:["#1e40af","#60a5fa"]},
+  {name:"Easter Island",loc:"Chile",            emoji:"🗿", img:"https://images.unsplash.com/photo-1535666669445-e8c15cd2e7d9?w=400&q=80", tags:["Moai","Mystery","Rapa Nui"],   desc:"Giant stone Moai statues — one of the greatest archaeological mysteries on Earth.",          c:["#991b1b","#f87171"]},
+  {name:"Sardinia",   loc:"Italy",              emoji:"🏛", img:"https://images.unsplash.com/photo-1583422409516-2895a77efded?w=400&q=80", tags:["Nuraghe","Crystal Sea","Beach"],desc:"Bronze Age Nuraghe towers and some of Europe's most crystalline waters.",                    c:["#0369a1","#38bdf8"]},
+  {name:"Lombok",     loc:"Indonesia",          emoji:"🏄", img:"https://images.unsplash.com/photo-1604999333679-b86d54738315?w=400&q=80", tags:["Rinjani","Gili","Surf"],        desc:"Mount Rinjani volcano and pristine Gili islands — quieter and wilder than Bali.",            c:["#3f6212","#a3e635"]},
+  {name:"Mauritius",  loc:"Indian Ocean",       emoji:"🦜", img:"https://images.unsplash.com/photo-1483683804023-6ccdb62f86ef?w=400&q=80", tags:["Dodo","Lagoon","Multicultural"],desc:"Home of the extinct Dodo — now a jewel-lagoon island of the Indian Ocean.",               c:["#6b21a8","#c084fc"]}
 ];
-
 /* ===================== COVERFLOW CAROUSEL LOGIC ===================== */
 let cfCur = 0;
 const cfFlipped = new Set();
@@ -674,10 +673,12 @@ function buildCoverflow() {
     front.className = 'cf-front';
     front.style.background = `linear-gradient(145deg,${isl.c[0]}dd,${isl.c[1]}99)`;
     front.innerHTML = `
-      <div class="cf-front-top">
-        <div class="cf-front-dot"></div>
-        ${isl.emoji}
-      </div>
+  <div class="cf-front-top" style="padding:0;overflow:hidden;">
+    <div class="cf-front-dot"></div>
+    <img src="${isl.img}" alt="${isl.name}" 
+      style="width:100%;height:100%;object-fit:cover;border-radius:0;"
+      onerror="this.style.display='none'">
+  </div>
       <div class="cf-front-body">
         <span class="cf-front-badge">${isl.tags[0]}</span>
         <p class="cf-front-name">${isl.name}</p>
