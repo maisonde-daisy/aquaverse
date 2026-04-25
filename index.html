@@ -147,17 +147,9 @@ nav li:hover{
   -webkit-overflow-scrolling: touch;
 }
 
-.dom-scroll-track::-webkit-scrollbar{
-  height: 6px;
-}
-.dom-scroll-track::-webkit-scrollbar-track{
-  background: rgba(255,255,255,0.2);
-  border-radius: 10px;
-}
-.dom-scroll-track::-webkit-scrollbar-thumb{
-  background: linear-gradient(90deg, #8b5cf6, #22d3ee);
-  border-radius: 10px;
-}
+.dom-scroll-track::-webkit-scrollbar{ height: 6px; }
+.dom-scroll-track::-webkit-scrollbar-track{ background: rgba(255,255,255,0.2); border-radius: 10px; }
+.dom-scroll-track::-webkit-scrollbar-thumb{ background: linear-gradient(90deg, #8b5cf6, #22d3ee); border-radius: 10px; }
 
 .dom-card{
   flex: 0 0 230px;
@@ -166,674 +158,270 @@ nav li:hover{
   overflow: hidden;
   cursor: pointer;
   position: relative;
-  background: linear-gradient(
-    145deg,
-    rgba(200,170,255,0.55),
-    rgba(160,210,255,0.45)
-  );
+  background: linear-gradient(145deg, rgba(200,170,255,0.55), rgba(160,210,255,0.45));
   backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
   border: 1.5px solid rgba(255,255,255,0.75);
-  box-shadow:
-    0 8px 32px rgba(120,80,200,0.18),
-    inset 0 2px 8px rgba(255,255,255,0.7);
+  box-shadow: 0 8px 32px rgba(120,80,200,0.18), inset 0 2px 8px rgba(255,255,255,0.7);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
+.dom-card:hover{ transform: translateY(-7px); box-shadow: 0 20px 45px rgba(120,80,200,0.25), inset 0 2px 8px rgba(255,255,255,0.7); }
+.dom-card-dot{ position: absolute; top: 12px; right: 12px; width: 26px; height: 26px; border-radius: 50%; background: rgba(255,255,255,0.65); border: 1.5px solid rgba(255,255,255,0.9); z-index: 2; }
+.dom-card-img{ width:100%; height:150px; object-fit:cover; border-radius:15px; }
+.dom-card-img-fallback{ width: 100%; height: 150px; display: flex; align-items: center; justify-content: center; font-size: 52px; background: rgba(255,255,255,0.15); }
+.dom-card-body{ padding: 14px 16px 16px; }
+.dom-card-badge{ display: inline-block; font-size: 10px; font-weight: 600; padding: 3px 10px; border-radius: 20px; margin-bottom: 7px; background: rgba(255,255,255,0.35); color: rgba(60,20,120,0.9); letter-spacing: 0.5px; text-transform: uppercase; }
+.dom-card-title{ font-size: 15px; font-weight: 700; color: #2d0a6b; margin: 0 0 5px; line-height: 1.3; }
+.dom-card-sub{ font-size: 12px; color: rgba(60,20,120,0.65); margin: 0; line-height: 1.4; }
+.dom-card-btn{ display: flex; align-items: center; gap: 6px; margin-top: 10px; padding: 8px 14px; border-radius: 30px; background: rgba(255,255,255,0.55); border: 1px solid rgba(255,255,255,0.8); color: #4c1d95; font-size: 12px; font-weight: 600; width: fit-content; }
 
-.dom-card:hover{
-  transform: translateY(-7px);
-  box-shadow:
-    0 20px 45px rgba(120,80,200,0.25),
-    inset 0 2px 8px rgba(255,255,255,0.7);
+/* ===== DOM POPUP MODAL ===== */
+.dom-modal{ display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.35); backdrop-filter: blur(12px); justify-content: center; align-items: center; z-index: 1000; }
+.dom-modal.active{ display: flex; }
+.dom-modal-box{ background: linear-gradient(160deg, rgba(220,190,255,0.65), rgba(180,170,255,0.55), rgba(150,210,255,0.5)); backdrop-filter: blur(35px); border-radius: 28px; border: 1.5px solid rgba(255,255,255,0.8); box-shadow: 0 20px 60px rgba(100,50,200,0.3), inset 0 2px 0 rgba(255,255,255,0.9); width: 380px; max-width: 92vw; overflow: hidden; position: relative; }
+.dom-modal-close-dot{ position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #8b5cf6, #22d3ee); border: 2px solid rgba(255,255,255,0.9); cursor: pointer; z-index: 2; display: flex; align-items: center; justify-content: center; font-size: 14px; color: white; font-weight: bold; box-shadow: 0 4px 15px rgba(139,92,246,0.5); transition: transform 0.2s, box-shadow 0.2s; }
+.dom-modal-close-dot::before{ content: "✕"; font-size: 13px; line-height: 1; }
+.dom-modal-close-dot:hover{ transform: scale(1.15) rotate(90deg); box-shadow: 0 6px 20px rgba(139,92,246,0.7); }
+.dom-modal-img{ width: 100%; height: 190px; object-fit: cover; display: block; }
+.dom-modal-img-fallback{ width: 100%; height: 190px; display: flex; align-items: center; justify-content: center; font-size: 80px; background: rgba(255,255,255,0.2); }
+.dom-modal-body{ padding: 20px 24px 24px; }
+.dom-modal-body h3{ font-size: 20px; font-weight: 700; color: #2d0a6b; margin: 0 0 10px; }
+.dom-modal-body p{ font-size: 13px; color: rgba(45,10,107,0.85); line-height: 1.7; margin: 0 0 14px; }
+.dom-modal-link{ display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px; border-radius: 25px; background: linear-gradient(135deg, #8b5cf6, #22d3ee); color: white; font-size: 13px; font-weight: 600; text-decoration: none; box-shadow: 0 4px 15px rgba(139,92,246,0.4); transition: 0.3s; }
+.dom-modal-link:hover{ transform: translateY(-2px); box-shadow: 0 8px 22px rgba(139,92,246,0.5); }
+.dom-modal-close-btn{ display: block; width: 100%; margin-top: 10px; padding: 11px; border-radius: 25px; font-size: 14px; font-weight: 600; cursor: pointer; transition: 0.25s; background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(34,211,238,0.15)); border: 1.5px solid rgba(139,92,246,0.4); color: #5b21b6; }
+.dom-modal-close-btn:hover{ background: linear-gradient(135deg, rgba(139,92,246,0.28), rgba(34,211,238,0.28)); }
+
+/* ============================================================
+   ISLAND COVERFLOW CAROUSEL  ← FULLY REBUILT
+   ============================================================ */
+.island-section{
+  margin: 0 20px 20px;
+  padding: 22px 25px 24px;
+}
+.island-section h2{
+  font-size: 22px;
+  font-weight: 700;
+  color: #3b0764;
+  margin: 0 0 4px;
+}
+.island-section .island-sub{
+  font-size: 12px;
+  color: rgba(60,20,120,0.55);
+  font-weight: 600;
+  margin: 0 0 18px;
 }
 
-.dom-card-dot{
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.65);
-  border: 1.5px solid rgba(255,255,255,0.9);
-  z-index: 2;
-}
-
-.dom-card-img{
-   width:100%;
-  height:150px;
-  object-fit:cover;
-  border-radius:15px;
-}
-
-.dom-card-img-fallback{
+/* The stage: centred, clips sides, perspective */
+.coverflow-stage{
   width: 100%;
-  height: 150px;
+  height: 300px;
+  position: relative;
+  perspective: 1000px;
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+}
+.coverflow-stage:active{ cursor: grabbing; }
+
+/* Each card is absolutely centred on stage and moved by JS */
+.cf-card{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 175px;
+  height: 240px;
+  margin-top: -120px;   /* half height */
+  margin-left: -87.5px; /* half width  */
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(.25,.8,.25,1), opacity 0.5s ease;
+  cursor: pointer;
+  border-radius: 18px;
+}
+
+/* Front face */
+.cf-front{
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid rgba(255,255,255,0.78);
+  box-shadow: 0 8px 28px rgba(120,80,200,0.22), inset 0 1px 0 rgba(255,255,255,0.6);
+}
+.cf-front-top{
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 52px;
-  background: rgba(255,255,255,0.15);
-}
-
-.dom-card-body{
-  padding: 14px 16px 16px;
-}
-
-.dom-card-badge{
-  display: inline-block;
-  font-size: 10px;
-  font-weight: 600;
-  padding: 3px 10px;
-  border-radius: 20px;
-  margin-bottom: 7px;
-  background: rgba(255,255,255,0.35);
-  color: rgba(60,20,120,0.9);
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
-
-.dom-card-title{
-  font-size: 15px;
-  font-weight: 700;
-  color: #2d0a6b;
-  margin: 0 0 5px;
-  line-height: 1.3;
-}
-
-.dom-card-sub{
-  font-size: 12px;
-  color: rgba(60,20,120,0.65);
-  margin: 0;
-  line-height: 1.4;
-}
-
-.dom-card-btn{
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 10px;
-  padding: 8px 14px;
-  border-radius: 30px;
-  background: rgba(255,255,255,0.55);
-  border: 1px solid rgba(255,255,255,0.8);
-  color: #4c1d95;
-  font-size: 12px;
-  font-weight: 600;
-  width: fit-content;
-  box-shadow: 0 2px 8px rgba(120,80,200,0.1);
-}
-
-.dom-card-btn span{
-  font-size: 16px;
-}
-
-/* ===== POPUP MODAL ===== */
-.dom-modal{
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.dom-modal.active{
-  display: flex;
-}
-
-.dom-modal-box{
-  background: linear-gradient(
-    160deg,
-    rgba(220,190,255,0.65),
-    rgba(180,170,255,0.55),
-    rgba(150,210,255,0.5)
-  );
-  backdrop-filter: blur(35px);
-  -webkit-backdrop-filter: blur(35px);
-  border-radius: 28px;
-  border: 1.5px solid rgba(255,255,255,0.8);
-  box-shadow:
-    0 20px 60px rgba(100,50,200,0.3),
-    inset 0 2px 0 rgba(255,255,255,0.9);
-  width: 380px;
-  max-width: 92vw;
-  overflow: hidden;
   position: relative;
 }
-
-.dom-modal-close-dot{
+.cf-front-dot{
   position: absolute;
-  top: 14px;
-  right: 14px;
-  width: 28px;
-  height: 28px;
+  top: 10px; right: 10px;
+  width: 20px; height: 20px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.65);
+  background: rgba(255,255,255,0.62);
   border: 1.5px solid rgba(255,255,255,0.9);
-  cursor: pointer;
-  z-index: 2;
+}
+.cf-front-body{
+  padding: 10px 14px 14px;
+  background: rgba(0,0,0,0.13);
+}
+.cf-front-badge{
+  font-size: 9px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 20px; background: rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.95); display: inline-block; margin-bottom: 5px;
+}
+.cf-front-name{ font-size: 13px; font-weight: 700; color: #fff; margin: 0 0 2px; }
+.cf-front-loc{ font-size: 10px; color: rgba(255,255,255,0.72); margin: 0; }
+
+/* Back face — rotated 180deg around Y so it faces the back */
+.cf-back{
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: rotateY(180deg);
+  background: linear-gradient(155deg,#2d0a6b,#1e1b4b);
+  border: 2px solid rgba(255,255,255,0.18);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+.cf-back-top{ display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.cf-back-emoji{ font-size: 26px; }
+.cf-back-title{ font-size: 13px; font-weight: 700; color: #e9d5ff; }
+.cf-back-loc{ font-size: 9px; color: rgba(200,180,255,0.65); }
+.cf-back-tags{ display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+.cf-back-tags span{ font-size: 9px; padding: 2px 7px; border-radius: 20px; background: rgba(139,92,246,0.28); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.38); }
+.cf-back-desc{ font-size: 10px; color: rgba(220,210,255,0.82); line-height: 1.55; flex: 1; }
+.cf-back-hint{ font-size: 9px; color: rgba(255,255,255,0.28); text-align: center; margin-top: 6px; }
+
+/* Nav row */
+.island-nav-row{
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
-  color: #6d28d9;
-  font-weight: bold;
+  gap: 14px;
+  margin-top: 16px;
+  flex-wrap: wrap;
 }
-.dom-modal-close-dot:hover{
-  background: rgba(255,255,255,0.9);
-}
-
-.dom-modal-img{
-  width: 100%;
-  height: 190px;
-  object-fit: cover;
-  display: block;
-}
-
-.dom-modal-img-fallback{
-  width: 100%;
-  height: 190px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 80px;
-  background: rgba(255,255,255,0.2);
-}
-
-.dom-modal-body{
-  padding: 20px 24px 24px;
-}
-
-.dom-modal-body h3{
-  font-size: 20px;
-  font-weight: 700;
-  color: #2d0a6b;
-  margin: 0 0 10px;
-}
-
-.dom-modal-body p{
-  font-size: 13px;
-  color: rgba(45,10,107,0.85);
-  line-height: 1.7;
-  margin: 0 0 14px;
-}
-
-.dom-modal-link{
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 9px 18px;
+.island-nav-btn{
+  padding: 9px 22px;
   border-radius: 25px;
-  background: linear-gradient(135deg, #8b5cf6, #22d3ee);
-  color: white;
+  border: none;
+  cursor: pointer;
   font-size: 13px;
   font-weight: 600;
-  text-decoration: none;
-  box-shadow: 0 4px 15px rgba(139,92,246,0.4);
-  transition: 0.3s;
+  background: linear-gradient(135deg,#8b5cf6,#22d3ee);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(139,92,246,0.35);
+  transition: 0.2s;
 }
-.dom-modal-link:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(139,92,246,0.5);
+.island-nav-btn:hover{ transform: translateY(-2px); box-shadow: 0 8px 22px rgba(139,92,246,0.45); }
+.island-counter{
+  font-size: 13px;
+  color: rgba(60,20,120,0.65);
+  min-width: 160px;
+  text-align: center;
+  font-weight: 600;
 }
-
-.dom-modal-close-btn{
-  display: block;
-  width: 100%;
+.island-hint-text{
+  text-align: center;
+  font-size: 11px;
+  color: rgba(60,20,120,0.45);
+  font-weight: 600;
   margin-top: 10px;
-  padding: 11px;
-  border-radius: 14px;
-  border: 1px solid rgba(139,92,246,0.35);
-  background: rgba(255,255,255,0.3);
-  color: rgba(60,20,120,0.8);
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: 0.25s;
-}
-.dom-modal-close-btn:hover{
-  background: rgba(255,255,255,0.55);
-  color: #6d28d9;
+  letter-spacing: 0.3px;
 }
 
 /* ===== OTHER PAGES ===== */
-.card-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-  padding:20px;
-}
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; padding:20px; }
+.card{ padding:15px; border-radius:25px; cursor:pointer; position:relative; overflow:hidden; background:linear-gradient(135deg,rgba(128,0,255,0.25),rgba(180,120,255,0.15)); backdrop-filter:blur(16px); border:1.5px solid rgba(168,85,247,0.45); box-shadow:0 8px 32px rgba(128,0,255,0.12),inset 0 1px 0 rgba(255,255,255,0.5); transition:0.4s; }
+.card:hover{ transform:translateY(-5px); background:linear-gradient(135deg,rgba(128,0,255,0.35),rgba(180,120,255,0.25)); box-shadow:0 15px 40px rgba(128,0,255,0.2),inset 0 1px 0 rgba(255,255,255,0.6); }
+#plants .card{ background:linear-gradient(135deg,rgba(16,185,129,0.25),rgba(34,211,238,0.15)); border:1.5px solid rgba(16,185,129,0.45); box-shadow:0 8px 32px rgba(16,185,129,0.12),inset 0 1px 0 rgba(255,255,255,0.5); }
+#plants .card:hover{ background:linear-gradient(135deg,rgba(16,185,129,0.35),rgba(34,211,238,0.25)); box-shadow:0 15px 40px rgba(16,185,129,0.2),inset 0 1px 0 rgba(255,255,255,0.6); }
+.card img{ width:100%; height:150px; object-fit:cover; border-radius:15px; }
 
-.card{ 
-  padding:15px; border-radius:25px; cursor:pointer; position:relative; overflow:hidden; 
-  background:linear-gradient(135deg,rgba(128,0,255,0.25),rgba(180,120,255,0.15)); 
-  backdrop-filter:blur(16px); 
-  -webkit-backdrop-filter:blur(16px); 
-  border:1.5px solid rgba(168,85,247,0.45); 
-  box-shadow:0 8px 32px rgba(128,0,255,0.12),inset 0 1px 0 rgba(255,255,255,0.5); 
-  transition:0.4s; 
-}
-
-.card:hover{ 
-  transform:translateY(-5px); 
-  background:linear-gradient(135deg,rgba(128,0,255,0.35),rgba(180,120,255,0.25));
-  box-shadow:0 15px 40px rgba(128,0,255,0.2),inset 0 1px 0 rgba(255,255,255,0.6); 
-}
-
-#plants .card{ 
-  background:linear-gradient(135deg,rgba(16,185,129,0.25),rgba(34,211,238,0.15)); 
-  border:1.5px solid rgba(16,185,129,0.45); 
-  box-shadow:0 8px 32px rgba(16,185,129,0.12),inset 0 1px 0 rgba(255,255,255,0.5); 
-}
-
-#plants .card:hover{ 
-  background:linear-gradient(135deg,rgba(16,185,129,0.35),rgba(34,211,238,0.25));
-  box-shadow:0 15px 40px rgba(16,185,129,0.2),inset 0 1px 0 rgba(255,255,255,0.6); 
-}
-.card img{
-  width:100%;
-  height:150px;
-  object-fit:cover;
-  border-radius:15px;
-}
-
-.popup{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.4);
-  justify-content:center;
-  align-items:center;
-}
-.popup-box{
-  padding:20px;
-  width:320px;
-  text-align:center;
-}
+.popup{ display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); justify-content:center; align-items:center; }
+.popup-box{ padding:20px; width:320px; text-align:center; }
 
 /* LOGIN MODAL */
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.25);
-  backdrop-filter: blur(10px);
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-.modal-box {
-  background: linear-gradient(160deg, rgba(220,180,255,0.55), rgba(180,160,255,0.45), rgba(140,200,255,0.45));
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
-  padding: 40px 36px;
-  border-radius: 28px;
-  width: 380px;
-  text-align: center;
-  border: 1.5px solid rgba(255,255,255,0.75);
-  box-shadow: 0 8px 40px rgba(180,140,255,0.2), inset 0 1px 0 rgba(255,255,255,0.85);
-  position: relative;
-}
-.modal-toggle-indicator {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.65);
-  border: 1px solid rgba(255,255,255,0.9);
-  cursor: pointer;
-}
-.modal-toggle-indicator:hover{ background: rgba(255,255,255,0.85); }
-.modal-box h3 {
-  font-size: 26px;
-  font-weight: 600;
-  margin-bottom: 4px;
-  background: linear-gradient(135deg,#a855f7,#38bdf8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.modal-subtitle{
-  font-size: 13px;
-  color: rgba(100,60,160,0.6);
-  margin: 0 0 20px;
-}
-.modal-tab-bar {
-  display: flex;
-  gap: 0;
-  background: rgba(255,255,255,0.25);
-  border-radius: 14px;
-  padding: 4px;
-  margin-bottom: 18px;
-  border: 1px solid rgba(255,255,255,0.5);
-}
-.tab-btn {
-  flex: 1;
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-  background: transparent;
-  color: rgba(100,60,160,0.55);
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-.tab-btn.active {
-  background: rgba(255,255,255,0.8);
-  color: #7c3aed;
-  font-weight: 700;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-.modal-box input, .modal-box select {
-  width: 100%;
-  padding: 13px 16px;
-  margin: 5px 0;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.65);
-  background: rgba(255,255,255,0.35);
-  color: #3b0764;
-  font-size: 14px;
-  outline: none;
-  transition: 0.3s;
-  box-sizing: border-box;
-}
-.modal-box input:focus, .modal-box select:focus {
-  border-color: #c084fc;
-  background: rgba(255,255,255,0.6);
-}
+.modal{ display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.25); backdrop-filter: blur(10px); justify-content: center; align-items: center; z-index: 999; }
+.modal-box{ background: linear-gradient(160deg, rgba(220,180,255,0.55), rgba(180,160,255,0.45), rgba(140,200,255,0.45)); backdrop-filter: blur(30px); padding: 40px 36px; border-radius: 28px; width: 380px; text-align: center; border: 1.5px solid rgba(255,255,255,0.75); box-shadow: 0 8px 40px rgba(180,140,255,0.2), inset 0 1px 0 rgba(255,255,255,0.85); position: relative; }
+.modal-toggle-indicator{ position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #8b5cf6, #22d3ee); border: 2px solid rgba(255,255,255,0.9); cursor: pointer; box-shadow: 0 4px 14px rgba(139,92,246,0.45); transition: transform 0.2s, box-shadow 0.2s; display: flex; align-items: center; justify-content: center; }
+.modal-toggle-indicator::before{ content: "✕"; font-size: 13px; color: white; font-weight: bold; line-height: 1; }
+.modal-toggle-indicator:hover{ transform: scale(1.15) rotate(90deg); box-shadow: 0 6px 20px rgba(139,92,246,0.65); }
+.modal-box h3{ font-size: 26px; font-weight: 600; margin-bottom: 4px; background: linear-gradient(135deg,#a855f7,#38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.modal-subtitle{ font-size: 13px; color: rgba(100,60,160,0.6); margin: 0 0 20px; }
+.modal-tab-bar{ display: flex; gap: 0; background: rgba(255,255,255,0.25); border-radius: 14px; padding: 4px; margin-bottom: 18px; border: 1px solid rgba(255,255,255,0.5); }
+.tab-btn{ flex: 1; padding: 10px; border-radius: 10px; border: none; background: transparent; color: rgba(100,60,160,0.55); font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.25s ease; }
+.tab-btn.active{ background: rgba(255,255,255,0.8); color: #7c3aed; font-weight: 700; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+.modal-box input, .modal-box select{ width: 100%; padding: 13px 16px; margin: 5px 0; border-radius: 12px; border: 1px solid rgba(255,255,255,0.65); background: rgba(255,255,255,0.35); color: #3b0764; font-size: 14px; outline: none; transition: 0.3s; box-sizing: border-box; }
+.modal-box input:focus, .modal-box select:focus{ border-color: #c084fc; background: rgba(255,255,255,0.6); }
 .modal-box input::placeholder{ color: rgba(100,60,160,0.4); }
 .modal-box select option{ background: #f3e8ff; color: #3b0764; }
-.modal-main-btn {
-  width: 100%;
-  padding: 14px;
-  margin-top: 16px;
-  border-radius: 14px;
-  border: none;
-  background: linear-gradient(135deg,#a855f7,#38bdf8);
-  color: white;
-  font-weight: 700;
-  font-size: 16px;
-  cursor: pointer;
-  letter-spacing: 0.5px;
-  box-shadow: 0 6px 22px rgba(168,85,247,0.4);
-  transition: 0.3s;
-}
+.modal-main-btn{ width: 100%; padding: 14px; margin-top: 16px; border-radius: 14px; border: none; background: linear-gradient(135deg,#a855f7,#38bdf8); color: white; font-weight: 700; font-size: 16px; cursor: pointer; letter-spacing: 0.5px; box-shadow: 0 6px 22px rgba(168,85,247,0.4); transition: 0.3s; }
 .modal-main-btn:hover{ transform: translateY(-2px); box-shadow: 0 10px 30px rgba(168,85,247,0.5); }
-.modal-close-btn {
-  display: block;
-  width: 100%;
-  margin-top: 10px;
-  padding: 11px;
-  border-radius: 12px;
-  border: 1px solid rgba(168,85,247,0.3);
-  background: rgba(255,255,255,0.2);
-  color: rgba(100,60,160,0.75);
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: 0.25s;
-}
-.modal-close-btn:hover{ background: rgba(255,255,255,0.45); color: #7c3aed; border-color: rgba(168,85,247,0.6); }
-.modal-logout-btn {
-  display: none;
-  width: 100%;
-  margin-top: 10px;
-  padding: 11px;
-  border-radius: 12px;
-  border: 1px solid rgba(239,68,68,0.35);
-  background: rgba(255,200,200,0.25);
-  color: rgba(180,30,30,0.85);
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.25s;
-}
-.modal-logout-btn:hover{ background: rgba(255,180,180,0.45); border-color: rgba(239,68,68,0.6); color: #b91c1c; }
+.modal-close-btn{ display: block; width: 100%; margin-top: 10px; padding: 11px; border-radius: 25px; font-size: 14px; font-weight: 600; cursor: pointer; transition: 0.25s; background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(34,211,238,0.15)); border: 1.5px solid rgba(139,92,246,0.4); color: #5b21b6; box-shadow: inset 0 0 8px rgba(255,255,255,0.5); }
+.modal-close-btn:hover{ background: linear-gradient(135deg, rgba(139,92,246,0.28), rgba(34,211,238,0.28)); border-color: rgba(139,92,246,0.7); color: #4c1d95; transform: translateY(-1px); }
+.modal-logout-btn{ display: none; width: 100%; margin-top: 10px; padding: 11px; border-radius: 25px; font-size: 14px; font-weight: 600; cursor: pointer; transition: 0.25s; background: linear-gradient(135deg, rgba(239,68,68,0.12), rgba(251,113,133,0.12)); border: 1.5px solid rgba(239,68,68,0.4); color: #b91c1c; }
+.modal-logout-btn:hover{ background: linear-gradient(135deg, rgba(239,68,68,0.25), rgba(251,113,133,0.22)); }
+
+#popup button, .popup-box button{ margin-top: 14px; padding: 10px 28px; border-radius: 25px; border: 1.5px solid rgba(139,92,246,0.45); background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(34,211,238,0.15)); color: #5b21b6; font-size: 14px; font-weight: 600; cursor: pointer; transition: 0.25s; }
+#popup button:hover, .popup-box button:hover{ background: linear-gradient(135deg, rgba(139,92,246,0.28), rgba(34,211,238,0.28)); transform: translateY(-1px); }
 
 .page{ display:none; }
+.section-title{ font-size: 28px; margin-bottom: 20px; margin-left: 10px; color: #333; }
 
-.section-title{
-  font-size: 28px;
-  margin-bottom: 20px;
-  margin-left: 10px;
-  color: #333;
-}
+/* FOOTER */
+footer{ text-align:center; padding:30px 50px; margin: 20px; background: rgba(255,255,255,0.2); backdrop-filter: blur(30px); border-radius: 25px; border: 1px solid rgba(255,255,255,0.5); box-shadow: 0 10px 40px rgba(0,0,0,0.12), inset 0 0 10px rgba(255,255,255,0.5); color: #3b0764; font-size: 14px; font-weight: 500; }
+footer a{ color: #7c3aed; text-decoration: none; font-weight: 600; background: linear-gradient(135deg, #8b5cf6, #22d3ee); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; transition: opacity 0.2s; }
+footer a:hover{ opacity: 0.75; }
 
-footer{
-  text-align:center;
-  padding:30px 50px;
-}
-
-/* ===== ISLAND FAN STACK ===== */
-.island-section{margin:0 20px 20px;padding:25px;}
-.island-section h2{font-size:22px;font-weight:700;color:#3b0764;margin-bottom:6px;}
-.island-stack-wrap{display:flex;flex-direction:column;align-items:center;gap:20px;padding:20px 0;}
-.island-stage{
-  position:relative;
-  width:100%;
-  height:300px;
-  display:flex;
-  align-items:flex-end;
-  justify-content:center;
-}
-.island-stack-wrap{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:10px;
-  padding:10px 0;
-}
-.island-section{
-  margin:0 20px 20px;
-  padding:20px 25px 18px;
-}
-
-.island-card{
-  position:absolute;
-  width:200px;height:280px;
-  border-radius:20px;
-  border:2px solid rgba(255,255,255,0.7);
-  cursor:pointer;
-  transition:transform 0.4s cubic-bezier(.25,.8,.25,1),box-shadow 0.4s,opacity 0.4s;
-  transform-origin:bottom center;
-  display:flex;flex-direction:column;
-  overflow:hidden;user-select:none;
-  bottom:0;left:0;
-}
-.island-card:hover{filter:brightness(1.08);}
-
-.ic-dot{position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,0.65);border:1.5px solid rgba(255,255,255,0.9);}
-.ic-emoji-wrap{flex:1;display:flex;align-items:center;justify-content:center;font-size:54px;}
-.ic-body{padding:10px 14px 14px;background:rgba(0,0,0,0.12);}
-.ic-badge{font-size:9px;font-weight:700;padding:2px 8px;border-radius:20px;background:rgba(255,255,255,0.3);color:rgba(255,255,255,0.9);letter-spacing:0.5px;text-transform:uppercase;display:inline-block;margin-bottom:5px;}
-.ic-title{font-size:13px;font-weight:700;color:#fff;margin:0 0 2px;}
-.ic-sub{font-size:10px;color:rgba(255,255,255,0.7);margin:0;}
-
-.info-overlay{
-  display:none;position:absolute;inset:0;
-  background:rgba(0,0,0,0.45);backdrop-filter:blur(10px);
-  border-radius:20px;padding:16px;
-  flex-direction:column;justify-content:flex-end;z-index:10;
-}
-.info-overlay.show{display:flex;}
-.info-close-x{
-  position:absolute;top:10px;right:10px;
-  width:24px;height:24px;border-radius:50%;
-  background:rgba(255,255,255,0.3);border:none;
-  color:#fff;font-size:12px;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-}
-.info-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px;}
-.info-tags span{font-size:9px;padding:2px 8px;border-radius:20px;background:rgba(255,255,255,0.2);color:#fff;border:1px solid rgba(255,255,255,0.3);}
-.info-desc{font-size:11px;color:rgba(255,255,255,0.9);line-height:1.5;margin:0;}
-
-.island-hint{font-size:12px;color:rgba(60,20,120,0.5);font-weight:600;letter-spacing:0.5px;text-align:center;}
-.island-counter{font-size:12px;color:rgba(60,20,120,0.4);text-align:center;}
-
-/* ============================================================
-   MOBILE RESPONSIVE — sirf mobile fixes, laptop untouched
-   ============================================================ */
+/* MOBILE */
 @media (max-width: 768px){
-
-  /* --- HEADER --- */
-  header{
-    flex-direction: column;
-    align-items: stretch;
-    padding: 14px 16px;
-    margin: 10px;
-    gap: 12px;
-  }
-
-  header h2{
-    text-align: center;
-    margin: 0;
-    font-size: 22px;
-  }
-
-  /* Search bar — full width, static (no absolute positioning on mobile) */
-  .nav-search{
-    position: static;
-    transform: none;
-    width: 100%;
-    box-sizing: border-box;
-    font-size: 15px;
-  }
-
-  /* Nav — wrap and center */
-  nav ul{
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-    padding: 0;
-    margin: 0;
-  }
-  nav li{
-    font-size: 13px;
-    padding: 7px 12px;
-  }
-
-  /* --- HERO --- */
-  .hero{
-    height: 180px;
-    margin: 10px;
-  }
-  .hero h1{
-    font-size: 13px;
-    padding: 8px 12px;
-    width: 85%;
-    line-height: 1.4;
-  }
-
-  /* --- OVERVIEW --- */
-  .overview{
-    margin: 10px;
-    padding: 18px 14px;
-  }
-  .overview-grid{
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-  .box{
-    padding: 12px 10px;
-    font-size: 13px;
-  }
-
-  /* --- DOM SECTION --- */
-  .dom-section{
-    margin: 0 10px 14px;
-    padding: 16px 14px;
-  }
-  .dom-section h2{
-    font-size: 18px;
-  }
-  .dom-card{
-    flex: 0 0 190px;
-  }
-
-  /* --- ISLAND SECTION --- */
-  .island-section{
-    margin: 0 10px 14px;
-    padding: 16px 14px 14px;
-  }
-  .island-section h2{
-    font-size: 18px;
-  }
-  .island-stage{
-    height: 260px;
-  }
-  .island-card{
-    width: 160px;
-    height: 240px;
-  }
-  .ic-emoji-wrap{
-    font-size: 40px;
-  }
-
-  /* --- CARD GRIDS (Species, Plants etc.) --- */
-  .card-grid{
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    padding: 10px;
-  }
-  .card img{
-    height: 110px;
-  }
-  .card h3{
-    font-size: 13px;
-    margin: 8px 0 4px;
-  }
-  .card p{
-    font-size: 12px;
-    margin: 0;
-  }
-
-  /* --- SECTION TITLE --- */
-  .section-title{
-    font-size: 22px;
-    margin-left: 12px;
-  }
-
-  /* --- POPUPS / MODALS --- */
-  .popup-box{
-    width: 88vw;
-    padding: 16px;
-  }
-  .modal-box{
-    width: 88vw;
-    padding: 28px 20px;
-  }
-  .dom-modal-box{
-    max-width: 94vw;
-  }
-
-  /* --- FOOTER --- */
-  footer{
-    padding: 20px 16px;
-    font-size: 13px;
-  }
+  header{ flex-direction: column; align-items: stretch; padding: 14px 16px; margin: 10px; gap: 12px; }
+  header h2{ text-align: center; margin: 0; font-size: 22px; }
+  .nav-search{ position: static; transform: none; width: 100%; box-sizing: border-box; font-size: 15px; }
+  nav ul{ flex-wrap: wrap; justify-content: center; gap: 8px; padding: 0; margin: 0; }
+  nav li{ font-size: 13px; padding: 7px 12px; }
+  .hero{ height: 180px; margin: 10px; }
+  .hero h1{ font-size: 13px; padding: 8px 12px; width: 85%; line-height: 1.4; }
+  .overview{ margin: 10px; padding: 18px 14px; }
+  .overview-grid{ grid-template-columns: 1fr 1fr; gap: 10px; }
+  .box{ padding: 12px 10px; font-size: 13px; }
+  .dom-section{ margin: 0 10px 14px; padding: 16px 14px; }
+  .dom-section h2{ font-size: 18px; }
+  .dom-card{ flex: 0 0 190px; }
+  .island-section{ margin: 0 10px 14px; padding: 16px 14px 14px; }
+  .island-section h2{ font-size: 18px; }
+  .coverflow-stage{ height: 250px; }
+  .cf-card{ width: 140px; height: 195px; margin-top: -97.5px; margin-left: -70px; }
+  .cf-front-top{ font-size: 40px; }
+  .card-grid{ grid-template-columns: 1fr 1fr; gap: 12px; padding: 10px; }
+  .card img{ height: 110px; }
+  .card h3{ font-size: 13px; margin: 8px 0 4px; }
+  .card p{ font-size: 12px; margin: 0; }
+  .section-title{ font-size: 22px; margin-left: 12px; }
+  .popup-box{ width: 88vw; padding: 16px; }
+  .modal-box{ width: 88vw; padding: 28px 20px; }
+  .dom-modal-box{ max-width: 94vw; }
+  footer{ padding: 20px 16px; font-size: 13px; margin: 10px; }
 }
-
-/* Extra small screens */
 @media (max-width: 380px){
-  .overview-grid{
-    grid-template-columns: 1fr;
-  }
-  .card-grid{
-    grid-template-columns: 1fr;
-  }
-  nav li{
-    font-size: 12px;
-    padding: 6px 10px;
-  }
+  .overview-grid{ grid-template-columns: 1fr; }
+  .card-grid{ grid-template-columns: 1fr; }
+  nav li{ font-size: 12px; padding: 6px 10px; }
 }
-
 </style>
 </head>
 <body>
@@ -872,7 +460,7 @@ footer{
   </div>
 </div>
 
-<!-- ===== INDIA DEEP OCEAN MISSION SCROLL SECTION ===== -->
+<!-- INDIA DEEP OCEAN MISSION -->
 <div class="dom-section glass" id="domSection">
   <h2>🌊 India's Deep Ocean Mission</h2>
   <div class="dom-scroll-track" id="domTrack"></div>
@@ -887,22 +475,25 @@ footer{
       <h3 id="domModalTitle"></h3>
       <p id="domModalDesc"></p>
       <div id="domModalLinkWrap"></div>
-      <button class="dom-modal-close-btn" onclick="closeDomModal()">Close</button>
+      <button class="dom-modal-close-btn" onclick="closeDomModal()">✕ Close</button>
     </div>
   </div>
 </div>
 
-<!-- ISLAND FAN STACK SECTION -->
+<!-- ===== ISLAND COVERFLOW CAROUSEL ===== -->
 <div class="island-section glass" id="islandSection">
   <h2>🏝️ World Island Explorer</h2>
- <p style="color:rgba(60,20,120,0.6);margin:0 0 6px;font-size:13px;">
-  👆 Single click = view info &nbsp;|&nbsp; Double click = next card
-</p>
-  <div class="island-stack-wrap">
-    <div class="island-stage" id="islandStage"></div>
-    <div class="island-hint" id="islandHint"></div>
-    <div class="island-counter" id="islandCounter"></div>
+  <p class="island-sub">Drag · Scroll · Swipe to browse &nbsp;|&nbsp; Click the centre card to flip</p>
+
+  <!-- THE STAGE: cards are absolutely centred inside here -->
+  <div class="coverflow-stage" id="cfStage"></div>
+
+  <div class="island-nav-row">
+    <button class="island-nav-btn" id="islandPrev">◀ Prev</button>
+    <span class="island-counter" id="islandCounter"></span>
+    <button class="island-nav-btn" id="islandNext">Next ▶</button>
   </div>
+  <div class="island-hint-text">🖱 Scroll on carousel to rotate · Click centre card to flip · Click again to flip back</div>
 </div>
 
 <!-- SPECIES PAGE -->
@@ -921,7 +512,7 @@ footer{
 <div id="pollution" class="page">
   <h2 class="section-title">Water Pollution</h2>
   <p style="max-width:900px; margin:auto; text-align:center; line-height:1.6; padding: 0 12px;">
-    Water pollution refers to the contamination of oceans, seas, rivers, and other water bodies by harmful substances that negatively impact marine ecosystems and human health. It occurs due to various sources such as plastic waste, oil spills, industrial chemicals, agricultural runoff, and untreated sewage. These pollutants reduce water quality, decrease oxygen levels, and disrupt the natural balance of aquatic life. Marine organisms like fish, turtles, and coral reefs suffer greatly as toxic substances accumulate in their bodies, leading to diseases and even extinction in severe cases. In addition, polluted water can enter the human food chain, causing serious health issues. Addressing water pollution requires global awareness, sustainable practices, proper waste management, and strict environmental regulations to protect marine biodiversity and ensure a healthy future for our planet.
+    Water pollution refers to the contamination of oceans, seas, rivers, and other water bodies by harmful substances. It includes plastic waste, oil spills, industrial chemicals, agricultural runoff, and untreated sewage. These pollutants disrupt marine ecosystems and threaten human health.
   </p>
   <div style="text-align:center; margin-bottom:15px;">
     <a href="https://en.wikipedia.org/wiki/Water_pollution" target="_blank" style="color:#00e6ff;">Read more on Wikipedia</a>
@@ -933,7 +524,7 @@ footer{
 <div id="sonar" class="page">
   <h2 class="section-title">Sonar Types</h2>
   <p style="max-width:900px; margin:auto; text-align:center; line-height:1.6; padding: 0 12px;">
-    Sonar (Sound Navigation and Ranging) is a technology that uses sound waves to detect and locate objects underwater. It is widely used in marine research, navigation, and defense systems. There are different types of sonar systems, such as active sonar, which emits sound pulses and listens for echoes, and passive sonar, which only listens to sounds produced by objects like ships or marine animals. Sonar helps scientists study ocean depths, map the seafloor, track marine species, and monitor underwater activities. It plays a crucial role in ocean exploration and contributes significantly to marine conservation and safety.
+    Sonar (Sound Navigation and Ranging) uses sound waves to detect and locate objects underwater. It is used in marine research, navigation, and defense. Active sonar emits pulses; passive sonar listens only.
   </p>
   <div style="text-align:center; margin-bottom:15px;">
     <a href="https://en.wikipedia.org/wiki/Sonar" target="_blank" style="color:#00e6ff;">Read more on Wikipedia</a>
@@ -947,7 +538,7 @@ footer{
     <img id="popupImg" width="100%">
     <h3 id="popupName"></h3>
     <p id="popupDesc"></p>
-    <button onclick="closePopup()">Close</button>
+    <button onclick="closePopup()">✕ Close</button>
   </div>
 </div>
 
@@ -969,85 +560,27 @@ footer{
       <option value="admin">Admin</option>
     </select>
     <button id="mainBtn" class="modal-main-btn" onclick="handleAuth()">Login</button>
-    <button class="modal-close-btn" onclick="closeLogin()">Close</button>
+    <button class="modal-close-btn" onclick="closeLogin()">✕ Close</button>
     <button id="logoutBtn" class="modal-logout-btn" onclick="logout()">Logout</button>
   </div>
 </div>
 
 <footer>
-  Contact: daisykumari1822@gmail.com
+  📧 Contact: <a href="mailto:daisykumari1822@gmail.com">daisykumari1822@gmail.com</a>
 </footer>
 
 <script>
-
 /* ===================== DOM MISSION DATA ===================== */
 const domCards = [
-  {
-    badge: "Mission Overview",
-    title: "Deep Ocean Mission",
-    sub: "India's flagship ocean initiative",
-    btnLabel: "Read on Wikipedia",
-    imgSrc: "https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg",
-    desc: "India's Deep Ocean Mission (DOM) was approved by the Union Cabinet in June 2021 with a budget of ₹4,077 crore over 5 years. It is a multi-institutional programme under the Ministry of Earth Sciences (MoES). DOM aims to explore the deep-sea for mineral resources, marine biodiversity, and energy. It covers six major pillars: deep-sea mining technology, ocean climate change advisory services, deep ocean exploration, marine biodiversity conservation, deep-sea survey, and offshore ocean thermal energy conversion.",
-    link: "https://en.wikipedia.org/wiki/Deep_Ocean_Mission"
-  },
-  {
-    badge: "Samudrayaan",
-    title: "Samudrayaan & ISRO",
-    sub: "Manned submersible with ISRO collaboration",
-    btnLabel: "Learn More",
-    imgSrc: "isro.webp",
-    desc: "Samudrayaan is India's first manned deep-sea mission, a core part of DOM. It aims to send 3 humans to a depth of 6,000 metres in a submersible vehicle called MATSYA 6000. ISRO plays a collaborative role by contributing advanced aerospace engineering — including pressure hull design, life support systems, and telemetry technologies — adapted from its space mission expertise. This unique space-to-ocean technology transfer makes Samudrayaan one of the most ambitious scientific missions India has ever undertaken.",
-    link: "https://en.wikipedia.org/wiki/Samudrayaan"
-  },
-  {
-    badge: "Objectives",
-    title: "Main Objectives",
-    sub: "Resources, biodiversity & technology",
-    btnLabel: "Explore DOM Goals",
-    imgSrc: "main.webp",
-    desc: "DOM's core objectives include: (1) Mining polymetallic nodules rich in cobalt, nickel, manganese and copper from the Central Indian Ocean Basin. (2) Studying deep-sea biodiversity and micro-organisms with potential pharmaceutical value. (3) Developing indigenous submersible and ROV technology. (4) Researching ocean thermal energy conversion (OTEC) for clean energy. (5) Desalination of deep-sea water. (6) Building India's capacity in deep-sea science to support the Blue Economy and achieve SDG-14 (Life Below Water).",
-    link: "https://dod.gov.in/deep-ocean-mission"
-  },
-  {
-    badge: "NIOT Partner",
-    title: "NIOT's Role in DOM",
-    sub: "National Institute of Ocean Technology",
-    btnLabel: "Visit NIOT",
-    imgSrc: "niot.webp",
-    desc: "The National Institute of Ocean Technology (NIOT), headquartered in Chennai, is the principal technical agency executing DOM. NIOT is responsible for the design, development, and testing of MATSYA 6000 — the manned deep-sea submersible. It also builds acoustic Doppler sensors, deep-sea landers, remotely operated vehicles (ROVs), and autonomous underwater vehicles (AUVs). NIOT operates under MoES and has over 25 years of experience in ocean engineering, making it the backbone of India's deep-ocean technology capabilities.",
-    link: "https://www.niot.res.in"
-  },
-  {
-    badge: "Future Scope",
-    title: "Future Events & Scope",
-    sub: "2025–2030 mission milestones",
-    btnLabel: "Read More",
-    imgSrc: "scope.webp",
-    desc: "By 2026, India plans to complete sea trials of MATSYA 6000 and conduct its first unmanned deep dive. The first crewed dive to 6,000m is targeted between 2026–2028. Long-term scope includes establishing India's first deep-sea mining pilot plant, creating an Advanced Marine Station for Ocean Biology, and mapping 1,00,000 km² of seabed. India aims to join the exclusive club of nations — USA, Russia, France, Japan, and China — with manned deep-sea submersible capability, positioning itself as a global leader in ocean science.",
-    link: "https://en.wikipedia.org/wiki/Deep_Ocean_Mission#Phases"
-  },
-  {
-    badge: "MATSYA 6000",
-    title: "MATSYA 6000 Vessel",
-    sub: "India's deep-sea submersible craft",
-    btnLabel: "Learn More",
-    imgSrc: "matasya.webp",
-    desc: "MATSYA 6000 (named after the Hindu fish avatar Matsya) is a 2.1-metre titanium-alloy pressure sphere capable of carrying 3 persons to a depth of 6,000 metres, withstanding pressures of 600 bar — over 600 times atmospheric pressure. It is equipped with scientific instruments, deep-sea cameras, sample collection systems, and an emergency ascent mechanism. With an endurance of 12–16 hours, it is designed for seabed surveys, mineral sampling, and biodiversity documentation. NIOT is building it with indigenous technology.",
-    link: "https://en.wikipedia.org/wiki/Matsya_6000"
-  },
-  {
-    badge: "Blue Economy",
-    title: "Blue Economy Vision",
-    sub: "India's ocean policy & global standing",
-    btnLabel: "Read More",
-    imgSrc: "eco.jpg",
-    desc: "DOM is a cornerstone of India's Blue Economy policy, which aims to sustainably harness ocean resources for economic growth, employment, and environmental health. India's Exclusive Economic Zone (EEZ) spans 2.37 million km² and holds immense untapped potential in minerals, fisheries, energy, and biotechnology. DOM positions India as a key player in the International Seabed Authority (ISA), shaping global ocean governance. It also aligns with the Indo-Pacific strategy and strengthens ocean diplomacy with SAARC, ASEAN, and Indian Ocean Rim nations.",
-    link: "https://en.wikipedia.org/wiki/Blue_economy"
-  }
+  { badge:"Mission Overview", title:"Deep Ocean Mission", sub:"India's flagship ocean initiative", btnLabel:"Read on Wikipedia", imgSrc:"https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg", desc:"India's Deep Ocean Mission (DOM) was approved by the Union Cabinet in June 2021 with a budget of ₹4,077 crore over 5 years. It aims to explore the deep-sea for mineral resources, marine biodiversity, and energy across six major pillars.", link:"https://en.wikipedia.org/wiki/Deep_Ocean_Mission" },
+  { badge:"Samudrayaan", title:"Samudrayaan & ISRO", sub:"Manned submersible with ISRO collaboration", btnLabel:"Learn More", imgSrc:"isro.webp", desc:"Samudrayaan is India's first manned deep-sea mission aiming to send 3 humans to 6,000 metres in the submersible MATSYA 6000. ISRO contributes advanced aerospace engineering adapted from space missions.", link:"https://en.wikipedia.org/wiki/Samudrayaan" },
+  { badge:"Objectives", title:"Main Objectives", sub:"Resources, biodiversity & technology", btnLabel:"Explore DOM Goals", imgSrc:"main.webp", desc:"DOM's core objectives: (1) Mining polymetallic nodules in the Central Indian Ocean Basin. (2) Studying deep-sea biodiversity. (3) Developing indigenous submersible technology. (4) Researching ocean thermal energy conversion (OTEC).", link:"https://dod.gov.in/deep-ocean-mission" },
+  { badge:"NIOT Partner", title:"NIOT's Role in DOM", sub:"National Institute of Ocean Technology", btnLabel:"Visit NIOT", imgSrc:"niot.webp", desc:"NIOT, headquartered in Chennai, is the principal technical agency executing DOM. It designs MATSYA 6000, builds acoustic sensors, ROVs, and AUVs. NIOT has over 25 years of ocean engineering expertise.", link:"https://www.niot.res.in" },
+  { badge:"Future Scope", title:"Future Events & Scope", sub:"2025–2030 mission milestones", btnLabel:"Read More", imgSrc:"scope.webp", desc:"By 2026, India plans to complete sea trials of MATSYA 6000. The first crewed dive to 6,000m is targeted between 2026–2028. India aims to join USA, Russia, France, Japan, and China with manned deep-sea capability.", link:"https://en.wikipedia.org/wiki/Deep_Ocean_Mission#Phases" },
+  { badge:"MATSYA 6000", title:"MATSYA 6000 Vessel", sub:"India's deep-sea submersible craft", btnLabel:"Learn More", imgSrc:"matasya.webp", desc:"MATSYA 6000 is a 2.1-metre titanium-alloy pressure sphere carrying 3 persons to 6,000 metres, withstanding 600 bar pressure. Equipped with scientific instruments, cameras, sample collectors, and emergency ascent mechanism.", link:"https://en.wikipedia.org/wiki/Matsya_6000" },
+  { badge:"Blue Economy", title:"Blue Economy Vision", sub:"India's ocean policy & global standing", btnLabel:"Read More", imgSrc:"eco.jpg", desc:"DOM is a cornerstone of India's Blue Economy policy. India's EEZ spans 2.37 million km² with immense untapped potential in minerals, fisheries, and energy. DOM positions India as a key player in the International Seabed Authority.", link:"https://en.wikipedia.org/wiki/Blue_economy" }
 ];
 
-/* Build DOM cards */
 function buildDomCards() {
   const track = document.getElementById('domTrack');
   track.innerHTML = '';
@@ -1055,27 +588,17 @@ function buildDomCards() {
     const card = document.createElement('div');
     card.className = 'dom-card';
     card.onclick = () => openDomModal(i);
-
-    const imgHtml = `
-      <img
-        src="${c.imgSrc}"
-        class="dom-card-img"
-        onerror="this.style.display='none'; document.getElementById('domFallback${i}').style.display='flex';"
-        alt="${c.title}"
-      >
-      <div class="dom-card-img-fallback" id="domFallback${i}" style="display:none;">${c.emoji}</div>
-    `;
-
     card.innerHTML = `
       <div class="dom-card-dot"></div>
-      ${imgHtml}
+      <img src="${c.imgSrc}" class="dom-card-img"
+        onerror="this.style.display='none'; document.getElementById('domFallback${i}').style.display='flex';" alt="${c.title}">
+      <div class="dom-card-img-fallback" id="domFallback${i}" style="display:none;">🌊</div>
       <div class="dom-card-body">
         <span class="dom-card-badge">${c.badge}</span>
         <p class="dom-card-title">${c.title}</p>
         <p class="dom-card-sub">${c.sub}</p>
         <div class="dom-card-btn"><span>+</span>${c.btnLabel}</div>
-      </div>
-    `;
+      </div>`;
     track.appendChild(card);
   });
 }
@@ -1084,153 +607,215 @@ function openDomModal(i) {
   const c = domCards[i];
   document.getElementById('domModalTitle').textContent = c.title;
   document.getElementById('domModalDesc').textContent = c.desc;
-
-  const imgWrap = document.getElementById('domModalImgWrap');
-  imgWrap.innerHTML = `
-    <img
-      src="${c.imgSrc}"
-      class="dom-modal-img"
-      onerror="this.style.display='none'; document.getElementById('domModalFallback').style.display='flex';"
-      alt="${c.title}"
-    >
-    <div class="dom-modal-img-fallback" id="domModalFallback" style="display:none;">${c.emoji}</div>
-  `;
-
-  const linkWrap = document.getElementById('domModalLinkWrap');
-  linkWrap.innerHTML = c.link
-    ? `<a href="${c.link}" target="_blank" class="dom-modal-link">🔗 ${c.btnLabel}</a>`
-    : '';
-
+  document.getElementById('domModalImgWrap').innerHTML = `
+    <img src="${c.imgSrc}" class="dom-modal-img"
+      onerror="this.style.display='none'; document.getElementById('domModalFallback').style.display='flex';" alt="${c.title}">
+    <div class="dom-modal-img-fallback" id="domModalFallback" style="display:none;">🌊</div>`;
+  document.getElementById('domModalLinkWrap').innerHTML = c.link
+    ? `<a href="${c.link}" target="_blank" class="dom-modal-link">🔗 ${c.btnLabel}</a>` : '';
   document.getElementById('domModal').classList.add('active');
 }
+function closeDomModal() { document.getElementById('domModal').classList.remove('active'); }
+document.getElementById('domModal').addEventListener('click', function(e){ if(e.target===this) closeDomModal(); });
 
-function closeDomModal() {
-  document.getElementById('domModal').classList.remove('active');
-}
-
-document.getElementById('domModal').addEventListener('click', function(e) {
-  if (e.target === this) closeDomModal();
-});
-
-/* ===================== ISLAND FAN STACK ===================== */
-const islandsData=[
-  {emoji:"🌺",flag:"🇲🇻",name:"Maldives",loc:"Indian Ocean",tags:["Coral Reef","Luxury","Overwater"],desc:"A paradise of 1,192 coral islands with crystal lagoons. The lowest-lying country on Earth faces rising sea levels.",colors:["#8b5cf6","#a78bfa"]},
-  {emoji:"🌴",flag:"🇮🇩",name:"Bali",loc:"Indonesia",tags:["Temples","Rice Terraces","Surfing"],desc:"The Island of the Gods — rice paddies, ancient Hindu temples, artistic traditions, and world-class surf breaks.",colors:["#ec4899","#f472b6"]},
-  {emoji:"🐢",flag:"🇪🇨",name:"Galápagos",loc:"Ecuador • Pacific",tags:["Darwin","Wildlife","Volcanic"],desc:"The living laboratory that inspired Darwin's theory of evolution. Home to giant tortoises and marine iguanas.",colors:["#0ea5e9","#38bdf8"]},
-  {emoji:"🌊",flag:"🇫🇯",name:"Fiji",loc:"South Pacific",tags:["Coral Kingdom","Diving","Friendly"],desc:"333 islands — the soft coral capital of the world with the friendliest people on Earth.",colors:["#14b8a6","#2dd4bf"]},
-  {emoji:"🏔",flag:"🇮🇸",name:"Iceland",loc:"North Atlantic",tags:["Volcanoes","Aurora","Geysers"],desc:"Land of fire and ice — active volcanoes, glaciers, geysers, and spectacular Northern Lights.",colors:["#6366f1","#818cf8"]},
-  {emoji:"🦁",flag:"🇲🇬",name:"Madagascar",loc:"Indian Ocean",tags:["Lemurs","Biodiversity","Baobabs"],desc:"90% of wildlife found nowhere else on Earth — ring-tailed lemurs, chameleons, and the iconic Avenue of the Baobabs.",colors:["#f59e0b","#fbbf24"]},
-  {emoji:"🏛",flag:"🇬🇷",name:"Santorini",loc:"Greece • Aegean",tags:["Caldera","Blue Domes","Sunsets"],desc:"Whitewashed villages perched over caldera cliffs and the most legendary sunsets on Earth.",colors:["#ef4444","#f87171"]},
-  {emoji:"🌺",flag:"🇺🇸",name:"Hawaii",loc:"USA • Pacific",tags:["Lava","Black Beaches","Stargazing"],desc:"Kīlauea — one of the world's most active volcanoes — black sand beaches and Mauna Kea observatory.",colors:["#d946ef","#e879f9"]},
-  {emoji:"🐠",flag:"🇵🇭",name:"Palawan",loc:"Philippines",tags:["Underground River","El Nido","Reef"],desc:"Repeatedly voted the world's best island — Puerto Princesa Underground River (UNESCO) and El Nido.",colors:["#10b981","#34d399"]},
-  {emoji:"🌿",flag:"🇲🇾",name:"Borneo",loc:"Southeast Asia",tags:["Orangutans","Rainforest","Caves"],desc:"Ancient rainforests shelter wild orangutans, pygmy elephants, and proboscis monkeys.",colors:["#22c55e","#4ade80"]},
-  {emoji:"🌊",flag:"🇵🇫",name:"Bora Bora",loc:"French Polynesia",tags:["Lagoon","Overwater","Romantic"],desc:"Often called the most beautiful island in the world — turquoise lagoon and the extinct volcano Mount Otemanu.",colors:["#3b82f6","#60a5fa"]},
-  {emoji:"🦎",flag:"🇮🇩",name:"Komodo",loc:"Indonesia",tags:["Dragons","UNESCO","Diving"],desc:"Home to the Komodo dragon — world's largest living lizard. Surrounding waters offer world-class diving.",colors:["#84cc16","#a3e635"]},
-  {emoji:"🏖",flag:"🇹🇿",name:"Zanzibar",loc:"Tanzania",tags:["Spice Island","Stone Town","Beaches"],desc:"The Spice Island of East Africa where Arab, Persian, Indian and European cultures converged.",colors:["#f97316","#fb923c"]},
-  {emoji:"🦋",flag:"🇻🇺",name:"Vanuatu",loc:"Melanesia • Pacific",tags:["Volcano Dive","Kastom","Bungee"],desc:"Dive the SS President Coolidge wreck, trek to Mount Yasur volcano rim.",colors:["#a855f7","#c084fc"]},
-  {emoji:"🐋",flag:"🇮🇸",name:"Faroe Islands",loc:"North Atlantic",tags:["Puffins","Cliffs","Norse"],desc:"18 volcanic islands with towering sea cliffs hosting millions of puffins and Norse heritage.",colors:["#06b6d4","#22d3ee"]},
+/* ===================== ISLAND DATA ===================== */
+const islandsData = [
+  {name:"Maldives",   loc:"Indian Ocean",      imgSrc:"https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg",      desc:"1,192 coral islands — the world's lowest-lying nation, a paradise of turquoise lagoons.",        c:["#7c3aed","#a78bfa"]},
+  {name:"Bali",       loc:"Indonesia",          emoji:"🌴", tags:["Temples","Rice Terraces","Surf"], desc:"The Island of the Gods — Hindu temples, rice paddy terraces and world-class surf breaks.",   c:["#be185d","#f472b6"]},
+  {name:"Galápagos",  loc:"Ecuador",            emoji:"🐢", tags:["Darwin","Wildlife","Volcanic"],  desc:"Living laboratory that inspired Darwin's theory of evolution — giant tortoises roam free.",   c:["#0369a1","#38bdf8"]},
+  {name:"Fiji",       loc:"South Pacific",      emoji:"🌊", tags:["Coral","Diving","Friendly"],    desc:"333 islands — the soft coral capital of the world with the friendliest people on Earth.",     c:["#0f766e","#2dd4bf"]},
+  {name:"Iceland",    loc:"North Atlantic",     emoji:"🏔", tags:["Aurora","Geysers","Volcano"],   desc:"Land of fire and ice — active volcanoes, glaciers and spectacular Northern Lights.",          c:["#4338ca","#818cf8"]},
+  {name:"Madagascar", loc:"Indian Ocean",       emoji:"🦁", tags:["Lemurs","Baobabs","Endemic"],   desc:"90% of wildlife found nowhere else — ring-tailed lemurs and the Avenue of the Baobabs.",      c:["#b45309","#fbbf24"]},
+  {name:"Santorini",  loc:"Greece",             emoji:"🏛", tags:["Caldera","Blue Domes","Sunset"],desc:"Whitewashed villages over legendary caldera cliffs — the most iconic Greek island.",          c:["#b91c1c","#f87171"]},
+  {name:"Hawaii",     loc:"USA Pacific",        emoji:"🌺", tags:["Lava","Black Sand","Stars"],    desc:"Kīlauea — one of Earth's most active volcanoes, plus Mauna Kea stargazing.",                  c:["#a21caf","#e879f9"]},
+  {name:"Palawan",    loc:"Philippines",        emoji:"🐠", tags:["UNESCO","El Nido","Reef"],      desc:"World's best island — Puerto Princesa Underground River and El Nido limestone cliffs.",       c:["#047857","#34d399"]},
+  {name:"Borneo",     loc:"SE Asia",            emoji:"🌿", tags:["Orangutans","Rainforest","Caves"],desc:"Ancient rainforests shelter wild orangutans, pygmy elephants and proboscis monkeys.",       c:["#15803d","#4ade80"]},
+  {name:"Bora Bora",  loc:"French Polynesia",   emoji:"🌊", tags:["Lagoon","Overwater","Romantic"],desc:"Often called the most beautiful island — turquoise lagoon and extinct Mount Otemanu.",       c:["#1d4ed8","#60a5fa"]},
+  {name:"Komodo",     loc:"Indonesia",          emoji:"🦎", tags:["Dragons","UNESCO","Diving"],    desc:"Home to the Komodo dragon — world's largest living lizard. World-class diving surrounds it.", c:["#4d7c0f","#a3e635"]},
+  {name:"Zanzibar",   loc:"Tanzania",           emoji:"🏖", tags:["Spice","Stone Town","Beach"],   desc:"The Spice Island of East Africa where Arab, Persian, Indian and European cultures converged.", c:["#c2410c","#fb923c"]},
+  {name:"Vanuatu",    loc:"Melanesia",          emoji:"🦋", tags:["Volcano","Wreck Dive","Culture"],desc:"Dive the SS President Coolidge wreck and trek to the active Mount Yasur volcano rim.",       c:["#7e22ce","#c084fc"]},
+  {name:"Faroe Islands",loc:"North Atlantic",   emoji:"🐋", tags:["Puffins","Cliffs","Norse"],     desc:"18 volcanic islands with towering sea cliffs hosting millions of puffins.",                   c:["#0e7490","#22d3ee"]},
+  {name:"Sri Lanka",  loc:"Indian Ocean",       emoji:"🐘", tags:["Temples","Tea","Elephants"],    desc:"Pearl of the Indian Ocean — ancient ruins, wild elephants and Ceylon tea gardens.",           c:["#9f1239","#f87171"]},
+  {name:"Seychelles", loc:"Indian Ocean",       emoji:"🪸", tags:["Granite","Endemic","Rare"],     desc:"115 islands with unique giant granite formations found nowhere else on Earth.",               c:["#6d28d9","#a78bfa"]},
+  {name:"Crete",      loc:"Greece",             emoji:"🏺", tags:["Minoan","Gorges","Olive"],      desc:"Oldest civilisation in Europe — the Minoan palace of Knossos and Samaria Gorge.",            c:["#92400e","#fbbf24"]},
+  {name:"Tahiti",     loc:"French Polynesia",   emoji:"🎨", tags:["Gauguin","Black Sand","Surf"],  desc:"Inspired Gauguin — dramatic volcanic black sand beaches and powerful reef surf breaks.",      c:["#9d174d","#f472b6"]},
+  {name:"Malta",      loc:"Mediterranean",      emoji:"🏰", tags:["Knights","UNESCO","Limestone"], desc:"Three UNESCO World Heritage sites packed on one tiny island — 7,000 years of history.",       c:["#c2410c","#fb923c"]},
+  {name:"Réunion",    loc:"Indian Ocean",       emoji:"🌋", tags:["Volcano","Hiking","Cirques"],   desc:"Active Piton de la Fournaise volcano and dramatic amphitheatre-shaped cirque valleys.",       c:["#065f46","#34d399"]},
+  {name:"Okinawa",    loc:"Japan",              emoji:"🐚", tags:["Coral","Longevity","Ryukyu"],   desc:"Bluest water in Japan — a Blue Zone longevity area with unique Ryukyu culture.",              c:["#0f766e","#2dd4bf"]},
+  {name:"Azores",     loc:"Portugal",           emoji:"🌿", tags:["Volcanic","Hot Springs","Whale"],desc:"Mid-Atlantic volcanic archipelago — hot-spring lakes and whale watching capital of Europe.", c:["#166534","#4ade80"]},
+  {name:"Corsica",    loc:"France",             emoji:"⛰", tags:["Mountains","Maquis","Beaches"], desc:"Mountain island with fragrant maquis shrubland, snow-capped peaks and turquoise coves.",      c:["#3730a3","#818cf8"]},
+  {name:"Socotra",    loc:"Yemen",              emoji:"🌳", tags:["Dragon Trees","Alien","Endemic"],desc:"Galápagos of the Indian Ocean — alien Dragon Blood trees and 700 unique species.",          c:["#86198f","#e879f9"]},
+  {name:"Lofoten",    loc:"Norway",             emoji:"🎣", tags:["Fjords","Aurora","Cod"],        desc:"Dramatic peaks above the Arctic Circle with iconic red fishermen's rorbuer huts.",           c:["#1e40af","#60a5fa"]},
+  {name:"Easter Island",loc:"Chile",            emoji:"🗿", tags:["Moai","Mystery","Rapa Nui"],   desc:"Giant stone Moai statues — one of the greatest archaeological mysteries on Earth.",          c:["#991b1b","#f87171"]},
+  {name:"Sardinia",   loc:"Italy",              emoji:"🏛", tags:["Nuraghe","Crystal Sea","Beach"],desc:"Bronze Age Nuraghe towers and some of Europe's most crystalline waters.",                    c:["#0369a1","#38bdf8"]},
+  {name:"Lombok",     loc:"Indonesia",          emoji:"🏄", tags:["Rinjani","Gili","Surf"],        desc:"Mount Rinjani volcano and pristine Gili islands — quieter and wilder than Bali.",            c:["#3f6212","#a3e635"]},
+  {name:"Mauritius",  loc:"Indian Ocean",       emoji:"🦜", tags:["Dodo","Lagoon","Multicultural"],desc:"Home of the extinct Dodo — now a jewel-lagoon paradise of the Indian Ocean.",               c:["#6b21a8","#c084fc"]}
 ];
 
-const VISIBLE=7, HALF=Math.floor(VISIBLE/2);
-let currentIdx=0, clickTimer=null;
+/* ===================== COVERFLOW CAROUSEL LOGIC ===================== */
+let cfCur = 0;
+const cfFlipped = new Set();
 
-function getAngle(pos){ return (pos-HALF)*14; }
-function getTranslateX(pos,sw){ return (sw/2)-100+(pos-HALF)*38; }
-function getZIndex(pos){ return VISIBLE-Math.abs(pos-HALF); }
-function getOpacity(pos){ return Math.max(0.35,1-Math.abs(pos-HALF)*0.15); }
+// How many cards visible each side of centre
+const VISIBLE = 4;
+// Horizontal spacing between cards (px)
+const SPACING = 200;
 
-function buildIslandStack(){
-  const stage=document.getElementById('islandStage');
-  stage.innerHTML='';
-  const sw=stage.offsetWidth||window.innerWidth-80;
+function buildCoverflow() {
+  const stage = document.getElementById('cfStage');
+  stage.innerHTML = '';
+  islandsData.forEach((isl, i) => {
+    const card = document.createElement('div');
+    card.className = 'cf-card';
+    card.id = 'cfcard-' + i;
 
-  /* On mobile, use fewer visible cards & tighter spread */
-  const isMobile = window.innerWidth <= 768;
-  const vis = isMobile ? 5 : VISIBLE;
-  const half = Math.floor(vis/2);
-  const spread = isMobile ? 28 : 38;
-  const cardW = isMobile ? 80 : 100; /* half card width for centering */
+    // Front face
+    const front = document.createElement('div');
+    front.className = 'cf-front';
+    front.style.background = `linear-gradient(145deg,${isl.c[0]}dd,${isl.c[1]}99)`;
+    front.innerHTML = `
+      <div class="cf-front-top">
+        <div class="cf-front-dot"></div>
+        ${isl.emoji}
+      </div>
+      <div class="cf-front-body">
+        <span class="cf-front-badge">${isl.tags[0]}</span>
+        <p class="cf-front-name">${isl.name}</p>
+        <p class="cf-front-loc">${isl.loc}</p>
+      </div>`;
 
-  for(let pos=0;pos<vis;pos++){
-    const di=(currentIdx+(pos-half)+islandsData.length*100)%islandsData.length;
-    const isl=islandsData[di];
-    const isFront=pos===half;
-    const angle=(pos-half)*14;
-    const tx=(sw/2)-cardW+(pos-half)*spread;
-    const zIdx=vis-Math.abs(pos-half);
-    const opacity=Math.max(0.35,1-Math.abs(pos-half)*0.18);
-
-    const card=document.createElement('div');
-    card.className='island-card';
-    card.style.cssText=`
-      background:linear-gradient(145deg,${isl.colors[0]}99,${isl.colors[1]}66);
-      transform:translateX(${tx}px) rotate(${angle}deg);
-      z-index:${zIdx};
-      opacity:${opacity};
-      box-shadow:${isFront?'0 16px 40px rgba(0,0,0,0.35)':'0 4px 12px rgba(0,0,0,0.2)'};
-    `;
-
-    if(isFront){
-      card.innerHTML=`
-        <div class="ic-dot"></div>
-        <div class="ic-emoji-wrap">${isl.emoji}</div>
-        <div class="info-overlay" id="islandInfoOverlay">
-          <button class="info-close-x" id="islandCloseX">✕</button>
-          <div class="info-tags">${isl.tags.map(t=>`<span>${t}</span>`).join('')}</div>
-          <p class="info-desc">${isl.flag} ${isl.name} · ${isl.loc}<br><br>${isl.desc}</p>
+    // Back face
+    const back = document.createElement('div');
+    back.className = 'cf-back';
+    back.innerHTML = `
+      <div>
+        <div class="cf-back-top">
+          <span class="cf-back-emoji">${isl.emoji}</span>
+          <div>
+            <div class="cf-back-title">${isl.name}</div>
+            <div class="cf-back-loc">${isl.loc}</div>
+          </div>
         </div>
-        <div class="ic-body">
-          <span class="ic-badge">${isl.tags[0]}</span>
-          <p class="ic-title">${isl.flag} ${isl.name}</p>
-          <p class="ic-sub">${isl.loc}</p>
-        </div>`;
+        <div class="cf-back-tags">${isl.tags.map(t=>`<span>${t}</span>`).join('')}</div>
+        <p class="cf-back-desc">${isl.desc}</p>
+      </div>
+      <div class="cf-back-hint">click to flip back</div>`;
 
-      card.addEventListener('click',function(e){
-        const overlay=document.getElementById('islandInfoOverlay');
-        const closeBtn=document.getElementById('islandCloseX');
-        if(closeBtn&&closeBtn.contains(e.target)) return;
-        if(overlay&&overlay.classList.contains('show')) return;
-        if(clickTimer){
-          clearTimeout(clickTimer);
-          clickTimer=null;
-          nextIslandCard();
+    card.appendChild(front);
+    card.appendChild(back);
+
+    card.addEventListener('click', () => {
+      if (i !== cfCur) {
+        // Clicking a side card navigates to it
+        cfGoTo(i);
+      } else {
+        // Clicking centre card flips it
+        if (cfFlipped.has(i)) {
+          cfFlipped.delete(i);
         } else {
-          clickTimer=setTimeout(()=>{
-            clickTimer=null;
-            if(overlay) overlay.classList.add('show');
-          },260);
+          cfFlipped.add(i);
         }
-      });
-
-      setTimeout(()=>{
-        const closeBtn=document.getElementById('islandCloseX');
-        if(closeBtn){
-          closeBtn.addEventListener('click',function(e){
-            e.stopPropagation();
-            const o=document.getElementById('islandInfoOverlay');
-            if(o) o.classList.remove('show');
-          });
-        }
-      },0);
-
-    } else {
-      card.innerHTML=`<div class="ic-emoji-wrap" style="font-size:32px;opacity:0.7">${isl.emoji}</div>`;
-    }
+        applyCfTransforms();
+      }
+    });
 
     stage.appendChild(card);
+  });
+  applyCfTransforms();
+  updateCfCounter();
+}
+
+function applyCfTransforms() {
+  const N = islandsData.length;
+  islandsData.forEach((_, i) => {
+    const card = document.getElementById('cfcard-' + i);
+    if (!card) return;
+
+    // diff: position relative to centre (wraps around)
+    let diff = i - cfCur;
+    // Wrap to shortest path around the loop
+    if (diff > N / 2)  diff -= N;
+    if (diff < -N / 2) diff += N;
+
+    const absDiff = Math.abs(diff);
+
+    // Hide cards far from centre
+    if (absDiff > VISIBLE) {
+      card.style.opacity = '0';
+      card.style.pointerEvents = 'none';
+      card.style.zIndex = '0';
+      return;
+    }
+
+    card.style.opacity = '1';
+    card.style.pointerEvents = 'auto';
+
+    // translateX: move away from centre
+    const tx = diff * SPACING;
+
+    // rotateY: side cards rotate inward (like a real coverflow)
+    // positive diff → rotate left face toward viewer → negative rotateY
+    const ry = diff === 0 ? 0 : diff > 0 ? -50 : 50;
+
+    // scale: centre card biggest
+    const scale = Math.max(0.55, 1 - absDiff * 0.12);
+
+    // z-index: centre card on top
+    card.style.zIndex = String(20 - absDiff);
+
+    // Build transform
+    let flipAngle = cfFlipped.has(i) ? 180 : 0;
+    card.style.transform = `translateX(${tx}px) scale(${scale}) rotateY(${ry + flipAngle}deg)`;
+    card.style.opacity = String(Math.max(0.3, 1 - absDiff * 0.18));
+  });
+}
+
+function cfGoTo(idx) {
+  const N = islandsData.length;
+  // Unflip old centre
+  if (cfFlipped.has(cfCur)) {
+    cfFlipped.delete(cfCur);
   }
-
-  document.getElementById('islandHint').textContent='single click = info  |  double click = next';
-  document.getElementById('islandCounter').textContent=`🏝 ${islandsData.length} islands total · ${currentIdx+1} / ${islandsData.length}`;
+  cfCur = ((idx % N) + N) % N;
+  applyCfTransforms();
+  updateCfCounter();
 }
 
-function nextIslandCard(){
-  currentIdx=(currentIdx+1)%islandsData.length;
-  buildIslandStack();
+function updateCfCounter() {
+  const isl = islandsData[cfCur];
+  document.getElementById('islandCounter').textContent =
+    `${isl.emoji} ${cfCur + 1} / ${islandsData.length} — ${isl.name}`;
 }
 
-/* Rebuild on resize */
-window.addEventListener('resize', ()=>{ buildIslandStack(); });
+document.getElementById('islandPrev').addEventListener('click', () => cfGoTo(cfCur - 1));
+document.getElementById('islandNext').addEventListener('click', () => cfGoTo(cfCur + 1));
+
+// Scroll on stage
+const cfStage = document.getElementById('cfStage');
+cfStage.addEventListener('wheel', e => {
+  e.preventDefault();
+  cfGoTo(e.deltaY > 0 ? cfCur + 1 : cfCur - 1);
+}, { passive: false });
+
+// Drag on stage
+let isDragging = false, dragStartX = 0;
+cfStage.addEventListener('mousedown', e => { isDragging = true; dragStartX = e.clientX; });
+window.addEventListener('mouseup', e => {
+  if (!isDragging) return;
+  isDragging = false;
+  const dx = e.clientX - dragStartX;
+  if (Math.abs(dx) > 40) cfGoTo(dx < 0 ? cfCur + 1 : cfCur - 1);
+});
+
+// Touch on stage
+let tStart = 0;
+cfStage.addEventListener('touchstart', e => { tStart = e.touches[0].clientX; }, { passive: true });
+cfStage.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - tStart;
+  if (Math.abs(dx) > 40) cfGoTo(dx < 0 ? cfCur + 1 : cfCur - 1);
+}, { passive: true });
+
+window.addEventListener('resize', applyCfTransforms);
 
 /* ===================== SPECIES / PLANTS / etc DATA ===================== */
 const speciesData=[
@@ -1255,7 +840,6 @@ const speciesData=[
   {name:"Orca",desc:"Killer whale",img:"orca.webp"},
   {name:"Barracuda",desc:"Fast predator",img:"barracuda.webp"}
 ];
-
 const plantsData=[
   {name:"Neptune Grass",desc:"Ancient seagrass found in Mediterranean Sea",img:"neptune.jpg"},
   {name:"Giant Kelp",desc:"Fastest growing marine plant forming underwater forests",img:"kelp.webp"},
@@ -1278,14 +862,12 @@ const plantsData=[
   {name:"Halophila",desc:"Smallest seagrass species, endangered",img:"halophila.webp"},
   {name:"Bull Kelp",desc:"Strong kelp surviving powerful ocean currents",img:"bull kelp.webp"}
 ];
-
 const pollutionData=[
   {name:"Plastic Pollution",desc:"Plastic harms marine life",img:"plastic.jpeg"},
   {name:"Oil Pollution",desc:"Oil spills damage oceans",img:"oil.webp"},
   {name:"Chemical Pollution",desc:"Chemicals pollute water",img:"chemical.jpg"},
   {name:"Sewage Pollution",desc:"Waste reduces oxygen",img:"swege.webp"}
 ];
-
 const sonarData=[
   {name:"Active Sonar",desc:"Uses sound waves",img:"sonar.png"},
   {name:"Passive Sonar",desc:"Listens underwater",img:"passive.webp"},
@@ -1294,33 +876,21 @@ const sonarData=[
 
 /* ===================== OVERVIEW POPUP ===================== */
 function showOverview(type){
-  let title="", desc="", link="";
-  if(type==="research"){
-    title="Research Articles";
-    desc="This section includes detailed research articles related to marine life, biodiversity, ocean ecosystems, climate change, and conservation.";
-    link="https://en.wikipedia.org/wiki/Marine_conservation";
-  } else if(type==="nasa ocean research"){
-    title="NASA Ocean Research";
-    desc="NASA uses advanced satellites to monitor ocean conditions, track sea level rise, and study microscopic marine life like phytoplankton. These studies help scientists understand environmental changes and protect marine life.";
-    link="https://www.earthdata.nasa.gov/topics/ocean";
-  } else if(type==="marine biology"){
-    title="Marine Biology";
-    desc="Marine biology is the scientific study of organisms that live in oceans and other saltwater environments. It includes the study of marine plants, animals, and microorganisms, as well as their interactions with the environment.";
-    link="https://en.wikipedia.org/wiki/Marine_biology";
-  } else if(type==="whoi"){
-    title="WHOI";
-    desc="Woods Hole Oceanographic Institution (WHOI) is one of the world's leading marine research laboratories. It focuses on studying ocean science, marine ecosystems, and climate change, and is known for deep-sea exploration using submersibles like Alvin.";
-    link="https://www.whoi.edu/";
-  }
+  const map = {
+    'research':          {title:"Research Articles", desc:"This section includes detailed research articles related to marine life, biodiversity, ocean ecosystems, climate change, and conservation.", link:"https://en.wikipedia.org/wiki/Marine_conservation"},
+    'nasa ocean research':{title:"NASA Ocean Research", desc:"NASA uses advanced satellites to monitor ocean conditions, track sea level rise, and study marine life. These studies help scientists understand environmental changes.", link:"https://www.earthdata.nasa.gov/topics/ocean"},
+    'marine biology':    {title:"Marine Biology", desc:"Marine biology is the scientific study of organisms that live in oceans. It includes the study of marine plants, animals, and microorganisms, and their interactions with the environment.", link:"https://en.wikipedia.org/wiki/Marine_biology"},
+    'whoi':              {title:"WHOI", desc:"Woods Hole Oceanographic Institution (WHOI) is one of the world's leading marine research laboratories, known for deep-sea exploration using submersibles like Alvin.", link:"https://www.whoi.edu/"}
+  };
+  const d = map[type];
   document.getElementById("popup").style.display="flex";
-  document.getElementById("popupName").innerText=title;
-  document.getElementById("popupDesc").innerHTML = desc + "<br><br><a href='"+link+"' target='_blank' style='color:#00c6ff'>Read more →</a>";
+  document.getElementById("popupName").innerText = d.title;
+  document.getElementById("popupDesc").innerHTML = d.desc + `<br><br><a href='${d.link}' target='_blank' style='color:#00c6ff'>Read more →</a>`;
   document.getElementById("popupImg").style.display="none";
 }
 
-/* ===================== LOAD CARDS ===================== */
 function loadData(data, id){
-  let c = document.getElementById(id);
+  const c = document.getElementById(id);
   c.innerHTML = "";
   data.forEach(i => {
     c.innerHTML += `
@@ -1332,19 +902,15 @@ function loadData(data, id){
   });
 }
 
-function openPopup(name, desc, img){
+function openPopup(name,desc,img){
   document.getElementById("popup").style.display="flex";
   document.getElementById("popupName").innerText=name;
   document.getElementById("popupDesc").innerText=desc;
   document.getElementById("popupImg").src=img;
   document.getElementById("popupImg").style.display="block";
 }
+function closePopup(){ document.getElementById("popup").style.display="none"; }
 
-function closePopup(){
-  document.getElementById("popup").style.display="none";
-}
-
-/* ===================== NAVIGATION ===================== */
 function showPage(page){
   document.getElementById("hero").style.display="none";
   document.getElementById("overview").style.display="none";
@@ -1353,7 +919,6 @@ function showPage(page){
   document.querySelectorAll(".page").forEach(p => p.style.display="none");
   document.getElementById(page).style.display="block";
 }
-
 function goHome(){
   document.querySelectorAll(".page").forEach(p => p.style.display="none");
   document.getElementById("hero").style.display="block";
@@ -1362,10 +927,9 @@ function goHome(){
   document.getElementById("islandSection").style.display="block";
 }
 
-/* ===================== SEARCH ===================== */
 function globalSearch(val){
   val = val.toLowerCase();
-  if(val === ""){
+  if(val===""){
     goHome();
     loadData(speciesData,"speciesContainer");
     loadData(plantsData,"plantsContainer");
@@ -1373,76 +937,45 @@ function globalSearch(val){
     loadData(sonarData,"sonarContainer");
     return;
   }
-  let species  = speciesData.filter(i=>i.name.toLowerCase().includes(val));
-  let plants   = plantsData.filter(i=>i.name.toLowerCase().includes(val));
-  let pollution= pollutionData.filter(i=>i.name.toLowerCase().includes(val));
-  let sonar    = sonarData.filter(i=>i.name.toLowerCase().includes(val));
-
+  const species   = speciesData.filter(i=>i.name.toLowerCase().includes(val));
+  const plants    = plantsData.filter(i=>i.name.toLowerCase().includes(val));
+  const pollution = pollutionData.filter(i=>i.name.toLowerCase().includes(val));
+  const sonar     = sonarData.filter(i=>i.name.toLowerCase().includes(val));
   if(species.length){ showPage("species"); loadData(species,"speciesContainer"); }
   else if(plants.length){ showPage("plants"); loadData(plants,"plantsContainer"); }
   else if(pollution.length){ showPage("pollution"); loadData(pollution,"pollutionContainer"); }
   else if(sonar.length){ showPage("sonar"); loadData(sonar,"sonarContainer"); }
 }
 
-/* ===================== LOGIN ===================== */
+/* LOGIN */
 function openLogin(){ document.getElementById("loginModal").style.display="flex"; }
 function closeLogin(){ document.getElementById("loginModal").style.display="none"; }
-
 let isSignup = false;
-
-function showSignup(){
-  document.getElementById("formTitle").innerText="Signup";
-  document.getElementById("name").style.display="block";
-  document.getElementById("mainBtn").innerText="Signup";
-  isSignup = true;
-  document.getElementById("signupTab").classList.add("active");
-  document.getElementById("loginTab").classList.remove("active");
-}
-
-function showLogin(){
-  document.getElementById("formTitle").innerText="Login";
-  document.getElementById("name").style.display="none";
-  document.getElementById("mainBtn").innerText="Login";
-  isSignup = false;
-  document.getElementById("loginTab").classList.add("active");
-  document.getElementById("signupTab").classList.remove("active");
-}
-
+function showSignup(){ document.getElementById("formTitle").innerText="Signup"; document.getElementById("name").style.display="block"; document.getElementById("mainBtn").innerText="Signup"; isSignup=true; document.getElementById("signupTab").classList.add("active"); document.getElementById("loginTab").classList.remove("active"); }
+function showLogin(){ document.getElementById("formTitle").innerText="Login"; document.getElementById("name").style.display="none"; document.getElementById("mainBtn").innerText="Login"; isSignup=false; document.getElementById("loginTab").classList.add("active"); document.getElementById("signupTab").classList.remove("active"); }
 function handleAuth(){
-  let name     = document.getElementById("name").value;
-  let email    = document.getElementById("email").value;
-  let password = document.getElementById("password").value;
-  let role     = document.getElementById("role").value;
-  if(email===""||password===""){alert("Please fill all fields");return;}
+  const email=document.getElementById("email").value, password=document.getElementById("password").value;
+  if(!email||!password){alert("Please fill all fields");return;}
   if(isSignup){
-    localStorage.setItem("user", JSON.stringify({name,email,password,role}));
+    localStorage.setItem("user", JSON.stringify({name:document.getElementById("name").value,email,password,role:document.getElementById("role").value}));
     alert("Signup Successful ✅");
   } else {
-    let user = JSON.parse(localStorage.getItem("user"));
-    if(user && user.email===email && user.password===password){
-      alert("Login Successful ✅");
-      document.getElementById("logoutBtn").style.display="block";
-      closeLogin();
-    } else { alert("Invalid Login ❌"); }
+    const user=JSON.parse(localStorage.getItem("user"));
+    if(user&&user.email===email&&user.password===password){ alert("Login Successful ✅"); document.getElementById("logoutBtn").style.display="block"; closeLogin(); }
+    else alert("Invalid Login ❌");
   }
 }
+function logout(){ localStorage.removeItem("user"); alert("Logged out 👋"); document.getElementById("logoutBtn").style.display="none"; }
 
-function logout(){
-  localStorage.removeItem("user");
-  alert("Logged out 👋");
-  document.getElementById("logoutBtn").style.display="none";
-}
-
-/* ===================== INIT ===================== */
+/* INIT */
 window.onload = () => {
   loadData(speciesData,"speciesContainer");
   loadData(plantsData,"plantsContainer");
   loadData(pollutionData,"pollutionContainer");
   loadData(sonarData,"sonarContainer");
   buildDomCards();
-  buildIslandStack();
+  buildCoverflow();
 };
-
 </script>
 </body>
 </html>
