@@ -40,7 +40,6 @@ body::after{
   box-shadow: 0 10px 40px rgba(0,0,0,0.15), inset 0 0 10px rgba(255,255,255,0.5);
 }
 
-/* ===== FIXED HEADER - Search bar next to AquaVerse, not overlapping nav ===== */
 header{
   display:flex;
   justify-content:space-between;
@@ -114,6 +113,7 @@ nav li:hover{
   text-align:center;
 }
 
+/* ===== OVERVIEW FIX ===== */
 .overview{
   margin:20px;
   padding:25px;
@@ -137,6 +137,8 @@ nav li:hover{
   grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
   gap:15px;
   margin-top:20px;
+  width:100%;
+  box-sizing:border-box;
 }
 
 .dom-section{
@@ -204,7 +206,7 @@ nav li:hover{
 .dom-modal-close-btn{ display: block; width: 100%; margin-top: 10px; padding: 11px; border-radius: 25px; font-size: 14px; font-weight: 600; cursor: pointer; transition: 0.25s; background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(34,211,238,0.15)); border: 1.5px solid rgba(139,92,246,0.4); color: #5b21b6; }
 .dom-modal-close-btn:hover{ background: linear-gradient(135deg, rgba(139,92,246,0.28), rgba(34,211,238,0.28)); }
 
-/* ===== OCEAN SECTION — FIXED cards overflow ===== */
+/* ===== OCEAN SECTION ===== */
 .ocean-section{
   margin: 0 20px 20px;
   padding: 0;
@@ -225,7 +227,7 @@ nav li:hover{
   display: flex;
   flex-direction: column;
   gap: 14px;
-  overflow: hidden; /* FIX: prevent cards going outside */
+  overflow: hidden;
   box-sizing: border-box;
 }
 .ocean-left-panel h2{
@@ -247,15 +249,14 @@ nav li:hover{
   gap: 10px;
   flex: 1;
   width: 100%;
-  overflow: hidden; /* FIX */
+  overflow: hidden;
 }
 
-/* FIX: ocean-stage must be bounded by its panel */
 .ocean-stage{
   position: relative;
   width: 100%;
   height: 240px;
-  overflow: hidden; /* FIX: clip cards that go outside */
+  overflow: hidden;
 }
 
 .ocean-card{
@@ -640,22 +641,56 @@ nav li:hover{
 .mcc-secondary-btn{ display:inline-flex; align-items:center; gap:6px; padding:11px 20px; border-radius:30px; text-decoration:none; font-size:13px; font-weight:600; background:rgba(255,255,255,0.18); color:#0369a1; border:1px solid rgba(165,243,252,0.38); box-shadow:inset 0 1px 0 rgba(255,255,255,0.45); transition:0.25s; backdrop-filter:blur(8px); }
 .mcc-secondary-btn:hover{ background:rgba(255,255,255,0.32); transform:translateY(-2px); }
 
-.overview-files-section{ margin:0 20px 20px 20px; padding:28px 30px; position:relative; overflow:hidden; transition:padding 0.5s cubic-bezier(.25,.8,.25,1); }
+/* ===== OVERVIEW FILES SECTION — FIXED ===== */
+.overview-files-section{
+  margin:0 20px 20px 20px;
+  padding:28px 30px;
+  position:relative;
+  overflow:hidden;
+  transition:padding 0.5s cubic-bezier(.25,.8,.25,1);
+  box-sizing:border-box;
+}
 .overview-files-section::before{ content:""; position:absolute; width:320px; height:320px; border-radius:50%; background:radial-gradient(circle,rgba(255,100,180,0.08) 0%,transparent 70%); top:-60px; right:-60px; pointer-events:none; }
 .ofs-header{ display:flex; align-items:center; gap:12px; margin-bottom:26px; }
 .ofs-header h2{ font-size:22px; font-weight:700; color:#6b0060; margin:0; }
 .ofs-header-badge{ font-size:10px; font-weight:700; padding:4px 12px; border-radius:20px; background:linear-gradient(135deg,rgba(255,100,190,0.25),rgba(255,150,220,0.18)); border:1px solid rgba(255,120,200,0.4); color:#9d0060; letter-spacing:0.8px; text-transform:uppercase; }
-.ofs-folders-row{ display:flex; gap:22px; flex-wrap:wrap; margin-bottom:0; align-items:flex-end; }
+
+/* FIX: folders row — wrap properly, no overflow */
+.ofs-folders-row{
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+  margin-bottom:0;
+  align-items:flex-end;
+  width:100%;
+  box-sizing:border-box;
+}
 .ofs-folders-row.has-open{ margin-bottom:28px; transition:margin-bottom 0.4s ease; }
+
+/* FIX: folder visual sizing — responsive */
 .pink-folder{ display:flex; flex-direction:column; align-items:center; gap:10px; cursor:pointer; position:relative; }
-.pink-folder-visual{ width:160px; height:140px; position:relative; transition:transform 0.28s cubic-bezier(.25,.8,.25,1),filter 0.28s; filter:drop-shadow(0 8px 22px rgba(255,20,160,0.25)); }
+.pink-folder-visual{
+  width:130px;
+  height:114px;
+  position:relative;
+  transition:transform 0.28s cubic-bezier(.25,.8,.25,1),filter 0.28s;
+  filter:drop-shadow(0 8px 22px rgba(255,20,160,0.25));
+}
 .pink-folder:hover .pink-folder-visual{ transform:translateY(-8px) scale(1.05); filter:drop-shadow(0 18px 38px rgba(255,20,160,0.50)); }
 .pink-folder:active .pink-folder-visual{ transform:scale(0.95); }
 .pink-folder-visual svg{ width:100%; height:100%; }
-.pink-folder-label{ font-size:13px; font-weight:700; color:#8b005a; text-align:center; max-width:160px; line-height:1.3; }
+.pink-folder-label{ font-size:12px; font-weight:700; color:#8b005a; text-align:center; max-width:130px; line-height:1.3; }
 .pink-folder-count{ font-size:11px; color:rgba(139,0,90,0.55); font-weight:600; text-align:center; margin-top:-4px; }
 .pink-folder.active .pink-folder-visual{ filter:drop-shadow(0 0 28px rgba(255,20,180,0.70)); }
-.ofs-cards-area{ overflow:hidden; display:grid; grid-template-rows:0fr; opacity:0; transition:grid-template-rows 0.5s cubic-bezier(.25,.8,.25,1),opacity 0.4s ease; }
+
+.ofs-cards-area{
+  overflow:hidden;
+  display:grid;
+  grid-template-rows:0fr;
+  opacity:0;
+  transition:grid-template-rows 0.5s cubic-bezier(.25,.8,.25,1),opacity 0.4s ease;
+  width:100%;
+}
 .ofs-cards-area.open{ grid-template-rows:1fr; opacity:1; }
 .ofs-cards-area-inner{ overflow:hidden; min-height:0; }
 .ofs-folder-title-bar{ display:none; align-items:center; gap:10px; margin-bottom:16px; padding:10px 16px; border-radius:16px; background:linear-gradient(135deg,rgba(255,100,180,0.12),rgba(255,160,220,0.08)); border:1px solid rgba(255,130,200,0.3); }
@@ -663,19 +698,33 @@ nav li:hover{
 .ofs-folder-title-bar span{ font-size:14px; font-weight:700; color:#7a0055; }
 .ofs-close-btn{ margin-left:auto; width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,#ff6eb8,#ff9fda); border:none; color:white; font-size:13px; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:0.2s; box-shadow:0 3px 10px rgba(255,100,180,0.4); flex-shrink:0; }
 .ofs-close-btn:hover{ transform:scale(1.15) rotate(90deg); box-shadow:0 5px 16px rgba(255,100,180,0.6); }
-.ofs-cards-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:16px; opacity:0; transform:translateY(14px); transition:opacity 0.4s ease 0.15s,transform 0.4s cubic-bezier(.25,.8,.25,1) 0.15s; pointer-events:none; }
+
+/* FIX: cards grid — proper responsive columns */
+.ofs-cards-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:14px;
+  opacity:0;
+  transform:translateY(14px);
+  transition:opacity 0.4s ease 0.15s,transform 0.4s cubic-bezier(.25,.8,.25,1) 0.15s;
+  pointer-events:none;
+  width:100%;
+  box-sizing:border-box;
+}
 .ofs-cards-grid.visible{ opacity:1; transform:translateY(0); pointer-events:auto; }
+
 .ofs-card{ border-radius:20px; overflow:hidden; cursor:pointer; position:relative; background:linear-gradient(145deg,rgba(255,180,230,0.35),rgba(255,200,240,0.20),rgba(255,160,210,0.28)); backdrop-filter:blur(22px); -webkit-backdrop-filter:blur(22px); border:1.5px solid rgba(255,180,220,0.55); box-shadow:0 6px 24px rgba(255,80,180,0.14),inset 0 1px 0 rgba(255,255,255,0.75); transition:transform 0.3s cubic-bezier(.25,.8,.25,1),box-shadow 0.3s ease; }
 .ofs-card:hover{ transform:translateY(-7px) scale(1.02); box-shadow:0 18px 40px rgba(255,80,180,0.22),inset 0 1px 0 rgba(255,255,255,0.85); }
-.ofs-card-img-wrap{ width:100%; height:140px; overflow:hidden; position:relative; }
+.ofs-card-img-wrap{ width:100%; height:130px; overflow:hidden; position:relative; }
 .ofs-card-img-wrap img{ width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease; }
 .ofs-card:hover .ofs-card-img-wrap img{ transform:scale(1.06); }
 .ofs-card-img-fallback{ width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:48px; background:linear-gradient(135deg,rgba(255,160,220,0.3),rgba(255,200,240,0.2)); }
 .ofs-card-overlay{ position:absolute; bottom:0; left:0; right:0; height:50px; background:linear-gradient(to top,rgba(180,0,80,0.3),transparent); pointer-events:none; }
 .ofs-card-body{ padding:12px 14px 14px; }
 .ofs-card-badge{ display:inline-block; font-size:9px; font-weight:700; padding:3px 9px; border-radius:20px; background:linear-gradient(135deg,rgba(255,100,190,0.28),rgba(255,160,220,0.18)); border:1px solid rgba(255,150,210,0.5); color:rgba(120,0,80,0.9); letter-spacing:0.6px; text-transform:uppercase; margin-bottom:6px; }
-.ofs-card-title{ font-size:14px; font-weight:700; color:#5c0045; margin:0 0 4px; line-height:1.3; }
+.ofs-card-title{ font-size:13px; font-weight:700; color:#5c0045; margin:0 0 4px; line-height:1.3; }
 .ofs-card-desc{ font-size:11px; color:rgba(100,0,70,0.70); margin:0; line-height:1.5; }
+
 .ofs-modal{ display:none; position:fixed; inset:0; background:rgba(0,0,0,0.38); backdrop-filter:blur(14px); justify-content:center; align-items:center; z-index:1100; }
 .ofs-modal.active{ display:flex; }
 .ofs-modal-box{ background:linear-gradient(160deg,rgba(255,190,230,0.70),rgba(255,160,220,0.55),rgba(255,200,245,0.50)); backdrop-filter:blur(40px); -webkit-backdrop-filter:blur(40px); border-radius:28px; border:1.5px solid rgba(255,200,235,0.85); box-shadow:0 24px 70px rgba(200,50,120,0.28),inset 0 2px 0 rgba(255,255,255,0.90); width:400px; max-width:93vw; overflow:hidden; position:relative; }
@@ -796,9 +845,10 @@ footer a:hover{ opacity:0.75; }
   .marine-climate-card{ margin:0 10px 16px; padding:22px 18px; }
   .mcc-stats{ grid-template-columns:repeat(3,1fr); gap:8px; }
   .overview-files-section{ margin:0 10px 14px; padding:18px 14px; }
-  .ofs-folders-row{ gap:14px; }
-  .pink-folder-visual{ width:120px; height:106px; }
-  .ofs-cards-grid{ grid-template-columns:1fr 1fr; gap:12px; }
+  .ofs-folders-row{ gap:10px; }
+  .pink-folder-visual{ width:100px; height:88px; }
+  .pink-folder-label{ font-size:11px; max-width:100px; }
+  .ofs-cards-grid{ grid-template-columns:1fr 1fr; gap:10px; }
   .transport-hero-banner{ margin:0 10px 16px; padding:22px 18px; }
   .transport-hero-banner h2{ font-size:20px; }
   .transport-stats-row{ gap:8px; }
@@ -809,6 +859,7 @@ footer a:hover{ opacity:0.75; }
   .news-channels-grid{ grid-template-columns:1fr; }
   .ocean-card{ width:90px; height:140px; }
   .transport-stats-row{ flex-direction:column; }
+  .ofs-folders-row{ justify-content:center; }
 }
 @media(max-width:380px){
   .overview-grid{ grid-template-columns:1fr; }
@@ -816,13 +867,12 @@ footer a:hover{ opacity:0.75; }
   nav li{ font-size:12px; padding:6px 10px; }
   .mcc-stats{ grid-template-columns:1fr 1fr; }
   .ofs-cards-grid{ grid-template-columns:1fr; }
-  .pink-folder-visual{ width:100px; height:88px; }
+  .pink-folder-visual{ width:85px; height:75px; }
 }
 </style>
 </head>
 <body>
 
-<!-- FIXED HEADER: AquaVerse + search on left, nav on right -->
 <header class="glass">
   <div class="header-left">
     <h2>AquaVerse</h2>
@@ -972,7 +1022,7 @@ footer a:hover{ opacity:0.75; }
       <div class="ofs-cards-area-inner">
         <div class="ofs-folder-title-bar" id="ofsTitleBar">
           <span id="ofsTitleBarText">📂 Folder</span>
-          <button class="ofs-close-btn" onclick="closeFolderCards()"></button>
+          <button class="ofs-close-btn" onclick="closeFolderCards()">✕</button>
         </div>
         <div class="ofs-cards-grid" id="ofsCardsGrid"></div>
       </div>
@@ -1048,7 +1098,7 @@ footer a:hover{ opacity:0.75; }
 
 <div class="ofs-modal" id="ofsModal">
   <div class="ofs-modal-box">
-    <div class="ofs-modal-close" onclick="closeOfsModal()"></div>
+    <div class="ofs-modal-close" onclick="closeOfsModal()">✕</div>
     <div class="ofs-modal-img-wrap" id="ofsModalImgWrap"></div>
     <div class="ofs-modal-body">
       <h3 id="ofsModalTitle"></h3>
@@ -1127,6 +1177,7 @@ function buildOfsFolders(){
     el.addEventListener('click',()=>openFolder(folder)); row.appendChild(el);
   });
 }
+
 function openFolder(folder){
   const grid=document.getElementById('ofsCardsGrid'),titleBar=document.getElementById('ofsTitleBar'),titleText=document.getElementById('ofsTitleBarText'),area=document.getElementById('ofsCardsArea'),foldersRow=document.getElementById('ofsFoldersRow');
   document.querySelectorAll('.pink-folder').forEach(f=>f.classList.remove('active'));
@@ -1141,6 +1192,7 @@ function openFolder(folder){
   titleText.textContent=`📂 ${folder.label}`; titleBar.classList.add('visible'); foldersRow.classList.add('has-open'); area.classList.add('open');
   requestAnimationFrame(()=>{requestAnimationFrame(()=>{grid.classList.add('visible');});});
 }
+
 function closeFolderCards(){
   const grid=document.getElementById('ofsCardsGrid'),titleBar=document.getElementById('ofsTitleBar'),area=document.getElementById('ofsCardsArea'),foldersRow=document.getElementById('ofsFoldersRow');
   grid.classList.remove('visible'); titleBar.classList.remove('visible');
@@ -1148,6 +1200,7 @@ function closeFolderCards(){
   ofsActiveFolder=null; foldersRow.classList.remove('has-open');
   setTimeout(()=>{area.classList.remove('open');setTimeout(()=>{grid.innerHTML='';},520);},150);
 }
+
 function openOfsModal(card,folder){
   document.getElementById('ofsModalTitle').textContent=card.title;
   document.getElementById('ofsModalDesc').textContent=card.desc;
@@ -1198,9 +1251,8 @@ const oceanData=[
   {name:"Southern Ocean",loc:"5th Ocean · 21M km²",badge:"STORMIEST",tags:["Antarctica","Krill Ecosystem","Drake Passage"],desc:"Officially recognised as the 5th ocean in 2021. It encircles Antarctica and contains the world's strongest winds and currents.",img:"https://images.unsplash.com/photo-1548777123-e216912df7d8?w=400&q=80",colors:["#c2185b","#f48fb1"]}
 ];
 
-/* FIX: Calculate fan positions based on actual panel width to keep cards inside */
 const fanAngles=[-28,-14,0,14,28];
-const fanOffsets=[-0.75,-0.38,0,0.38,0.75]; // fraction of stage width from centre
+const fanOffsets=[-0.75,-0.38,0,0.38,0.75];
 
 let currentOceanOrder=[0,1,2,3,4];
 let clickTimer=null;
@@ -1209,8 +1261,7 @@ function buildOceanStack(){
   const stage=document.getElementById('oceanStage');
   stage.innerHTML='';
   const sw=stage.offsetWidth||280;
-  const cardW=parseInt(getComputedStyle(document.documentElement).getPropertyValue('--card-w'))||128;
-  // Spread factor: keep outermost cards inside
+  const cardW=128;
   const spread=Math.min((sw-cardW)/2, sw*0.35);
 
   currentOceanOrder.forEach((dataIdx,posIdx)=>{
@@ -1224,41 +1275,16 @@ function buildOceanStack(){
 
     const card=document.createElement('div');
     card.className='ocean-card';
-    card.style.cssText=`
-      background:linear-gradient(145deg,${isl.colors[0]}cc,${isl.colors[1]}99);
-      left:${tx}px;
-      transform:rotate(${rot}deg);
-      z-index:${zVal};
-      opacity:${opVal};
-    `;
+    card.style.cssText=`background:linear-gradient(145deg,${isl.colors[0]}cc,${isl.colors[1]}99);left:${tx}px;transform:rotate(${rot}deg);z-index:${zVal};opacity:${opVal};`;
 
     const overlayId='oceanOvl_'+posIdx+'_'+Date.now();
 
     if(isFront){
-      card.innerHTML=`
-        <div class="ic-dot"></div>
-        <div class="ic-img-wrap">
-          <img src="${isl.img}" alt="${isl.name}" onerror="this.parentElement.style.background='rgba(200,50,120,0.4)'">
-        </div>
-        <div class="info-overlay" id="${overlayId}">
-          <button class="info-close-x" data-oid="${overlayId}">✕</button>
-          <div class="info-tags">${isl.tags.map(t=>`<span>${t}</span>`).join('')}</div>
-          <p class="info-desc"><strong style="color:#fff">${isl.name}</strong><br>${isl.loc}<br><br>${isl.desc}</p>
-        </div>
-        <div class="ic-body">
-          <span class="ic-badge">${isl.badge}</span>
-          <p class="ic-title">${isl.name}</p>
-          <p class="ic-sub">${isl.loc}</p>
-        </div>`;
-
+      card.innerHTML=`<div class="ic-dot"></div><div class="ic-img-wrap"><img src="${isl.img}" alt="${isl.name}" onerror="this.parentElement.style.background='rgba(200,50,120,0.4)'"></div><div class="info-overlay" id="${overlayId}"><button class="info-close-x" data-oid="${overlayId}">✕</button><div class="info-tags">${isl.tags.map(t=>`<span>${t}</span>`).join('')}</div><p class="info-desc"><strong style="color:#fff">${isl.name}</strong><br>${isl.loc}<br><br>${isl.desc}</p></div><div class="ic-body"><span class="ic-badge">${isl.badge}</span><p class="ic-title">${isl.name}</p><p class="ic-sub">${isl.loc}</p></div>`;
       setTimeout(()=>{
         const btn=card.querySelector('.info-close-x');
-        if(btn) btn.addEventListener('click',function(e){
-          e.stopPropagation();
-          document.getElementById(this.dataset.oid).classList.remove('show');
-        });
+        if(btn) btn.addEventListener('click',function(e){e.stopPropagation();document.getElementById(this.dataset.oid).classList.remove('show');});
       },0);
-
       card.addEventListener('click',function(e){
         if(e.target.classList.contains('info-close-x'))return;
         const overlay=document.getElementById(overlayId);
@@ -1267,17 +1293,8 @@ function buildOceanStack(){
         else{clickTimer=setTimeout(()=>{clickTimer=null;if(overlay)overlay.classList.add('show');},280);}
       });
     } else {
-      card.innerHTML=`
-        <div class="ic-img-wrap">
-          <img src="${isl.img}" alt="${isl.name}" onerror="this.parentElement.style.background='rgba(200,50,120,0.3)'">
-        </div>
-        <div class="ic-body" style="opacity:0.7;">
-          <p class="ic-title" style="font-size:11px;">${isl.name}</p>
-        </div>`;
-      card.addEventListener('click',()=>{
-        if(clickTimer){clearTimeout(clickTimer);clickTimer=null;}
-        rotateOceanLeft();
-      });
+      card.innerHTML=`<div class="ic-img-wrap"><img src="${isl.img}" alt="${isl.name}" onerror="this.parentElement.style.background='rgba(200,50,120,0.3)'"></div><div class="ic-body" style="opacity:0.7;"><p class="ic-title" style="font-size:11px;">${isl.name}</p></div>`;
+      card.addEventListener('click',()=>{if(clickTimer){clearTimeout(clickTimer);clickTimer=null;}rotateOceanLeft();});
     }
     stage.appendChild(card);
   });
@@ -1304,12 +1321,7 @@ function buildNewsChannels(){
   newsChannelsData.forEach((ch,i)=>{
     const el=document.createElement('div');
     el.className='news-ch-card';
-    const logoHtml=`
-      <div class="news-logo-box" id="logobox${i}" style="background:${ch.logoBg};">
-        <img src="${ch.logoUrl}" alt="${ch.name} logo"
-          style="width:100%;height:100%;object-fit:contain;padding:8px;box-sizing:border-box;border-radius:10px;"
-          onerror="this.parentElement.innerHTML='<span style=\\'font-size:9px;font-weight:900;line-height:1.3;text-align:center;white-space:pre-line;color:${ch.logoColor};padding:4px;\\'>${ch.logoText}</span>'">
-      </div>`;
+    const logoHtml=`<div class="news-logo-box" id="logobox${i}" style="background:${ch.logoBg};"><img src="${ch.logoUrl}" alt="${ch.name} logo" style="width:100%;height:100%;object-fit:contain;padding:8px;box-sizing:border-box;border-radius:10px;" onerror="this.parentElement.innerHTML='<span style=\\'font-size:9px;font-weight:900;line-height:1.3;text-align:center;white-space:pre-line;color:${ch.logoColor};padding:4px;\\'>${ch.logoText}</span>'"></div>`;
     el.innerHTML=`${logoHtml}<div><p class="news-ch-name">${ch.name}</p><p class="news-ch-cat">${ch.cat}</p></div><span class="news-ch-pill">${ch.pill}</span>`;
     el.addEventListener('click',()=>openNewsPopup(i));
     grid.appendChild(el);
@@ -1319,13 +1331,9 @@ function buildNewsChannels(){
 function openNewsPopup(i){
   const ch=newsChannelsData[i];
   const hero=document.getElementById('newsPopHero');
-  hero.textContent=ch.heroText;
-  hero.style.background=ch.heroBg;
-  hero.style.color=ch.heroColor;
-  hero.style.letterSpacing='2px';
+  hero.textContent=ch.heroText; hero.style.background=ch.heroBg; hero.style.color=ch.heroColor; hero.style.letterSpacing='2px';
   const icon=document.getElementById('newsPopIcon');
-  icon.className='news-popup-icon-sm';
-  icon.style.background=ch.logoBg;
+  icon.className='news-popup-icon-sm'; icon.style.background=ch.logoBg;
   icon.innerHTML=`<img src="${ch.logoUrl}" alt="${ch.name}" style="width:100%;height:100%;object-fit:contain;padding:6px;box-sizing:border-box;border-radius:11px;" onerror="this.parentElement.innerHTML='<span style=\\'font-size:8px;font-weight:900;line-height:1.3;text-align:center;white-space:pre-line;color:${ch.logoColor};padding:2px;\\'>${ch.logoText}</span>';this.parentElement.style.display='flex';this.parentElement.style.alignItems='center';this.parentElement.style.justifyContent='center';">`;
   document.getElementById('newsPopTitle').textContent=ch.name;
   document.getElementById('newsPopCat').textContent=ch.cat;
@@ -1476,28 +1484,6 @@ const pollutionData=[
   {name:"Sewage Dumping",emoji:"💧",desc:"Untreated sewage contaminating coastal waters"},
   {name:"Acidification",emoji:"🧪",desc:"Rising CO2 making oceans more acidic, harming corals"}
 ];
-const transportationData=[
-  {name:"Container Ship",desc:"Carries standardized cargo containers; backbone of global trade moving 90% of manufactured goods worldwide.",img:"https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=500&q=80"},
-  {name:"Oil Tanker",desc:"Massive vessels transporting crude oil and petroleum products across oceans. Can carry up to 550,000 tonnes.",img:"https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=500&q=80"},
-  {name:"Cruise Ship",desc:"Floating resorts offering luxury travel. Modern cruise ships can carry over 6,000 passengers and 2,000 crew.",img:"https://images.unsplash.com/photo-1548438294-1ad5d5f4f063?w=500&q=80"},
-  {name:"Submarine",desc:"Military and research vessels that operate underwater. Nuclear subs can remain submerged for months without surfacing.",img:"https://images.unsplash.com/photo-1578319439584-104c94d37305?w=500&q=80"},
-  {name:"Aircraft Carrier",desc:"Floating military airbase — the largest warships ever built, stretching over 330 metres and carrying 90+ aircraft.",img:"https://images.unsplash.com/photo-1580196969807-cc6de06c05be?w=500&q=80"},
-  {name:"Ferry",desc:"Passenger vessels connecting islands and coastal cities. Vital transport links for millions of commuters daily.",img:"https://images.unsplash.com/photo-1534237886190-ced735ca4b73?w=500&q=80"},
-  {name:"Bulk Carrier",desc:"Designed to transport unpackaged bulk cargo like grain, coal, and minerals. World's most numerous large vessels.",img:"https://images.unsplash.com/photo-1605745341075-1b7460b99df8?w=500&q=80"},
-  {name:"LNG Carrier",desc:"Transports liquefied natural gas at -162°C in insulated tanks. Critical for global energy supply chains.",img:"https://images.unsplash.com/photo-1610812474853-d5a7f9a88434?w=500&q=80"},
-  {name:"Research Vessel",desc:"Equipped with labs and scientific instruments for oceanographic surveys, deep-sea exploration, and climate studies.",img:"https://images.unsplash.com/photo-1527856263669-12c3a0af2aa6?w=500&q=80"},
-  {name:"Tugboat",desc:"Powerful compact vessels that manoeuvre large ships in harbours and tow disabled vessels across open water.",img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80"},
-  {name:"Sailing Vessel",desc:"Wind-powered vessels ranging from ancient trading ships to modern racing yachts competing in round-the-world races.",img:"https://images.unsplash.com/photo-1500514966906-fe245eea9344?w=500&q=80"},
-  {name:"Hovercraft",desc:"Amphibious craft that glides over water and land on a cushion of pressurised air. Used in military and rescue operations.",img:"https://images.unsplash.com/photo-1516683422082-c92c7263e5e7?w=500&q=80"},
-  {name:"Icebreaker",desc:"Specially designed to navigate through ice-covered waters, keeping Arctic shipping lanes open year-round.",img:"https://images.unsplash.com/photo-1501854140801-50d01698950b?w=500&q=80"},
-  {name:"Deep-Sea Submersible",desc:"Specialised vessels like MATSYA 6000 and Alvin that descend to extreme ocean depths for scientific exploration.",img:"https://images.unsplash.com/photo-1560275619-4cc5fa59d3ae?w=500&q=80"},
-  {name:"Patrol Boat",desc:"Fast coastal defence vessels used by navies and coast guards to enforce maritime law and protect territorial waters.",img:"https://images.unsplash.com/photo-1559825481-12a05cc00344?w=500&q=80"},
-  {name:"Catamaran",desc:"Twin-hulled vessels known for speed and stability. Popular for passenger ferries, racing, and luxury sailing.",img:"https://images.unsplash.com/photo-1500514966906-fe245eea9344?w=500&q=80"},
-  {name:"Supply Vessel",desc:"Support ships that deliver fuel, food, and equipment to offshore oil platforms and remote maritime installations.",img:"https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=500&q=80"},
-  {name:"Fishing Trawler",desc:"Commercial fishing vessels that drag large nets through water. The global fleet catches over 80 million tonnes annually.",img:"https://images.unsplash.com/photo-1516802273409-68526ee1bdd6?w=500&q=80"},
-  {name:"Hospital Ship",desc:"Floating medical facilities deployed in conflict zones and disaster areas. Protected under international law.",img:"https://images.unsplash.com/photo-1580196969807-cc6de06c05be?w=500&q=80"},
-  {name:"Ro-Ro Vessel",desc:"Roll-on/Roll-off ships carry vehicles and rolling cargo. Vital for car exports — Japan ships 5M+ vehicles annually.",img:"https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=500&q=80"}
-];
 
 function showOverview(type){
   const map={
@@ -1541,6 +1527,7 @@ function showPage(page){
   document.getElementById(page).style.display="block";
   if(page==='species')loadData(speciesData,"speciesContainer");
   if(page==='plants')loadData(plantsData,"plantsContainer");
+  if(page==='pollution'){loadData(pollutionData,"pollutionContainer");buildOfsFolders();}
   if(page==='oceanography')loadData(oceanographyData,"oceanographyContainer");
   if(page==='transportation')loadData(transportationData,"transportationContainer");
 }
@@ -1579,14 +1566,9 @@ function handleAuth(){
 function logout(){localStorage.removeItem("user");alert("Logged out 👋");document.getElementById("logoutBtn").style.display="none";}
 
 window.onload=()=>{
-  loadData(speciesData,"speciesContainer");
-  loadData(plantsData,"plantsContainer");
-  loadData(oceanographyData,"oceanographyContainer");
-  loadData(transportationData,"transportationContainer");
   buildDomCards();
   buildOceanStack();
   buildCoverflow();
-  buildOfsFolders();
   buildNewsChannels();
 };
 </script>
