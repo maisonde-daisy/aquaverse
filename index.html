@@ -811,6 +811,119 @@ footer{ text-align:center; padding:30px 50px; margin:20px; background:rgba(255,2
 footer a{ color:#7c3aed; text-decoration:none; font-weight:600; background:linear-gradient(135deg,#8b5cf6,#22d3ee); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; transition:opacity 0.2s; }
 footer a:hover{ opacity:0.75; }
 
+/* ===== OCEANOGRAPHY VIDEO BANNER ===== */
+.ocean-video-banner {
+  margin: 0 20px 24px;
+  border-radius: 28px;
+  overflow: hidden;
+  position: relative;
+  border: 1.5px solid rgba(255,255,255,0.55);
+  box-shadow: 0 10px 40px rgba(34,211,238,0.18), inset 0 0 18px rgba(255,255,255,0.45);
+  background: rgba(255,255,255,0.20);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  min-height: 280px;
+}
+
+.ocean-video-banner video {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+  border-radius: 28px 28px 0 0;
+  filter: brightness(0.75) saturate(1.2);
+}
+
+.ocean-video-glass-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 28px 32px 30px;
+  background: linear-gradient(
+    to top,
+    rgba(20, 10, 60, 0.72) 0%,
+    rgba(30, 10, 80, 0.45) 55%,
+    transparent 100%
+  );
+  backdrop-filter: blur(2px);
+}
+
+.ocean-video-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, rgba(34,211,238,0.35), rgba(139,92,246,0.28));
+  border: 1px solid rgba(34,211,238,0.55);
+  color: #a5f3fc;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.ocean-video-glass-overlay h2 {
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 8px;
+  text-shadow: 0 2px 16px rgba(34,211,238,0.4);
+  letter-spacing: -0.3px;
+}
+
+.ocean-video-glass-overlay p {
+  font-size: 13px;
+  color: rgba(200,240,255,0.85);
+  margin: 0;
+  line-height: 1.7;
+  max-width: 560px;
+}
+
+.ocean-video-stats {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.ovs-stat {
+  padding: 9px 16px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(34,211,238,0.30);
+  backdrop-filter: blur(10px);
+  text-align: center;
+  min-width: 80px;
+}
+
+.ovs-stat-val {
+  font-size: 17px;
+  font-weight: 800;
+  color: #67e8f9;
+  display: block;
+  line-height: 1.1;
+}
+
+.ovs-stat-lbl {
+  font-size: 9px;
+  font-weight: 600;
+  color: rgba(165,243,252,0.70);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-top: 3px;
+  display: block;
+}
+
+/* Mobile */
+@media(max-width:768px){
+  .ocean-video-banner { margin: 0 10px 16px; }
+  .ocean-video-banner video { height: 210px; }
+  .ocean-video-glass-overlay { padding: 18px 16px 20px; }
+  .ocean-video-glass-overlay h2 { font-size: 19px; }
+  .ocean-video-stats { gap: 8px; }
+}
+
 /* ===== MOBILE ===== */
 @media(max-width:768px){
   header{ flex-direction:column; align-items:stretch; padding:14px 16px; margin:10px; gap:12px; }
@@ -1032,6 +1145,22 @@ footer a:hover{ opacity:0.75; }
 </div>
 
 <div id="oceanography" class="page">
+  <div class="ocean-video-banner glass">
+    <video autoplay muted loop playsinline>
+      <source src="hologram.mp4" type="video/mp4">
+    </video>
+    <div class="ocean-video-glass-overlay">
+      <span class="ocean-video-badge">🌐 Deep Science</span>
+      <h2>🔭 Oceanography</h2>
+      <p>Exploring the physical, chemical, biological, and geological dimensions of the world's oceans — from the sunlit surface to the hadal trenches 11km below.</p>
+      <div class="ocean-video-stats">
+        <div class="ovs-stat"><span class="ovs-stat-val">11km</span><span class="ovs-stat-lbl">Deepest Point</span></div>
+        <div class="ovs-stat"><span class="ovs-stat-val">80%</span><span class="ovs-stat-lbl">Unexplored</span></div>
+        <div class="ovs-stat"><span class="ovs-stat-val">1M+</span><span class="ovs-stat-lbl">Species Est.</span></div>
+        <div class="ovs-stat"><span class="ovs-stat-val">4°C</span><span class="ovs-stat-lbl">Deep Sea Avg Temp</span></div>
+      </div>
+    </div>
+  </div>
   <h2 class="section-title">🔭 Oceanography</h2>
   <div id="oceanographyContainer" class="card-grid"></div>
 </div>
