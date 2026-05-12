@@ -1598,25 +1598,7 @@ const islandsData=[
   {name:"Bora Bora",loc:"French Polynesia",emoji:"🌊",img:"https://images.unsplash.com/photo-1589197331516-4d84b72ebde3?w=400&q=80",tags:["Lagoon","Overwater","Romantic"],desc:"Often called the most beautiful island on Earth.",c:["#f9a8d4","#38bdf8"]},
   {name:"Komodo",loc:"Indonesia",emoji:"🦎",img:"https://images.unsplash.com/photo-1575986767340-5d17ae767ab0?w=400&q=80",tags:["Dragons","UNESCO","Diving"],desc:"Home to the Komodo dragon — world's largest living lizard.",c:["#ff80d5","#22d3ee"]},
 ];
-async function loadIslandsFromAPI(){
-  const res = await fetch(`${API}/islands?limit=30`);
-  const json = await res.json();
-  if(json.data && json.data.length){
-    islandsData.length = 0;
-    json.data.forEach(i=>{
-      islandsData.push({
-        name: i.name,
-        loc: i.country+' · '+i.ocean,
-        emoji: '🏝️',
-        img: i.image_url||'',
-        tags: [(i.region||'Island'),(i.ocean||'Ocean'),(i.country||'')],
-        desc: i.description||'',
-        c: ['#ff6ec7','#22d3ee']
-      });
-    });
-    buildCoverflow();
-  }
-}
+
 let cfCur=0;
 const cfFlipped=new Set();
 const CF_VISIBLE=4,SPACING=210;
@@ -1777,34 +1759,8 @@ function showPage(page){
   document.querySelectorAll(".page").forEach(p=>p.style.display="none");
   /* Show requested page */
   document.getElementById(page).style.display="block";
-  if(page==='species'){
-  fetch(`${API}/species?limit=40`)
-  .then(r=>r.json())
-  .then(json=>{
-    const c=document.getElementById("speciesContainer");
-    c.innerHTML="";
-    json.data.forEach(i=>{
-      c.innerHTML+=`<div class="card" onclick="openPopup('${i.name}','${i.description||i.category}','${i.image_url||''}')">
-<img src="${i.image_url}" style="width:100%;height:150px;object-fit:cover;border-radius:15px;display:block;" onerror="this.style.display='none'">
-<h3>${i.name}</h3>
-<p>${(i.description||i.category||'').substring(0,80)}</p></div>`;
-    });
-  });
-}
-  if(page==='plants'){
-  fetch(`${API}/plants?limit=20`)
-  .then(r=>r.json())
-  .then(json=>{
-    const c=document.getElementById("plantsContainer");
-    c.innerHTML="";
-    json.data.forEach(i=>{
-      c.innerHTML+=`<div class="card" onclick="openPopup('${i.name}','${i.description||i.plant_type}','${i.image_url||''}')">
-        <img src="${i.image_url||''}" onerror="this.style.display='none'">
-        <h3>${i.name}</h3>
-        <p>${(i.description||'').substring(0,80)}</p></div>`;
-    });
-  });
-}
+  if(page==='species')loadData(speciesData,"speciesContainer");
+  if(page==='plants')loadData(plantsData,"plantsContainer");
   if(page==='pollution'){loadData([],"pollutionContainer")||true; buildOfsFolders();}
   if(page==='transportation')loadData(transportationData,"transportationContainer");
   if(page==='oceanography'){
@@ -1841,24 +1797,11 @@ function closeLogin(){document.getElementById("loginModal").style.display="none"
 let isSignup=false;
 function showSignup(){document.getElementById("formTitle").innerText="Signup";document.getElementById("name").style.display="block";document.getElementById("mainBtn").innerText="Signup";isSignup=true;document.getElementById("signupTab").classList.add("active");document.getElementById("loginTab").classList.remove("active");}
 function showLogin(){document.getElementById("formTitle").innerText="Login";document.getElementById("name").style.display="none";document.getElementById("mainBtn").innerText="Login";isSignup=false;document.getElementById("loginTab").classList.add("active");document.getElementById("signupTab").classList.remove("active");}
-const API = 'http://localhost:3000/api';
-async function handleAuth(){
-  const email=document.getElementById("email").value;
-  const password=document.getElementById("password").value;
+function handleAuth(){
+  const email=document.getElementById("email").value,password=document.getElementById("password").value;
   if(!email||!password){alert("Please fill all fields");return;}
-  if(isSignup){
-    const name=document.getElementById("name").value;
-    const role=document.getElementById("role").value;
-    const res=await fetch(`${API}/auth/signup`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,email,password,role})});
-    const data=await res.json();
-    if(data.token){localStorage.setItem('token',data.token);alert("Signup Successful ✅");closeLogin();}
-    else{alert(data.error||'Signup failed');}
-  }else{
-    const res=await fetch(`${API}/auth/login`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});
-    const data=await res.json();
-    if(data.token){localStorage.setItem('token',data.token);alert("Login Successful ✅");document.getElementById("logoutBtn").style.display="block";closeLogin();}
-    else{alert(data.error||'Invalid Login ❌');}
-  }
+  if(isSignup){localStorage.setItem("user",JSON.stringify({name:document.getElementById("name").value,email,password,role:document.getElementById("role").value}));alert("Signup Successful ✅");}
+  else{const user=JSON.parse(localStorage.getItem("user")||'null');if(user&&user.email===email&&user.password===password){alert("Login Successful ✅");document.getElementById("logoutBtn").style.display="block";closeLogin();}else alert("Invalid Login ❌");}
 }
 function logout(){localStorage.removeItem("user");alert("Logged out 👋");document.getElementById("logoutBtn").style.display="none";}
 
@@ -1867,7 +1810,6 @@ window.onload=()=>{
   buildOceanStack();
   buildCoverflow();
   buildNewsChannels();
-  loadIslandsFromAPI();
 };
 </script>
 </body>
